@@ -1,4 +1,4 @@
-# Why Work Warrior
+# Workwarrior Project
 
 Workwarrior is a profile-based productivity system that unifies TaskWarrior, TimeWarrior, JRNL, and Hledger under a single CLI and browser UI.
 
