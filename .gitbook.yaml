@@ -1,5 +1,7 @@
 root: ./
 
 structure:
-  readme: README.md
-  summary: SUMMARY.md
+  readme: ./whyworkwarrior.md
+  summary: ./SUMMARY.md
+
+title: Why Work Warrior
