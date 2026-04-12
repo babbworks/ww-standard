@@ -55,15 +55,18 @@ Workwarrior is a profile-based productivity system that unifies TaskWarrior, Tim
 
 ## Technical Reference
 
-| Section                        | Description |
-|--------------------------------|-------------|
-| [Binaries](reference/bin/)     | `ww` dispatcher and `ww-init.sh` |
-| [Core Libraries](reference/lib/) | Core utilities and managers |
-| [Services](reference/services/) | All service-level documentation |
-| [Cross-Cutting](reference/cross-cutting/) | Sync engine, config, error handling |
-| [Extensions](reference/extensions/) | Taskwarrior & TimeWarrior extensions |
-| [Taskwarrior Extensions List](reference/extensions/taskwarrior/repos/) | Community extensions |
-| [Source Map](reference/source-map.yaml) | Doc-to-source mapping |
+Per-component documentation for every library, service, and subsystem.
+
+| Section                                      | Description |
+|----------------------------------------------|-------------|
+| [Binaries](reference/bin/ww.md)              | Main CLI dispatcher (`ww`) and bootstrap (`ww-init.sh`) |
+| [Core Libraries](reference/lib/)             | Core utilities and managers (profile-manager, sync, logging, etc.) |
+| [Services](reference/services/)              | All service-level documentation |
+| [Cross-Cutting](reference/cross-cutting/)    | Sync engine, config loader, error handling, installer |
+| [Extensions](reference/extensions/)          | TaskWarrior & TimeWarrior extensions |
+| [Taskwarrior Extensions Overview](reference/extensions/taskwarrior/index.md) | Integrations and overviews |
+| [Community Extensions List](reference/extensions/taskwarrior/repos/) | Large list of third-party extensions |
+| [Source Map](reference/source-map.yaml)      | Maps each doc to its source files |
 
 ---
 
