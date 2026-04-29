@@ -1,0 +1,101 @@
+\contentsline {section}{\numberline {1}1. Overview}{1}{section.1}%
+\contentsline {section}{\numberline {2}2. Architecture}{1}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Data Flow Summary}{2}{subsection.2.1}%
+\contentsline {section}{\numberline {3}3. Directory Structure}{2}{section.3}%
+\contentsline {section}{\numberline {4}4. Environment Variables}{5}{section.4}%
+\contentsline {section}{\numberline {5}5. Profile Model}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Structure}{6}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Lifecycle}{6}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Multiple Named Resources}{6}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Profile Groups}{7}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Backup/Restore Policy}{7}{subsection.5.5}%
+\contentsline {section}{\numberline {6}6. Shell Bootstrap}{7}{section.6}%
+\contentsline {subsection}{\numberline {6.1}bin/ww-init.sh}{7}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Shell Functions Injected}{7}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}RC File Management}{8}{subsection.6.3}%
+\contentsline {section}{\numberline {7}7. CLI Dispatcher}{8}{section.7}%
+\contentsline {subsection}{\numberline {7.1}bin/ww}{8}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Service Discovery}{8}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Allow-Listed Commands}{8}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Security Constraint}{8}{subsection.7.4}%
+\contentsline {section}{\numberline {8}8. Core Libraries}{9}{section.8}%
+\contentsline {subsection}{\numberline {8.1}lib/core-utils.sh}{9}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}lib/profile-manager.sh}{9}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}lib/shell-integration.sh}{9}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}lib/logging.sh}{10}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}lib/taskwarrior-api.sh}{10}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}lib/config-utils.sh}{10}{subsection.8.6}%
+\contentsline {subsection}{\numberline {8.7}lib/config-loader.sh}{10}{subsection.8.7}%
+\contentsline {section}{\numberline {9}9. Service Architecture}{11}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Contract}{11}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Minimal Service Template}{11}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Profile-Level Service Override}{11}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Service Tiers}{11}{subsection.9.4}%
+\contentsline {section}{\numberline {10}10. Service Registry}{12}{section.10}%
+\contentsline {section}{\numberline {11}11. Browser UI}{13}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Overview}{13}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Server Implementation}{13}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}REST API}{14}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Security Model}{14}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Panels}{14}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}CMD Input Routing}{15}{subsection.11.6}%
+\contentsline {section}{\numberline {12}12. Heuristic Engine}{15}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Overview}{15}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Pipeline}{15}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Rule Structure}{16}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Confidence Levels by Phrasing Variation}{16}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Command Domains}{16}{subsection.12.5}%
+\contentsline {subsection}{\numberline {12.6}Date Expression Normalization}{16}{subsection.12.6}%
+\contentsline {subsection}{\numberline {12.7}Compiler}{17}{subsection.12.7}%
+\contentsline {subsection}{\numberline {12.8}Self-Improvement Loop}{17}{subsection.12.8}%
+\contentsline {section}{\numberline {13}13. AI Integration}{17}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Configuration}{17}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Modes}{18}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Provider Registry}{18}{subsection.13.3}%
+\contentsline {subsection}{\numberline {13.4}Runtime Control}{18}{subsection.13.4}%
+\contentsline {section}{\numberline {14}14. GitHub Sync Engine}{19}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Two Engines}{19}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}Bugwarrior}{19}{subsection.14.2}%
+\contentsline {subsection}{\numberline {14.3}ww github-sync}{19}{subsection.14.3}%
+\contentsline {subsection}{\numberline {14.4}Field Mapping}{19}{subsection.14.4}%
+\contentsline {subsection}{\numberline {14.5}Sync Engine Files}{20}{subsection.14.5}%
+\contentsline {subsection}{\numberline {14.6}Conflict Resolution}{20}{subsection.14.6}%
+\contentsline {subsection}{\numberline {14.7}Orphan Detection}{21}{subsection.14.7}%
+\contentsline {subsection}{\numberline {14.8}Annotation/Comment Sync}{21}{subsection.14.8}%
+\contentsline {subsection}{\numberline {14.9}Oracle Token Pattern}{21}{subsection.14.9}%
+\contentsline {section}{\numberline {15}15. Weapons System}{21}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Sword}{21}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Gun}{22}{subsection.15.2}%
+\contentsline {subsection}{\numberline {15.3}Next}{22}{subsection.15.3}%
+\contentsline {subsection}{\numberline {15.4}Schedule}{22}{subsection.15.4}%
+\contentsline {subsection}{\numberline {15.5}Planned Weapons}{22}{subsection.15.5}%
+\contentsline {subsection}{\numberline {15.6}Weapon Constraints}{22}{subsection.15.6}%
+\contentsline {section}{\numberline {16}16. UDA System}{23}{section.16}%
+\contentsline {subsection}{\numberline {16.1}Overview}{23}{subsection.16.1}%
+\contentsline {subsection}{\numberline {16.2}UDA Types}{23}{subsection.16.2}%
+\contentsline {subsection}{\numberline {16.3}Source Classification}{23}{subsection.16.3}%
+\contentsline {subsection}{\numberline {16.4}Management}{23}{subsection.16.4}%
+\contentsline {subsection}{\numberline {16.5}Sync Permissions}{24}{subsection.16.5}%
+\contentsline {subsection}{\numberline {16.6}Urgency Tuning}{24}{subsection.16.6}%
+\contentsline {subsection}{\numberline {16.7}Density Scoring}{24}{subsection.16.7}%
+\contentsline {section}{\numberline {17}17. Extensions}{24}{section.17}%
+\contentsline {subsection}{\numberline {17.1}TaskWarrior Extensions Registry}{24}{subsection.17.1}%
+\contentsline {subsection}{\numberline {17.2}Hook Events}{24}{subsection.17.2}%
+\contentsline {subsection}{\numberline {17.3}TimeWarrior Extensions}{25}{subsection.17.3}%
+\contentsline {section}{\numberline {18}18. Questions System}{25}{section.18}%
+\contentsline {subsection}{\numberline {18.1}Template Structure}{26}{subsection.18.1}%
+\contentsline {section}{\numberline {19}19. Export System}{26}{section.19}%
+\contentsline {section}{\numberline {20}20. Fragility Register}{26}{section.20}%
+\contentsline {section}{\numberline {21}21. Shell Coding Standards}{27}{section.21}%
+\contentsline {subsection}{\numberline {21.1}Variable Naming}{28}{subsection.21.1}%
+\contentsline {subsection}{\numberline {21.2}Function Template}{28}{subsection.21.2}%
+\contentsline {section}{\numberline {22}22. Testing}{28}{section.22}%
+\contentsline {subsection}{\numberline {22.1}BATS Tests}{28}{subsection.22.1}%
+\contentsline {subsection}{\numberline {22.2}Python Tests (pytest)}{28}{subsection.22.2}%
+\contentsline {subsection}{\numberline {22.3}Test Policy}{29}{subsection.22.3}%
+\contentsline {section}{\numberline {23}23. Install Policy}{29}{section.23}%
+\contentsline {subsection}{\numberline {23.1}Core Toolchain}{29}{subsection.23.1}%
+\contentsline {subsection}{\numberline {23.2}Platform Matrix}{29}{subsection.23.2}%
+\contentsline {subsection}{\numberline {23.3}Install Steps}{29}{subsection.23.3}%
+\contentsline {subsection}{\numberline {23.4}Optional Extensions}{30}{subsection.23.4}%
+\contentsline {section}{\numberline {24}24. Dependency Table}{30}{section.24}%

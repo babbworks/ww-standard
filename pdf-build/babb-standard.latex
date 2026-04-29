@@ -1,0 +1,212 @@
+%% Babb Works Technical Standard — LaTeX Template
+\documentclass[11pt, a4paper, DIV=14]{scrartcl}
+
+%% ── Core packages ─────────────────────────────────────────────────────────────
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{scrlayer-scrpage}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\usepackage{upquote}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{etoolbox}
+\usepackage{amsmath}
+\usepackage{calc}
+\usetikzlibrary{positioning}
+
+%% ── Geometry ──────────────────────────────────────────────────────────────────
+\geometry{
+  a4paper,
+  top=26mm, bottom=28mm,
+  left=30mm, right=30mm,
+  headheight=16pt, headsep=8mm, footskip=14mm
+}
+
+%% ── Colours ───────────────────────────────────────────────────────────────────
+\definecolor{BabbNavy}{HTML}{1A2B45}
+\definecolor{BabbTeal}{HTML}{007B7F}
+\definecolor{BabbLightTeal}{HTML}{D6EEEF}
+\definecolor{BabbGray}{HTML}{5A6272}
+\definecolor{BabbLightGray}{HTML}{F4F5F7}
+\definecolor{BabbBorder}{HTML}{CBD5E1}
+\definecolor{BabbRed}{HTML}{C0392B}
+\definecolor{CodeBg}{HTML}{F6F8FA}
+% Set shadecolor for pandoc's Shaded environment
+\definecolor{shadecolor}{HTML}{F6F8FA}
+
+%% ── Fonts (with Arial Unicode MS fallback for arrows/symbols) ────────────────
+\setmainfont{Georgia}[BoldFont=Georgia Bold, ItalicFont=Georgia Italic]
+\setmonofont{Menlo}[Scale=0.82, FallbackFonts={{Arial Unicode MS}}]
+\setsansfont{Helvetica Neue}[Scale=0.95, FallbackFonts={{Arial Unicode MS}}]
+
+%% ── KOMA section fonts ────────────────────────────────────────────────────────
+\setkomafont{section}{\sffamily\large\bfseries\color{BabbNavy}}
+\setkomafont{subsection}{\sffamily\normalsize\bfseries\color{BabbNavy}}
+\setkomafont{subsubsection}{\sffamily\small\bfseries\color{BabbGray}}
+\setkomafont{paragraph}{\sffamily\small\bfseries\color{BabbGray}}
+\RedeclareSectionCommand[beforeskip=18pt, afterskip=6pt]{section}
+\RedeclareSectionCommand[beforeskip=12pt, afterskip=4pt]{subsection}
+\RedeclareSectionCommand[beforeskip=8pt, afterskip=3pt]{subsubsection}
+
+%% ── Headers & Footers ─────────────────────────────────────────────────────────
+\clearpairofpagestyles
+\ohead{\footnotesize\sffamily\color{BabbGray}v0.1.0 \textbar\ Draft}
+\ihead{\footnotesize\sffamily\color{BabbGray}Workwarrior Technical Standard \textbar\ WW-STD-001}
+\ofoot{\footnotesize\sffamily\color{BabbGray}Page~\thepage}
+\ifoot{\footnotesize\sffamily\color{BabbGray}\textbf{Babb Works} \textbar\ www.babb.tel \textbar\ workwarrior@babb.tel}
+\KOMAoptions{headsepline=0.5pt, footsepline=0.5pt}
+\addtokomafont{headsepline}{\color{BabbBorder}}
+\addtokomafont{footsepline}{\color{BabbBorder}}
+\pagestyle{scrheadings}
+
+%% ── Hyperlinks ────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=BabbNavy,
+  urlcolor=BabbTeal,
+  citecolor=BabbTeal,
+  pdfauthor={Babb Works},
+  pdftitle={Workwarrior Technical Standard},
+  pdfsubject={WW-STD-001},
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  unicode=true
+}
+
+%% ── pandoc common macros (provides Shaded, Highlighting, tightlist, tables) ──
+$common.latex()$
+
+%% ── Override shadecolor after common.latex sets it ───────────────────────────
+\definecolor{shadecolor}{HTML}{F6F8FA}
+
+%% ── pandoc compatibility ──────────────────────────────────────────────────────
+\providecommand{\tightlist}{\setlength{\itemsep}{2pt}\setlength{\parskip}{0pt}}
+\providecommand{\pandocbounded}[1]{#1}
+
+%% ── Inline code ───────────────────────────────────────────────────────────────
+\let\origTexttt\texttt
+\renewcommand{\texttt}[1]{{\ttfamily\fontsize{8.5}{10.5}\selectfont\color{BabbNavy}#1}}
+
+%% ── Tables ────────────────────────────────────────────────────────────────────
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{7pt}
+\AtBeginEnvironment{longtable}{\footnotesize\sffamily}
+
+%% ── Paragraph spacing ─────────────────────────────────────────────────────────
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+%% ── Horizontal rules ──────────────────────────────────────────────────────────
+\let\origRule\rule
+\renewcommand{\rule}[3][0pt]{%
+  \ifnum\dimexpr#3\relax>0pt
+    \par\vspace{2pt}\noindent{\color{BabbBorder}\origRule[#1]{#2}{#3}}\par\vspace{2pt}%
+  \else
+    \origRule[#1]{#2}{#3}%
+  \fi
+}
+
+%% ── Title page ────────────────────────────────────────────────────────────────
+\newcommand{\BabbTitlePage}{%
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[BabbNavy]
+      (current page.north west)
+      rectangle ([yshift=-78mm]current page.north east);
+    \fill[BabbTeal]
+      ([yshift=-78mm]current page.north west)
+      rectangle ([yshift=-82mm]current page.north east);
+  \end{tikzpicture}%
+  \vspace*{10mm}%
+  {%
+    \noindent\sffamily\color{white}%
+    \vspace*{4mm}%
+    {\fontsize{8.5}{11}\selectfont\color{BabbTeal!70!white}%
+      \MakeUppercase{Babb Works}\enspace\textbar\enspace Technical Standard}\\[6mm]%
+    {\fontsize{30}{35}\selectfont\bfseries Workwarrior\\[2pt]Technical Standard}\\[5mm]%
+    {\fontsize{13}{16}\selectfont\color{BabbTeal!80!white} WW-STD-001}%
+  }%
+  \vspace{18mm}
+
+  \noindent\fcolorbox{BabbBorder}{BabbLightGray}{%
+    \begin{minipage}{\linewidth-2\fboxrule-2\fboxsep-2pt}
+      \vspace{4pt}
+      \footnotesize\sffamily
+      \begin{tabular}{@{}ll@{\hspace{14mm}}ll@{}}
+        \textbf{\color{BabbGray}Document Number} & WW-STD-001 &
+        \textbf{\color{BabbGray}Version}         & 0.1.0 \\[2pt]
+        \textbf{\color{BabbGray}Status}          & Draft &
+        \textbf{\color{BabbGray}Date}            & 2026-04-29 \\[2pt]
+        \textbf{\color{BabbGray}Maintained by}   & Babb Works &
+        \textbf{\color{BabbGray}Website}         & www.babb.tel \\[2pt]
+        \multicolumn{2}{@{}l}{\textbf{\color{BabbGray}Contact}\hspace{6.5mm}workwarrior@babb.tel} &
+        \multicolumn{2}{l}{\textbf{\color{BabbGray}Repository}\hspace{2mm}github.com/babbworks/ww-standard} \\
+      \end{tabular}
+      \vspace{4pt}
+    \end{minipage}%
+  }
+
+  \vspace{7mm}
+
+  \noindent\fcolorbox{BabbTeal}{BabbLightTeal}{%
+    \begin{minipage}{\linewidth-2\fboxrule-2\fboxsep-2pt}
+      \vspace{5pt}
+      \footnotesize\sffamily\color{BabbNavy}
+      \textbf{Abstract.}\enspace This document defines the Workwarrior Technical
+      Standard --- the canonical specification for the Workwarrior shell productivity
+      system developed and maintained by Babb Works. It covers architecture, directory
+      structure, environment model, service contracts, browser UI, heuristic engine,
+      AI integration, GitHub sync engine, UDA system, shell coding standards, and
+      install policy. Implementors and contributors should treat this document as
+      authoritative.
+      \vspace{5pt}
+    \end{minipage}%
+  }
+
+  \vspace{6mm}
+  {\footnotesize\sffamily\color{BabbGray}
+    Released under the MIT License. Free to use, modify, and distribute.
+    Maintained at \href{https://github.com/babbworks/ww-standard}{github.com/babbworks/ww-standard}.
+    Contact: \href{mailto:workwarrior@babb.tel}{workwarrior@babb.tel}.
+  }%
+  \clearpage
+}
+
+%% ══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\BabbTitlePage
+
+\thispagestyle{scrheadings}
+{\sffamily\bfseries\large\color{BabbNavy}Table of Contents}\\[-2pt]
+{\color{BabbTeal}\origRule[0pt]{\linewidth}{0.5pt}}\\[2pt]
+\tableofcontents
+\clearpage
+
+$body$
+
+%% ── Colophon ──────────────────────────────────────────────────────────────────
+\vspace{12pt}
+\noindent{\color{BabbBorder}\origRule[0pt]{\linewidth}{0.5pt}}
+\vspace{4pt}
+
+{\footnotesize\sffamily\color{BabbGray}
+\textbf{Workwarrior Technical Standard WW-STD-001 v0.1.0}
+\enspace\textbar\enspace Maintained by Babb Works\\
+\href{https://www.babb.tel}{www.babb.tel}
+\enspace\textbar\enspace
+\href{mailto:workwarrior@babb.tel}{workwarrior@babb.tel}
+\enspace\textbar\enspace
+\href{https://github.com/babbworks/ww-standard}{github.com/babbworks/ww-standard}\\[2pt]
+Released under the MIT License --- free to use, modify, and distribute.
+This document is the authoritative specification for the Workwarrior system.
+}
+
+\end{document}

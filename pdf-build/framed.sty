@@ -1,0 +1,19 @@
+%% Minimal framed.sty stub — provides snugshade for pandoc code blocks
+\ProvidesPackage{framed}[2024/01/01 minimal stub]
+\newsavebox{\snugbox@}
+\newenvironment{snugshade}{%
+  \begin{lrbox}{\snugbox@}%
+  \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}%
+  \vspace{3pt}%
+}{%
+  \vspace{3pt}%
+  \end{minipage}%
+  \end{lrbox}%
+  \noindent\colorbox{shadecolor}{\usebox{\snugbox@}}\par%
+}
+\newenvironment{snugshade*}{%
+  \begin{snugshade}%
+}{%
+  \end{snugshade}%
+}
+\endinput
