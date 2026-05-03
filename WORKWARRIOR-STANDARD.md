@@ -452,6 +452,8 @@ Loads and validates GitHub sync configuration from bugwarrior config:
 
 ## 9. Service Architecture
 
+Formal cause (architectural principle): **Composable Local Service Architecture**.
+
 ### Contract
 
 Every service script must:

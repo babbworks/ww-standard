@@ -12,6 +12,10 @@ doc_order: 4
 
 Workwarrior is a profile-based shell productivity system. A **profile** is an isolated directory containing its own TaskWarrior data, TimeWarrior database, journals, ledgers, and config. The `ww` CLI dispatcher (`bin/ww`) routes commands to **service scripts** (`services/<category>/`) and calls **lib functions** (`lib/*.sh`). Shell functions (`j`, `l`, `task`, `timew`, etc.) are injected into the user's shell via `lib/shell-integration.sh` at init time. Profile activation sets five environment variables that all tools read. A **browser UI** serves a locally-hosted web interface. The **heuristic engine** matches natural language input against 627 compiled rules before optionally falling back to AI. Nothing in the system hardcodes paths — everything resolves through environment variables.
 
+## Formal Cause
+
+**Composable Local Service Architecture**
+
 ## Data Flow
 
 ```

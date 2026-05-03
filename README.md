@@ -86,6 +86,8 @@ bugwarrior   →  issue pull from GitHub, GitLab, Jira, and 20+ more
 
 The integration layer adds what didn't exist between the tools. The tools themselves are unchanged.
 
+Formal-cause framing: **Composable Local Service Architecture**.
+
 ### Profile Isolation
 
 A profile is a directory. Activating it sets five environment variables. Every tool reads those variables. No tool knows Workwarrior exists.

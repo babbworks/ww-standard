@@ -69,13 +69,13 @@ profiles/                    User profiles (created at runtime)
 
 Set automatically on profile activation:
 
-| Variable | Purpose |
-|----------|---------|
-| `WARRIOR_PROFILE` | Active profile name |
-| `WORKWARRIOR_BASE` | Active profile directory |
-| `TASKRC` | Path to profile `.taskrc` |
-| `TASKDATA` | Path to profile `.task` |
-| `TIMEWARRIORDB` | Path to profile `.timewarrior` |
+| Variable           | Purpose                        |
+| ------------------ | ------------------------------ |
+| `WARRIOR_PROFILE`  | Active profile name            |
+| `WORKWARRIOR_BASE` | Active profile directory       |
+| `TASKRC`           | Path to profile `.taskrc`      |
+| `TASKDATA`         | Path to profile `.task`        |
+| `TIMEWARRIORDB`    | Path to profile `.timewarrior` |
 
 Nothing in the system hardcodes paths. Everything resolves through these variables.
 
