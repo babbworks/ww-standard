@@ -51,6 +51,23 @@ ww browser
 
 Rule: nothing hardcodes paths. Everything resolves through these variables.
 
+## Stream Pipeline: Capture → Record → Interpret
+
+```
+CAPTURE                     RECORD                      INTERPRET
+─────────────────────────   ─────────────────────────   ─────────────────────────
+  timew start/stop   ──┐                                 ┌── lenses (9 projections)
+  task on-add/modify ──┼──► stream.log (append-only) ──► ├── sync-to-journal.py
+  jrnl write         ──┤    5-field positional events    ├── attention.py
+  hledger post       ──┘                                 └── sessions / board
+```
+
+**Principle:** Every redundant store is a pure function of the append-only log.
+
+- The **stream** is the clock — the authoritative record of what happened and when.
+- **TimeWarrior** is a card reader — an input device that captures punches.
+- The **derived journal** is a cache — regenerated from stream.log at any time, byte-identical on replay.
+
 ## Core Components
 
 | Component | File(s) | Role |
@@ -63,6 +80,9 @@ Rule: nothing hardcodes paths. Everything resolves through these variables.
 | GitHub sync | `lib/sync-*.sh`, `lib/github-*.sh` | 10-file sync engine |
 | Browser server | `services/browser/server.py` | Python3 web UI |
 | Heuristic compiler | `scripts/compile-heuristics.py` | Generates 627 rules |
+| Actor registry | `lib/actor-registry.sh` | Single owner of `config/actors.yaml` — actor identity |
+| Unit registry | `lib/unit-registry.sh` | Single owner of `config/units.yaml` — units of measure |
+| Stream service | `services/stream/stream.sh` | Append-only temporal event log |
 
 ## Fragility Register
 

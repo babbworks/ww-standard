@@ -33,6 +33,8 @@
 22. [Testing](#22-testing)
 23. [Install Policy](#23-install-policy)
 24. [Dependency Table](#24-dependency-table)
+25. [Stream Engine](#25-stream-engine)
+26. [Ledger Systems Accounting](#26-ledger-systems-accounting)
 
 ---
 
@@ -140,6 +142,14 @@ lib/                          Core bash libraries (sourced, not executed directl
   profile-stats.sh            Profile statistics and reporting
   shortcode-registry.sh       Shortcut/alias registry read/write
   error-handler.sh            GitHub error classification
+  actor-registry.sh           Single owner of actors.yaml (identity, display, weight)
+  unit-registry.sh            Single owner of units.yaml (dimensions, equivalences, precision)
+  ledger-dispatch.sh          Shared dispatcher (reserved words + hledger passthrough + -L selector + write-back refusal)
+  ledger-config.sh            Single owner of ledgers.yaml (CRUD, resolve, default)
+  deps-state.sh               Toolchain stamp (.state/deps.json, floor guard)
+  deps-manifest.sh            Single owner of dependencies.yaml (version comparison, platform assets)
+  instance-registry.sh        Instance roster (~/.config/ww/registry/)
+  hledger-version.sh          Version floor enforcement
 
 services/                     Service scripts (executable, discovered at runtime)
   profile/
@@ -185,9 +195,23 @@ services/                     Service scripts (executable, discovered at runtime
     ctrl.sh                   ww ctrl status/ai-mode/prompt-ww/prompt-ai
   x-delete/
     x.sh                      ww x — profile/data deletion with safety backups
+  stream/
+    stream.sh                 Main stream dispatcher (punch, board, reconcile, ingest)
+    attention.py              Attention queue — weighted valuation, ranked list
+    sync-to-journal.py        Derived journal regeneration from stream
+    hooks/                    TimeWarrior hook (live card reader pattern)
+    lenses/                   board.sh, pacioli.sh, cooper.sh, etc.
+    lib/                      Stream engine support libraries
+  warrior/
+    warrior.sh                Community list/export/show, profiles, cross-profile read
+  saves/
+    saves.sh                  Knowledge base — status, search, add, run, inbox (was bookbuilder)
+  network/
+    network.sh                Network status, check, help
+  projects/
+    projects.sh               Project list, show, describe, help
   servers/                    Server management
   scripts/                    Utility scripts
-  find/                       Cross-profile search
 
 weapons/
   gun/                        taskgun passthrough — bulk task series generator
@@ -215,6 +239,21 @@ config/
   ctrl.yaml                   CTRL service settings
   groups.yaml                 Profile group definitions
   shortcuts.yaml              Shortcut definitions
+  units.yaml                  Unit registry — shared vocabulary of dimensions and equivalences
+  actors.yaml                 Actor registry — operational roster (identity, display, weight)
+  dependencies.yaml           Dependency manifest — version specs, platform assets
+
+dev/                          Development workspace (ships with install — SHIP-001)
+  tasks/                      Task board
+  tests/                      100+ BATS test files
+  specs/                      Specification documents
+  schemas/                    Data schemas
+  scripts/                    Dev scripts (check-identity-leak.sh, etc.)
+
+resources/
+  agent-templates/            Agent role definitions and session-init templates
+    roles/                    Role definitions
+    session-init/             Session initialization templates
 
 profiles/                     User profiles (created at runtime, gitignored)
   <name>/
@@ -448,6 +487,70 @@ Loads and validates GitHub sync configuration from bugwarrior config:
 - `validate_github_sync_config()` — checks required fields, returns 1 with specific error if missing
 - Oracle token pattern: `@oracle:eval:gh auth token` — evaluated at load time via `gh auth token`
 
+### lib/actor-registry.sh
+
+Single owner of `config/actors.yaml`. Manages the operational roster:
+
+- Identity resolution (actor ID → display name, weight)
+- Actor CRUD operations
+- Weight assignment for attention queue valuation
+
+### lib/unit-registry.sh
+
+Single owner of `config/units.yaml`. Manages the shared vocabulary of measurable quantities:
+
+- Dimension definitions (time, money, energy, etc.)
+- Equivalence declarations between units
+- Precision rules per unit type
+
+### lib/ledger-dispatch.sh
+
+Shared dispatcher for all ledger operations:
+
+- Reserved word handling (attention, sync, etc.)
+- Hledger passthrough for unrecognized commands
+- `-L <name>` selector for multi-ledger targeting
+- Write-back refusal enforcement (print --auto output MUST NEVER write back)
+
+### lib/ledger-config.sh
+
+Single owner of `ledgers.yaml`:
+
+- CRUD operations for ledger definitions
+- Ledger name resolution (shortname → file path)
+- Default ledger selection
+
+### lib/deps-state.sh
+
+Toolchain stamp management:
+
+- Reads/writes `.state/deps.json` — records installed versions and check timestamps
+- Floor guard — refuses to proceed if a dependency is below minimum version
+
+### lib/deps-manifest.sh
+
+Single owner of `config/dependencies.yaml`:
+
+- Version comparison logic (semver)
+- Platform-specific asset resolution
+- Dependency card definitions (name, min version, install method, verify command)
+
+### lib/instance-registry.sh
+
+Instance roster at `~/.config/ww/registry/`:
+
+- Tracks multiple ww installations on one machine
+- Instance discovery and path resolution
+- Registration and deregistration
+
+### lib/hledger-version.sh
+
+Version floor enforcement for hledger:
+
+- Detects installed hledger version
+- Compares against minimum required (1.30)
+- Blocks ledger operations if version floor is not met
+
 ---
 
 ## 9. Service Architecture
@@ -511,7 +614,7 @@ Services at `profiles/<name>/services/<category>/` shadow global services. The d
 |--------|----------|-------------|
 | `ww profile` | create, list, info, delete, backup, import, restore, uda, urgency, density | Profile lifecycle and configuration |
 | `ww journal` | add, list, remove, rename | Named journal management |
-| `ww ledger` | add, list, remove, rename | Named ledger management |
+| `ww ledger` | add, list, remove, rename, attention | Named ledger management + attention queue |
 | `ww group` | list, create, show, add, remove, delete | Profile groups for batch operations |
 | `ww model` | list, providers, show, add-provider, remove-provider, add-model, set-default, env, check | LLM provider and model registry |
 | `ww ctrl` | status, ai-on, ai-off, ai-status, ai-mode, prompt-ww, prompt-ai | AI mode, prompt settings, UI config |
@@ -533,6 +636,11 @@ Services at `profiles/<name>/services/<category>/` shadow global services. The d
 | `ww mcp` | install, status | MCP server for AI agent access |
 | `ww tui` | install | taskwarrior-tui installer |
 | `ww list` | — | List management tool |
+| `ww stream` | punch, board, reconcile, ingest, hooks | Append-only event log engine |
+| `ww warrior` | community list/export/show, profiles, read task/journal | Cross-profile community operations |
+| `ww saves` | status, search, add, run, inbox | Knowledge base (was bookbuilder) |
+| `ww network` | status, check, help | Network diagnostics |
+| `ww projects` | list, show, describe, help | Project management |
 
 ---
 
@@ -1132,17 +1240,34 @@ function_name() {
 
 ## 22. Testing
 
+### CI Pipeline
+
+CI enabled via `.github/workflows/ci.yml`. Four jobs run on every push and PR:
+
+| Job | Description |
+|-----|-------------|
+| `smoke` | Basic install and dispatcher sanity checks |
+| `bats-core` | 13 BATS test suites covering lib and services |
+| `identity-gate` | Runs `dev/scripts/check-identity-leak.sh` — blocks merge if identity data leaks into committed files |
+| `index-check` | Validates service index and file references |
+
 ### BATS Tests
 
+100+ BATS test files in `dev/tests/`:
+
 ```bash
-bats tests/                          # All BATS test suites
-bats tests/test-models-service.bats  # Specific suite
-bats tests/test-profile-manager.bats
-bats tests/test-shell-integration.bats
-bats tests/test-github-sync.bats
+bats dev/tests/                          # All BATS test suites
+bats dev/tests/test-models-service.bats  # Specific suite
+bats dev/tests/test-profile-manager.bats
+bats dev/tests/test-shell-integration.bats
+bats dev/tests/test-github-sync.bats
 ```
 
 BATS (Bash Automated Testing System) provides shell-native test assertions. Each test file covers one service or lib component.
+
+### Identity Leak Gate
+
+`dev/scripts/check-identity-leak.sh` scans committed files for personal identity data (emails, names, tokens) that should not appear in the public repository. Runs as a CI gate and can be invoked locally.
 
 ### Python Tests (pytest)
 
@@ -1154,7 +1279,7 @@ Tests cover: HTTP endpoint behavior, heuristic rule matching, compound command s
 
 ### Test Policy
 
-- Tests run locally. No CI currently active.
+- CI runs on every push and pull request.
 - Every implementation task (Gate C) requires test execution before merge.
 - Sync engine changes require integration tests against a test GitHub repository.
 - Shell function changes require BATS suite updates.
@@ -1200,6 +1325,15 @@ ww profile create work
 p-work
 ```
 
+### What Ships
+
+- `dev/` now ships with install (SHIP-001) — includes task board, tests, specs, schemas, and dev scripts
+- `resources/agent-templates/` ships with install — role definitions and session-init templates available to all users
+
+### Hledger Binary Install
+
+`ww deps install hledger` fetches the static hledger binary for the current platform and installs it to `~/.local/bin`. No system package manager required. Version floor enforcement via `lib/hledger-version.sh`.
+
 ### Optional Extensions
 
 ```bash
@@ -1229,6 +1363,188 @@ MCP install requires `uv` (Python package manager). Auto-installed on macOS via 
 | taskwarrior-mcp | Optional | MCP server for AI agents | github.com/hnsstrk/taskwarrior-mcp |
 | ollama | Optional AI | Local LLM provider | ollama.ai |
 | TWDensity | Optional extension | Due-date density scoring | — |
+
+---
+
+## 25. Stream Engine
+
+### Overview
+
+The stream engine is an append-only event log that records all time-binding operations. It implements the principle: **capture → record → interpret** — one direction, never backwards. Raw events are immutable once written; interpretation happens downstream via lenses and derived journals.
+
+### Event Log
+
+All stream events are appended to `stream.log` (per-profile, never edited in place):
+
+```
+<ts> <op> <action> <object> <ctx-json>
+```
+
+| Field | Description |
+|-------|-------------|
+| `ts` | ISO-8601 timestamp (UTC) |
+| `op` | Operation code (single character) |
+| `action` | Verb within the operation |
+| `object` | Target entity (task UUID, project name, actor ID) |
+| `ctx-json` | Context payload as inline JSON |
+
+### Operations
+
+| Code | Name | Description |
+|------|------|-------------|
+| `B` | Binding (punch) | Time binding — start/stop of work intervals |
+| `S` | Schema | Structural changes (project creation, actor registration) |
+| `T` | Annotation | Notes, comments, metadata attached to objects |
+| `F` | State | State transitions (status changes, priority shifts) |
+| `D` | Signal | External signals (webhooks, notifications, triggers) |
+
+### Punch Verbs
+
+```bash
+ww stream punch start <project> [--actor <id>]   # Clock in — appends B start event
+ww stream punch stop [--actor <id>]               # Clock out — appends B stop event
+```
+
+Punches record who is working on what. Each punch is a single append to `stream.log`. No edits, no deletions.
+
+### Board
+
+```bash
+ww stream board        # Show who/what is currently IN (active punches without matching stop)
+```
+
+The board reads `stream.log` from tail, finds all open B-start events without a corresponding B-stop. Output: actor, project, duration-so-far.
+
+### Reconciliation
+
+```bash
+ww stream reconcile    # Detect and report anomalies (orphan starts, overlapping intervals)
+```
+
+Reconciliation scans the full log for structural integrity: unpaired starts, overlapping intervals for the same actor, gaps exceeding threshold. Reports only — never mutates the log.
+
+### Ingest and Dedup
+
+```bash
+ww stream ingest --source timew    # Import TimeWarrior intervals as B events
+```
+
+Ingest reads from an external source, converts to stream events, and appends only events not already present (deduplication by timestamp + actor + project). Idempotent — safe to run repeatedly.
+
+### TimeWarrior Hook
+
+The hook at `services/stream/hooks/` implements the **live card reader pattern**: every `timew start` and `timew stop` in the active profile emits a corresponding B event to `stream.log` in real-time. No polling, no batch sync — events flow as they happen.
+
+### Lenses
+
+Lenses are read-only interpreters that project the raw event log into useful views:
+
+| Lens | Purpose |
+|------|---------|
+| `board.sh` | Current state — who is IN, on what |
+| `pacioli.sh` | Double-entry time postings (feeds ledger) |
+| `cooper.sh` | Narrative view — human-readable activity log |
+
+Lenses live in `services/stream/lenses/`. They read `stream.log`, they never write to it.
+
+### Design Principle
+
+```
+capture → record → interpret
+```
+
+Events flow in one direction. The log is the source of truth. Lenses and derived journals are downstream projections that can be regenerated at any time from the log. Nothing flows backwards — interpretation never mutates the record.
+
+---
+
+## 26. Ledger Systems Accounting
+
+### Thesis
+
+Double-entry bookkeeping is a conservation law for ANY measurable quantity — not just money. Every posting that debits one account must credit another by the same amount. This invariant applies to time, attention, energy, or any unit in the registry. If debits ≠ credits, something was lost or fabricated.
+
+### Unit Registry
+
+`config/units.yaml` — the shared vocabulary of measurable dimensions:
+
+```yaml
+dimensions:
+  time:
+    base_unit: h
+    units: [h, min, d]
+    precision: 2
+  money:
+    base_unit: USD
+    units: [USD, EUR]
+    precision: 2
+  energy:
+    base_unit: pt
+    units: [pt]
+    precision: 0
+```
+
+Managed exclusively by `lib/unit-registry.sh`. All ledger operations reference units from this registry.
+
+### Actor Registry
+
+`config/actors.yaml` — the operational roster:
+
+```yaml
+actors:
+  - id: morgen
+    display: "Morgen"
+    weight: 1.0
+  - id: bot-ci
+    display: "CI Bot"
+    weight: 0.0
+```
+
+Managed exclusively by `lib/actor-registry.sh`. Actors are the subjects who bind time and accumulate attention.
+
+### Punch Posting Shape
+
+When a punch interval is converted to a ledger posting, it takes this double-entry form:
+
+```
+2024-01-15 Punch: morgen on project-alpha
+    actors:morgen              -2.5 h
+    time:project:project-alpha  2.5 h
+```
+
+The actor's account is debited (they spent time), the project's account is credited (it received time). Conservation holds: total hours in the system = 0.
+
+### Derived Journal
+
+The stream-to-journal sync (`services/stream/sync-to-journal.py`) **regenerates** the journal from `stream.log` on every run. It never appends incrementally. The derived journal is a projection — if it gets corrupted or out of sync, delete it and regenerate.
+
+```bash
+ww stream reconcile    # Verify stream integrity
+# sync-to-journal.py regenerates ledger entries from stream.log
+```
+
+### Attention Queue
+
+```bash
+ww ledger attention    # Weighted valuation — ranked list of where attention is going
+```
+
+The attention queue reads the derived journal, weights each project by actor weight and hours invested, and produces a ranked list. This answers: "Where is attention actually going?" — not where you think it's going, but where the ledger proves it went.
+
+### Auto-Rules
+
+Opt-in automation for routine postings:
+
+```bash
+ww ledger <cmd> --auto    # Enable auto-rule for this operation
+```
+
+Auto-rules are strictly opt-in. Write-back refusal is enforced at the dispatcher level (`lib/ledger-dispatch.sh`): no auto-generated output may write back to the stream or source data.
+
+### The Hazard
+
+**`print --auto` output MUST NEVER write back.**
+
+If the output of an auto-rule (or any print/report command with `--auto`) is piped back into the ledger or stream as new input, it creates a feedback loop that double-counts every transaction. The dispatcher detects and refuses this pattern. This is not a style preference — it is a conservation law violation.
 
 ---
 

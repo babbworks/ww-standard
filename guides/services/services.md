@@ -22,6 +22,11 @@ Everything in Workwarrior is a service. The `ww` dispatcher routes commands to s
 | **remove** | `<profile>`, --keep, --all, --archive-all, --delete-all | Profile removal with scrubbing |
 | **shortcut** | list, info, add, remove | Shortcut/alias reference and management |
 | **deps** | install, check | Dependency management |
+| **stream** | emit, punch, board, reconcile, ingest, view, sessions, lens, hooks, status, reset | Append-only temporal event log with lens projections |
+| **warrior** | status, config, init | Warrior identity and instance management |
+| **saves** | list, create, restore, delete | Profile state snapshots |
+| **network** | status, peers, sync | Multi-instance synchronization |
+| **projects** | list, show, create, archive | Project lifecycle management |
 | **compile-heuristics** | --verbose, --digest | Recompile NL→command rules |
 
 ## Weapons (via ww command)
@@ -56,3 +61,45 @@ Services are executable scripts in `services/<category>/`. Requirements:
 - Does not write to profile directories directly
 
 See `docs/service-development.md` for the full contract and template tiers.
+
+## The Stream Engine
+
+The stream service (`ww stream`) is the temporal backbone of the system. It maintains an append-only event log (`stream.log`) using a frozen 5-field positional encoding:
+
+```
+<unix_ts> <OP> <action> <object> <ctx_json>
+```
+
+### Pipeline: Capture → Record → Interpret
+
+1. **Capture** — Events enter the stream via hooks (task on-add/on-modify, timew start/stop) or batch ingest from existing data sources.
+2. **Record** — Events are appended to the log. Never rewritten. Even schema versioning and resets are events.
+3. **Interpret** — Lenses project the raw log into views (chronological, intervals, density, state transitions). `sync-to-journal.py` derives hledger journals as a pure function of the log.
+
+The stream is the clock. TimeWarrior is a card reader (input device). The derived journal is a cache.
+
+### Lenses
+
+Nine pluggable projections transform the event log into different views:
+
+- **burroughs** — raw chronological listing
+- **bundy** — interval accumulation with ASCII timeline
+- **hollerith** — time-bucket × object matrix
+- **pacioli** — running balance per object
+- **frick** — state transition timeline
+- **felt** — event-count heat map
+- **dey** — behavioral signal (intensity/stability/fragmentation)
+- **cooper** — polar geometric projection of Dey signal
+- **board** — who/what is currently punched in
+
+## The Attention Queue
+
+The attention queue (`attention.py`) ranks accounts by weighted value. It answers the floor-manager question: "which 3 machines need my attention?"
+
+Mechanism:
+1. Read actor weights from `config/actors.yaml` (profile overlay for participation weights)
+2. Run `hledger balance` against the derived stream journal
+3. Multiply each actor's balance by their coefficient
+4. Return the ranked list
+
+The coefficients are DATA — dated, diffable, inspectable. A user can ask WHY something ranks high and get a traceable answer (unlike TaskWarrior's opaque urgency float). The weight journal documents each coefficient as a `P` directive for full traceability.

@@ -221,3 +221,100 @@ docs/overviews/weapons/sword.md:
   sources:
     - weapons/sword/README.md
     - bin/ww
+
+reference/services/stream.md:
+  sources:
+    - services/stream/stream.sh
+    - services/stream/lib/actor.sh
+    - services/stream/lib/adapters.sh
+    - services/stream/lib/replay.sh
+    - services/stream/lib/codecs.sh
+    - services/stream/lib/lenses.sh
+    - services/stream/lib/taoo.sh
+    - services/stream/lenses/board.sh
+    - services/stream/lenses/pacioli.sh
+    - services/stream/lenses/cooper.sh
+    - services/stream/lenses/dey.sh
+    - services/stream/lenses/frick.sh
+    - services/stream/lenses/bundy.sh
+    - services/stream/lenses/hollerith.sh
+    - services/stream/lenses/felt.sh
+    - services/stream/lenses/burroughs.sh
+    - services/stream/attention.py
+    - services/stream/sync-to-journal.py
+    - services/stream/hooks/timew-stream-hook.sh
+
+reference/lib/actor-registry.md:
+  sources:
+    - lib/actor-registry.sh
+    - config/actors.yaml
+
+reference/lib/unit-registry.md:
+  sources:
+    - lib/unit-registry.sh
+    - config/units.yaml
+
+reference/lib/ledger-dispatch.md:
+  sources:
+    - lib/ledger-dispatch.sh
+
+reference/lib/ledger-config.md:
+  sources:
+    - lib/ledger-config.sh
+
+reference/lib/deps-state.md:
+  sources:
+    - lib/deps-state.sh
+
+reference/lib/deps-manifest.md:
+  sources:
+    - lib/deps-manifest.sh
+    - config/dependencies.yaml
+
+reference/lib/instance-registry.md:
+  sources:
+    - lib/instance-registry.sh
+
+guides/services/services.md:
+  sources:
+    - services/stream/stream.sh
+    - services/stream/attention.py
+
+docs/architecture.md:
+  sources:
+    - services/stream/stream.sh
+    - lib/actor-registry.sh
+    - lib/unit-registry.sh
+
+# Additional source files tracked but not yet documented
+resources/agent-templates/session-init.sh:
+  sources:
+    - resources/agent-templates/session-init.sh
+
+resources/agent-templates/ww-agent-guidance.md:
+  sources:
+    - resources/agent-templates/ww-agent-guidance.md
+
+resources/agent-templates/roles/builder.md:
+  sources:
+    - resources/agent-templates/roles/builder.md
+
+resources/agent-templates/roles/orchestrator.md:
+  sources:
+    - resources/agent-templates/roles/orchestrator.md
+
+resources/agent-templates/roles/docs.md:
+  sources:
+    - resources/agent-templates/roles/docs.md
+
+resources/agent-templates/roles/verifier.md:
+  sources:
+    - resources/agent-templates/roles/verifier.md
+
+dev/scripts/check-identity-leak.md:
+  sources:
+    - dev/scripts/check-identity-leak.sh
+
+.github/workflows/ci.md:
+  sources:
+    - .github/workflows/ci.yml
