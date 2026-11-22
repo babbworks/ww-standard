@@ -1,0 +1,33 @@
+1752303001 S open seg-000001 {"prev":"0000000000000000000000000000000000000000000000000000000000000000","stream":"main","vocab":"core@0.1"}
+1752300600 B start lathe-01 {"proj":"line-a","ps":1,"rec":"human:op-07"}
+1752303000 B stop lathe-01 {"proj":"line-a","ps":2,"rec":"human:op-07"}
+1752300100 R open run-r1 {"actor":"agent:claude-07","ps":1,"rec":"host:build-01","run":"r1","span":"session"}
+1752300101 R open run-r1.m1 {"actor":"agent:claude-07","parent":"r1","ps":2,"rec":"host:build-01","run":"r1.m1","span":"model","tf":250000}
+1752300102 R open run-r1.t1 {"actor":"agent:claude-07","parent":"r1","ps":3,"rec":"host:build-01","run":"r1.t1","span":"tool","tf":0}
+1752300103 R close run-r1.m1 {"actor":"agent:claude-07","ps":4,"rec":"host:build-01","run":"r1.m1","status":"ok","tf":750000}
+1752300104 M measure run-r1.m1 {"actor":"agent:claude-07","model":"resolved-model-id","provider":"anthropic","ps":5,"q":"1200","rec":"host:build-01","u":"tok.in"}
+1752300104 M measure run-r1.m1 {"actor":"agent:claude-07","model":"resolved-model-id","provider":"anthropic","ps":6,"q":"350","rec":"host:build-01","u":"tok.out"}
+1752300110 R close run-r1.t1 {"actor":"agent:claude-07","ps":7,"rec":"host:build-01","run":"r1.t1","status":"fail"}
+1752300120 R close run-r1 {"actor":"agent:claude-07","ps":8,"rec":"host:build-01","run":"r1","status":"ok"}
+1752300096 M measure pdu-4.out3 {"iv":8,"ps":1,"q":"38","rec":"meter:pdu-4","scope":"host:build-01","u":"J"}
+1752300104 M measure pdu-4.out3 {"iv":8,"ps":2,"q":"41","rec":"meter:pdu-4","scope":"host:build-01","u":"J"}
+1752300120 M measure pdu-4.out3 {"iv":8,"ps":4,"q":"36","rec":"meter:pdu-4","scope":"host:build-01","u":"J"}
+1752300136 M measure pdu-4.out3 {"iv":8,"ps":6,"q":"36","rec":"meter:pdu-4","scope":"host:build-01","u":"J"}
+1752300128 M measure pdu-4.out3 {"iv":8,"ps":5,"q":"36","rec":"meter:pdu-4","scope":"host:build-01","u":"J"}
+1752300120 M estimate run-r1 {"actor":"agent:claude-07","basis":["1:12","1:13"],"method":"cpu-share@1","ps":9,"q":"52.4","rec":"host:build-01","u":"J"}
+1752300000 B start lathe-01 {"proj":"line-a","ps":1,"rec":"human:op-03"}
+1752301200 B stop lathe-01 {"proj":"line-a","ps":2,"rec":"human:op-03"}
+1752301300 T add wo-8891 {"desc":"Turn shaft batch 12","ps":3,"rec":"human:op-03"}
+1752301310 T start wo-8891 {"ps":4,"rec":"human:op-03"}
+1752302000 M measure bin-7 {"ps":1,"q":"92","rec":"scale:s1","u":"kg"}
+1752302000 M measure bin-7 {"ps":2,"q":"92","rec":"scale:s1","u":"kg"}
+1752304001 S reject B.start {"digest":"9d2465aebcbffd6591cdefae78f5b1b5449904d66cc419eec34da76951c004f9","ps":3,"reason":"human:op-07 may not record claims for human:op-03","rec":"human:op-07"}
+1752302100 L post run-r1 {"actor":"org:plant","legs":[{"a":"inv:raw","q":"-100","u":"kg"},{"a":"inv:product","q":"92","u":"kg"},{"a":"inv:scrap","q":"8","u":"kg"}],"ps":1,"rec":"human:acct-1"}
+1752302203 S reject L.post {"digest":"a9a3b6e0bcedf8b659a76a2da63bffec74a38cac51f81ff58b2d528e7deea93f","ps":2,"reason":"unbalanced: {'-/USD': '5'}","rec":"human:acct-1"}
+1752302203 S reject L.post {"digest":"4315bb3f699346d1e433c44a820bc3af5709fb583ecbf159af6bed7f97f07107","ps":3,"reason":"leg 2 has zero quantity","rec":"human:acct-1"}
+1752302203 S reject L.post {"digest":"7448cc478ffedda5c96d4acd67172d9eed5b577eb2f031c667484856e4a59ef9","ps":4,"reason":"unbalanced: {'-/USD': '5'}","rec":"human:acct-1"}
+1752302300 L post run-r1 {"actor":"org:plant","legs":[{"a":"energy:host","q":"-52.4","u":"J"},{"a":"energy:run-r1","q":"52.4","u":"J"},{"a":"cost:compute","q":"0.019","u":"USD"},{"a":"ap:provider","q":"-0.019","u":"USD"}],"ps":5,"rec":"human:acct-1"}
+1752302302 S reject L.post {"digest":"01c316eef6622da331124fef78ca1a73b3931c943dfa7a05b1787f31f635f066","ps":6,"reason":"unbalanced: {'-/J': '-0.4'}","rec":"human:acct-1"}
+1752302400 L amend run-r1 {"actor":"org:plant","legs":[{"a":"inv:raw","q":"-100","u":"kg"},{"a":"inv:product","q":"91","u":"kg"},{"a":"inv:scrap","q":"9","u":"kg"}],"ps":7,"reason":"weighbridge recheck","rec":"human:acct-1","ref":"1:25"}
+1752302501 S reject L.amend {"digest":"54118d4a9998c65d80790f573ac91e973fc92854a77a40262f213a40e6aa8643","ps":8,"reason":"1:25 already superseded by 1:31; correct the head of the chain","rec":"human:acct-1"}
+1752306000 S seal seg-000001 {"chain":"a7c223ab0ebf11dca967f18695b3ecd8c682f419c9d77c577116f97f5e20dc15","n":32,"sha256":"6045ac739041cbcd1982baa006c58d370a7ef16b96690d992c9bea187ea85e12"}

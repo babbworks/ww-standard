@@ -1,0 +1,28 @@
+{
+  "vocab": "core@0.1",
+  "note": "Reference vocabulary for the STREAM Journal draft. Key is OP.action. 'kind' selects the validator; 'requires' lists ctx keys that must be present; 'zako' records the closest ZAKO task_code and how faithful the mapping is.",
+  "definitions": {
+    "T.add":     {"kind": "transition", "subject": "task", "requires": ["desc"],           "zako": {"code": "0x20", "verb": "ASSIGN",   "fidelity": "partial", "why": "ZAKO has no generic 'work item created'; ASSIGN implies an assignee"}},
+    "T.modify":  {"kind": "transition", "subject": "task", "requires": ["set"],            "zako": {"code": "0x22", "verb": "PROGRESS", "fidelity": "partial", "why": "field edits are not progress"}},
+    "T.start":   {"kind": "transition", "subject": "task", "requires": [],                 "zako": {"code": "0x21", "verb": "START",    "fidelity": "exact"}},
+    "T.done":    {"kind": "transition", "subject": "task", "requires": [],                 "zako": {"code": "0x23", "verb": "FINISH",   "fidelity": "exact"}},
+    "T.delete":  {"kind": "transition", "subject": "task", "requires": [],                 "zako": {"code": "0x32", "verb": "CANCEL",   "fidelity": "partial", "why": "CANCEL is a Schedule verb"}},
+
+    "B.start":   {"kind": "boundary", "edge": "open",  "pair": ["run"], "pair_fallback": ["object", "actor"], "requires": [], "zako": {"code": null, "verb": null, "fidelity": "none", "why": "presence interval, not work-item START; carry in a distribution domain (0xF0)"}},
+    "B.stop":    {"kind": "boundary", "edge": "close", "pair": ["run"], "pair_fallback": ["object", "actor"], "requires": [], "zako": {"code": null, "verb": null, "fidelity": "none", "why": "interval end is not FINISH; carry in a distribution domain (0xF0)"}},
+
+    "R.open":    {"kind": "boundary", "edge": "open",  "pair": ["run"], "requires": ["run", "span"], "enum": {"span": ["session", "model", "tool", "process"]}, "zako": {"code": "0x38", "verb": "QUERY", "fidelity": "partial", "why": "only model requests are QUERY; tool calls are ACT 0x3A; sessions have no verb"}},
+    "R.close":   {"kind": "boundary", "edge": "close", "pair": ["run"], "requires": ["run", "status"], "enum": {"status": ["ok", "fail", "cancel"]}, "zako": {"code": "0x39", "verb": "RESPOND", "fidelity": "partial", "why": "a failed call is not a response"}},
+
+    "M.measure": {"kind": "observation", "requires": ["q", "u"], "decimal": ["q"], "zako": {"code": "0x2C", "verb": "MEASURE",  "fidelity": "exact"}},
+    "M.estimate":{"kind": "observation", "requires": ["q", "u", "method", "basis"], "decimal": ["q"], "refs": ["basis"], "zako": {"code": "0x2D", "verb": "ESTIMATE", "fidelity": "exact"}},
+
+    "L.post":    {"kind": "posting",    "requires": ["legs"], "zako": {"code": null, "verb": null, "fidelity": "structural", "why": "a posting maps to a BitLedger component and account pair, not to a verb; the verb (PAY, INVOICE, EXPENSE...) is an optional business claim"}},
+    "L.amend":   {"kind": "correction", "requires": ["legs", "ref", "reason"], "corrects": "L.post", "zako": {"code": "0x16", "verb": "AMEND", "fidelity": "exact"}},
+    "L.reverse": {"kind": "correction", "requires": ["ref", "reason"], "corrects": "L.post", "zako": {"code": "0x16", "verb": "AMEND", "fidelity": "partial", "why": "reversal is an amendment with no replacement legs"}},
+
+    "A.note":    {"kind": "annotation", "requires": ["text"], "zako": {"code": "0x29", "verb": "NOTE", "fidelity": "exact"}},
+
+    "D.sample":  {"kind": "observation", "requires": [], "zako": {"code": "0x28", "verb": "OBSERVE", "fidelity": "partial", "why": "Dey signals are derived behavioural indices, not raw measurements"}}
+  }
+}
