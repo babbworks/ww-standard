@@ -1,6 +1,6 @@
 # Proposal: STREAM Journal
 
-**Status:** draft for review. The `proposal` issue has not been opened yet.
+**Status:** draft for review. Tracked in [issue #1](https://github.com/babbworks/ww-standard/issues/1).
 **Affects:** Stream service ([Stream Event Format v1](https://github.com/babbworks/workwarrior/blob/main/dev/schemas/stream-event-v1.md)), the ledger adapter, and the Bundy and Board lenses. Stream is fragile around its log format, so this proposal includes a trial implementation, as the [proposal process](../../README.md#proposing-changes) requires.
 
 ## What this is
@@ -64,7 +64,7 @@ These canonical lines carry `rec`, `ps`, `scope` and `iv`, so they are larger th
 ## Suggested next steps
 
 1. Review the draft decisions above, especially §5.3 (accept late records, report contradictions) and §6.5 (journaled rejections).
-2. Open a `proposal` issue in this repository that references the draft.
+2. Discuss the draft in [issue #1](https://github.com/babbworks/ww-standard/issues/1).
 3. If accepted, write Workwarrior task cards for:
    - pairing on `run` or `(object, actor)` in Bundy and Board, a change that is independent of everything else and already fixes the overlap bug;
    - replacing dedup with retry identity;
