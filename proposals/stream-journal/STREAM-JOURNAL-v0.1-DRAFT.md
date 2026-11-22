@@ -64,6 +64,7 @@ v1 readers already tolerate unknown keys, so all of these are additive.
 | `basis` | address[] | producer | Records an estimate or charge was derived from. |
 | `method` | string | producer | Versioned method for an estimate, such as `cpu-share@1`. |
 | `tariff` | string | producer | Versioned tariff a posted charge was priced under (§8.4). |
+| `use` | object | producer | Resources an act consumed, on close records: quantity code → decimal string, with `~` marking an estimate. See [STREAM Notation](STREAM-NOTATION-v0.1-DRAFT.md) N3–N4. |
 | `scope` | string | producer | What a measurement covers, such as `host:build-01`. |
 | `iv` | integer | producer | Measurement interval in seconds. |
 | `status`, `span`, `reason` | string | producer | Defined per operation (§4.3). |

@@ -10,6 +10,7 @@ This proposal follows on from the STREAM / Workwarrior / ZAKO inquiry. That inqu
 - [`STREAM-JOURNAL-v0.1-DRAFT.md`](STREAM-JOURNAL-v0.1-DRAFT.md): the draft normative text.
 - [`reference/`](reference/): a trial implementation and the conformance scenario, using only the Python standard library.
 - [`examples/scenario/`](examples/scenario/): the journal the scenario produces, with two segments, journaled rejections and seals.
+- [`STREAM-NOTATION-v0.1-DRAFT.md`](STREAM-NOTATION-v0.1-DRAFT.md): the companion design note. It covers the smallest recordable act, recording resolution in an action cascade, resource attribution, and a state-once text form (the run form) with an ASCII glyph alphabet.
 
 ## Decisions the draft takes
 
@@ -51,6 +52,18 @@ The suite ran on 2026-11-22 against Workwarrior `ce7379f`. **All 23 tests passed
 These canonical lines carry `rec`, `ps`, `scope` and `iv`, so they are larger than the inquiry's illustrative 294 B lines. For a small batch, the context entry is most of the cost. PB1 starts to pay once a context is reused across blocks or the batch is long.
 
 **Design gap found by the trial.** The first run showed that rejected records consumed producer sequence numbers without leaving a trace, so the gap view could not tell "rejected" from "never received". The draft now journals rejections (§6.5), and capture completeness reads them (§6.7).
+
+### Notation trial
+
+`python3 -m unittest -v test_notation` runs 11 more tests, and `python3 measure.py` reproduces the size table. Every form decodes to the canonical lines byte for byte.
+
+| Data | Canonical | + gzip | Run form | Run form + gzip | PB1 |
+|---|---|---|---|---|---|
+| Mixed journal (35 records) | 4,618 B | 1,393 B | 2,537 B | 1,192 B | — |
+| Agent task cascade (15 records) | 2,147 B | 457 B | 694 B | 309 B | — |
+| Meter, 1,000 readings | 110,728 B | 7,514 B | 3,923 B | 1,342 B | 888 B |
+
+Token counts aren't measured yet. `python3 measure.py --tokens` measures them with the Messages API `count_tokens` endpoint, given the `anthropic` package and credentials.
 
 ## What the trial does not show
 

@@ -343,6 +343,13 @@ class Journal:
                 raise Rejected(f"ctx.{k} must be one of {allowed}")
         for k in d.get("decimal", []):
             _dec(rec.ctx[k], f"ctx.{k}")
+        for k in d.get("qtymaps", []):
+            if k in rec.ctx:
+                m = rec.ctx[k]
+                if not isinstance(m, dict) or not m:
+                    raise Rejected(f"ctx.{k} must be a non-empty object of quantity code -> decimal string")
+                for code, v in m.items():
+                    _dec(v[1:] if isinstance(v, str) and v.startswith("~") else v, f"ctx.{k}.{code}")
         for k in d.get("refs", []):
             for ref in rec.ctx[k]:
                 self._resolve(ref)
@@ -435,6 +442,47 @@ def intervals(j: Journal, op: str) -> dict:
         else:
             anomalies.append({"kind": "close-without-open", "key": k, "at": str(a)})
     return {"closed": done, "open": sorted(str(a) for a, _ in open_.values()), "anomalies": anomalies}
+
+
+def _q(v: str) -> tuple[Decimal, bool]:
+    """A use value: decimal string, '~' prefix marks an estimate."""
+    return (Decimal(v[1:]), True) if v.startswith("~") else (Decimal(v), False)
+
+
+def attribution(j: Journal, conserved: Iterable[str]) -> dict:
+    """For each closed run: what its children account for, and what is left (§N5).
+
+    Conserved quantities (energy, cpu time, tokens, bytes, money) add up: a
+    parent's use is at least the sum of its children's, and the difference is
+    work done at a resolution below what was recorded. Wall time does not add
+    up under concurrency, so it is reported as an envelope and a parallelism
+    ratio instead.
+    """
+    conserved = set(conserved)
+    closed = {i["key"][0]: i for i in intervals(j, "R")["closed"]}
+    use = {}
+    for _, r in work(j):
+        if r.key == "R.close" and "use" in r.ctx:
+            use[r.ctx["run"]] = r.ctx["use"]
+    out = {}
+    for run, iv in closed.items():
+        kids = [k for k, c in closed.items() if c["parent"] == run]
+        mine = use.get(run, {})
+        row = {"wall_s": iv["dur_s"], "children": sorted(kids), "remainder": {}, "over": {}}
+        if kids and iv["dur_s"]:
+            row["parallelism"] = round(sum(closed[k]["dur_s"] for k in kids) / iv["dur_s"], 3)
+        if "xs" in mine and iv["dur_s"]:
+            row["utilisation"] = round(float(_q(mine["xs"])[0]) / iv["dur_s"], 3)
+        for code, v in mine.items():
+            if code not in conserved:
+                continue
+            total, est = _q(v)
+            parts = [_q(use[k][code]) for k in kids if code in use.get(k, {})]
+            rem = total - sum((p[0] for p in parts), Decimal(0))
+            est = est or any(p[1] for p in parts)
+            (row["over"] if rem < 0 else row["remainder"])[code] = ("~" if est else "") + str(rem)
+        out[run] = row
+    return out
 
 
 def tasks(j: Journal) -> dict:

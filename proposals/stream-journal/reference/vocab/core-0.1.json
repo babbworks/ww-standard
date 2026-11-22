@@ -11,8 +11,8 @@
     "B.start":   {"kind": "boundary", "edge": "open",  "pair": ["run"], "pair_fallback": ["object", "actor"], "requires": [], "zako": {"code": null, "verb": null, "fidelity": "none", "why": "presence interval, not work-item START; carry in a distribution domain (0xF0)"}},
     "B.stop":    {"kind": "boundary", "edge": "close", "pair": ["run"], "pair_fallback": ["object", "actor"], "requires": [], "zako": {"code": null, "verb": null, "fidelity": "none", "why": "interval end is not FINISH; carry in a distribution domain (0xF0)"}},
 
-    "R.open":    {"kind": "boundary", "edge": "open",  "pair": ["run"], "requires": ["run", "span"], "enum": {"span": ["session", "model", "tool", "process"]}, "zako": {"code": "0x38", "verb": "QUERY", "fidelity": "partial", "why": "only model requests are QUERY; tool calls are ACT 0x3A; sessions have no verb"}},
-    "R.close":   {"kind": "boundary", "edge": "close", "pair": ["run"], "requires": ["run", "status"], "enum": {"status": ["ok", "fail", "cancel"]}, "zako": {"code": "0x39", "verb": "RESPOND", "fidelity": "partial", "why": "a failed call is not a response"}},
+    "R.open":    {"kind": "boundary", "edge": "open",  "pair": ["run"], "requires": ["run", "span"], "enum": {"span": ["project", "task", "session", "step", "model", "tool", "process", "syscall"]}, "zako": {"code": "0x38", "verb": "QUERY", "fidelity": "partial", "why": "only model requests are QUERY; tool calls are ACT 0x3A; sessions have no verb"}},
+    "R.close":   {"kind": "boundary", "edge": "close", "pair": ["run"], "requires": ["run", "status"], "enum": {"status": ["ok", "fail", "cancel"]}, "qtymaps": ["use"], "zako": {"code": "0x39", "verb": "RESPOND", "fidelity": "partial", "why": "a failed call is not a response"}},
 
     "M.measure": {"kind": "observation", "requires": ["q", "u"], "decimal": ["q"], "zako": {"code": "0x2C", "verb": "MEASURE",  "fidelity": "exact"}},
     "M.estimate":{"kind": "observation", "requires": ["q", "u", "method", "basis"], "decimal": ["q"], "refs": ["basis"], "zako": {"code": "0x2D", "verb": "ESTIMATE", "fidelity": "exact"}},
