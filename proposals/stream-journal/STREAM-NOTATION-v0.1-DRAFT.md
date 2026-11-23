@@ -146,6 +146,8 @@ A type is the OP letter followed by its glyph, as a two-character token such as 
 
 ### Glyphs
 
+> **Partly superseded by N11.** The direction agreed after this draft builds the type from ZAKO verbs and a separate phase. The glyphs below survive as phase marks (`(` `)`) and as display aliases.
+
 | Glyph | Generic meaning | Types in `notation-0.1` |
 |---|---|---|
 | `(` `)` | open, close an interval | `B(` `B)` `R(` `R)`, plus `T(` for task start |
@@ -276,3 +278,91 @@ An inventory posting and its later correction:
 3. Should model-facing logs use glyphs or words? This turns on the token measurement in N2.
 4. Should budget postings use the same account namespace as money (`budget:host-01` in `J`), or a separate resource ledger book?
 5. **A discrepancy noted in passing.** The comment in `libzako-c0/zako_c0.h` says "29 unconditional + 4 conditional", which adds up to 33 of the 32 codes. The implementation treats SO, SI and ESC as conditional, plus DEL, which isn't a C0 code.
+
+## N11. Type codes from ZAKO verbs (direction agreed)
+
+**Status:** direction agreed on 2026-11-22. It is not yet in the trial code, and it supersedes the OP-letter-plus-glyph scheme in N6.
+
+### Principle
+
+Every piece of meaning is stated at the widest scope where it holds. Per-record context is whatever is left when nothing upstream already says it. ZAKO's codebooks are the widest scope available: agreed once, for every system, and free per record. The more of a record's meaning its type carries, the less context each record has to carry.
+
+### The meaning stack
+
+| Layer | Stated | Carries | Cost per record |
+|---|---|---|---|
+| Standard (ZAKO codebooks) | once, for every system | verbs, domains, quantity types, account pairs | 0 |
+| Vocabulary version | per segment | what each type requires, payload order, validation | 0 |
+| Session or stream | per segment | recorder, domain, recording depth, clock | 0 |
+| Run | per header | actor, object, unit, cadence | 0 |
+| **Record** | every line | when, which act, on what, how much | the irreducible part |
+| Context (`ctx`) | when needed | anything not yet foreseen | the exception |
+
+### The type
+
+- **Verb.** This is ZAKO's 6-bit task code: what kind of act, universally.
+- **Phase.** This is 2 bits, a dimension ZAKO does not have. It takes four values: instant, begin, end, and sample (a row in a regular series).
+- **Domain.** This says what world the act is in. It is declared per run, because it rarely changes from record to record.
+
+Phase plus verb is one byte. Phase removes the mismatches the inquiry found:
+
+| Act | Type |
+|---|---|
+| Operator presence at a machine (Bundy) | ATTEND 0x36, begin and end. Neither half claims FINISH. |
+| Model call | QUERY 0x38, begin and end |
+| Tool call | ACT 0x3A, begin and end |
+| Meter reading | MEASURE 0x2C, instant |
+| Completing a work item | FINISH 0x23. This remains a separate lifecycle claim. |
+
+### Printable form
+
+The task code is block × 8 + index, so a block letter followed by an octal digit gives an exact printable form. `(` and `)` mark begin and end, and an instant has no mark. The letters are illustrative.
+
+| Block | Letter | Examples |
+|---|---|---|
+| System | S | |
+| Identity | I | |
+| Structural | R | `R0` OPEN, `R5` COMMIT, `R6` AMEND |
+| Exchange | X | `X2` ACK, `X4` PAY |
+| Work | W | `W1` START, `W3` FINISH |
+| Observe | O | `O1` NOTE, `O4` MEASURE, `O5` ESTIMATE |
+| Schedule | C | `C6` ATTEND |
+| Learning | L | `L0` QUERY, `L2` ACT |
+
+### What the type implies
+
+None of the following needs a context key:
+
+- **The claim and its validation**, from the verb.
+- **The payload's shape and order**, from the vocabulary.
+- **The unit**, from the quantity type.
+- **Measured or estimated**, from MEASURE versus ESTIMATE.
+- **The direction of a transfer**, from the BitLedger account pair.
+- **Privacy**, from the verb. ZAKO's JOURNAL already requires RESTRICT_FORWARD.
+- **Which views use the record.**
+
+The journal's own acts are verbs too: OPEN for a segment, COMMIT for a seal, AMEND for a correction and ACK for a receipt. The log describes itself in its own vocabulary.
+
+```
+@1752300000 dom=engineering rec=host:build-01 actor=agent:claude-07
++0    W1   k42                     work item started
++0.1  L0(  k42.m1                  model request begins
++4.3  L0)  k42.m1  12000ti 900to   response, tokens used
++0.5  L2(  k42.t1                  tool call begins
++35.5 L2)  k42.t1  33.1xs ~480J 412#
++20   W3   k42     41.0xs 610J     finished, with totals
+```
+
+### Payoff for allotment
+
+Every act from every source carries the same verb axis. Energy, CPU time, tokens and wall time can therefore be summed by verb across people, machines and agents. Domain extensions (0xF0–0xFF) refine a claim locally without breaking that comparison.
+
+### Context as a staging area
+
+`ctx` holds meaning until it is understood well enough to codify. Track context bytes per record. When a key keeps recurring, promote it into a codebook entry, a type's payload, or a run declaration.
+
+### Decisions still open
+
+1. Adopt phase as its own 2-bit dimension, and keep ZAKO's paired verbs (START/FINISH, OPEN/CLOSE, SUSPEND/RESUME) as instant lifecycle claims?
+2. Turn the Workwarrior op families into profiles that map onto verbs, with B as ATTEND, D as OBSERVE or ESTIMATE, and A as NOTE? The lineage names would survive as lens names.
+3. Use block letter plus octal digit (exact), or mnemonic glyphs (readable, but not a direct bijection)?
