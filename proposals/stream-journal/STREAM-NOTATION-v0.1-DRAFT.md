@@ -366,3 +366,70 @@ Every act from every source carries the same verb axis. Energy, CPU time, tokens
 1. Adopt phase as its own 2-bit dimension, and keep ZAKO's paired verbs (START/FINISH, OPEN/CLOSE, SUSPEND/RESUME) as instant lifecycle claims?
 2. Turn the Workwarrior op families into profiles that map onto verbs, with B as ATTEND, D as OBSERVE or ESTIMATE, and A as NOTE? The lineage names would survive as lens names.
 3. Use block letter plus octal digit (exact), or mnemonic glyphs (readable, but not a direct bijection)?
+
+## N12. What the lineage concepts require of a record: Bundy, Dey, Frick, Hollerith, Pacioli
+
+**Status:** analysis agreed on 2026-11-23. Not yet in the trial code.
+
+**The test.** A concept is only a lens if the lens can always produce a correct answer from records made without it. If the information it needs exists only at the moment of the act, and is lost unless captured then, the concept has to change how records are created. All five pass this test in one specific place each, so each contributes one obligation.
+
+### Hollerith: declare the card before punching it
+
+- **What his system depended on.** The card layout and the category codes were fixed before any card was punched. That is why tabulating worked.
+- **What breaks today.** Objects are free strings, and their attributes (`name`, `proj`, `tags`) are repeated in `ctx` on every line, though they describe the object, not the act. The Hollerith grid gets unreliable columns: `lathe-01` and `Lathe01` become two columns, and a renamed project splits its history.
+- **Change.** An object is introduced once by a declaration record (CREATE or BIND) with its kind and attributes. Acts then refer to it by a short reference. The positional payload for each type is the other half of the card design.
+- **Cost per record:** negative.
+- **Not adopted:** "sorted by column 1" as a storage rule. It conflicts with append order being the address. Time order stays a view.
+
+### Bundy: the clock, not the worker, supplies the time
+
+- **Interval identity.** An interval gets its identity when it begins, so overlapping intervals pair correctly. The begin/end phase in N11 comes from Bundy.
+- **Trusted time.** The worker supplies the act, and the clock supplies the timestamp. Records today don't say where their time came from. An offline phone, a server receipt and a person typing "I left at 5" all arrive as the same integer.
+- **Change.** Each session declares its clock source, precision and sync state, plus its timezone. Cooper and Bundy need local time of day, and Cooper currently angles by UTC. A time supplied by a person is marked as a claim.
+- **Cost per record:** zero, because it is declared per session.
+
+### Frick: a transition names the state it leaves
+
+- **What the lens shows today.** It chains actions per object.
+- **What breaks.** A record that says only where an object went can't reveal a missed transition, or two agents both doing `start` on the same task. Producer sequence gaps catch losses per recorder, but nothing catches them per object.
+- **Change.** The vocabulary defines the state machine for each object kind. A transition on a shared object carries the state it leaves. A mismatch is accepted and reported, consistent with Journal §5.3.
+- **Cost per record:** about 1 byte, for objects with several writers only.
+
+### Pacioli: every quantity moves from somewhere
+
+- **What the lens does today.** It counts events labelled credit or debit, so a start followed by a stop gives a balance of 2.
+- **Pacioli's real contribution.** No quantity is a bare number. It is a signed movement between accounts, and it balances.
+- **Already adopted:** postings that balance per unit, `use` vectors, and stated remainders.
+- **Refinement 1.** A `use` vector moves resources from a pool declared in the run header, so consumption is double-entry at no cost per record.
+- **Refinement 2.** A period close (COMMIT, or Tally) is a record asserting balances at a point in time, which lets later edits to history be detected.
+- **Retire:** the count-based lens. Replace it with a balance view.
+
+### Dey: say how a value is known
+
+- **What breaks today.** D samples are derived indices computed in the browser from 11 weighted signals with exponential smoothing, and the method isn't recorded. When there are no samples, the lens builds lookalike values from event density without labelling them.
+- **Change.**
+  - **The sample phase.** A continuous signal is a declared series with a cadence, and missing samples are marked as gaps.
+  - **Derived values are estimates**, recorded with their method, version and window.
+  - **Views label approximations** in their output.
+  - **Behavioural signals about a person are restricted**, with the restriction implied by verb or domain, as ZAKO's JOURNAL does.
+- **Cost per record:** zero.
+
+### The obligations of a record
+
+| A record must say… | From | Usually stated |
+|---|---|---|
+| when, by whose clock | Bundy | session |
+| which act, and its card layout | Hollerith and ZAKO verbs | standard and vocabulary |
+| on what: a declared object | Hollerith | once per object |
+| from what state | Frick | per record, shared objects only |
+| how much, from where, balanced | Pacioli | values per record; pool per run |
+| how it is known: measured, estimated or claimed | Dey and Bundy | type and run |
+
+**Burroughs, Felt, Cooper, Grant and Baldwin** need no change to record creation, beyond what these obligations already cover. N13 examines them in full.
+
+### Decisions open
+
+1. Should objects be declared, with acts referring to them by reference? This is the largest structural change.
+2. Should transitions on shared objects carry a "from" state? This is the only per-record cost.
+3. Should session-level clock provenance and timezone be required?
+4. Should the count-based Pacioli lens be retired in favour of a balance view?
