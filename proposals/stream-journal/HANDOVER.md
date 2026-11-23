@@ -55,7 +55,7 @@ The architecture is: **kernel → log → views → caches**, with packs adopted
 
 ## 4. Decisions agreed in conversation
 
-Most are in the notation draft (N11–N14) and `LINEAGE.md`. Items marked † are **agreed but not yet recorded in the lineage register**.
+All are in the notation draft (N11–N15) and `LINEAGE.md`. Items marked † were recorded on 2026-11-23 in N15 and the register as REL-1–2, KER-1–7, LOV-4–6, PAC-12–15, ZAK-13 (which supersedes ZAK-11) and INT-1–3. *The Relativity of Data* still lists five postulates; the sixth is not yet in that document.
 
 - **Type = verb + phase,** with the domain declared per run. Workwarrior's letters become profiles. ZAKO mapping is by code, never by name.
 - **The meaning stack:** state each fact at the widest scope where it holds. `ctx` is a staging area; keys that keep recurring are promoted to the Codebook.
@@ -138,7 +138,7 @@ To be raised with their owners:
 
 ## 8. Suggested next steps, in order
 
-1. **Record the † decisions** in `lineage/lineage.json` (kernel, packs, views, caches, relativity, Books, wire, interface), then run `lineage.py check` and `render`.
+1. ~~**Record the † decisions** in `lineage/lineage.json` (kernel, packs, views, caches, relativity, Books, wire, interface), then run `lineage.py check` and `render`.~~ Done: 85 decisions, 44 terms, 0 problems.
 2. **Rust:** a WebAssembly view host (wasmtime, no imports), with `stream-books` moved onto it.
 3. **Rust codec:** positional payloads and template rows, porting from `reference/notation.py`. The aim is the trial's ~28× reduction on meter data.
 4. **Token measurement:** run `reference/measure.py --tokens` (needs the `anthropic` package and credentials), or an equivalent in Rust.

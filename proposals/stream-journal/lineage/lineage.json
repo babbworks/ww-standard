@@ -38,7 +38,10 @@
   "Lovelace",
   "ZAKO",
   "Journal",
-  "Notation"
+  "Notation",
+  "Kernel",
+  "Relativity",
+  "Interface"
  ],
  "lineage_notes": {
   "Pacioli": "Substrate in the archived plan: append-only, with state as a derivation. Also the conservation thesis in units-v1.",
@@ -55,7 +58,10 @@
   "Lovelace": "Notes A–G: symbolic generality, no power of originating, successive approximation.",
   "ZAKO": "The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.",
   "Journal": "Journal mechanics without a single lineage name.",
-  "Notation": "Encoding and the cascade."
+  "Notation": "Encoding and the cascade.",
+  "Kernel": "The kernel, packs, and what is and is not an entry.",
+  "Relativity": "The relativity of data: postulates and the master formula.",
+  "Interface": "How the interface is composed from the log's primitives."
  },
  "entries": [
   {
@@ -1439,7 +1445,7 @@
    "id": "ZAK-11",
    "lineage": "ZAKO",
    "title": "Binary framing uses C0 controls for journal acts and runs",
-   "status": "proposed",
+   "status": "superseded",
    "parents": [
     {
      "repo": "mobileos",
@@ -1462,7 +1468,8 @@
      "has": "### C0 controls for the journal's own acts"
     }
    ],
-   "note": "Proposed, not built."
+   "note": "Proposed, not built.",
+   "superseded_by": "ZAK-13"
   },
   {
    "id": "ZAK-12",
@@ -1761,6 +1768,510 @@
     }
    ],
    "note": "Glyphs survive as phase marks and display aliases."
+  },
+  {
+   "id": "REL-1",
+   "lineage": "Relativity",
+   "title": "Six postulates: the relativity of data",
+   "status": "agreed",
+   "parents": [
+    {
+     "external": "The Relativity of Data, claude.ai document, 2026-11-23, Postulates"
+    },
+    {
+     "entry": "PAC-1"
+    },
+    {
+     "entry": "NOT-6"
+    },
+    {
+     "repo": "ww-standard",
+     "path": "stream/spec/kernel.descriptor",
+     "has": "3. An entry is read under the declarations in force at its position.",
+     "commit": "42830d8fda0aedce20cf288c89d249800e453121",
+     "line": 68
+    }
+   ],
+   "mutation": "The record is invariant; encodings are equivalent; meaning is relative to the frame; order is relative; conserved quantities are invariant and value is not; the frame is recorded.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "Six postulates (REL-1)."
+    }
+   ],
+   "note": "The source document states five postulates. The sixth, the frame is recorded, was agreed afterwards and is not yet in that document."
+  },
+  {
+   "id": "REL-2",
+   "lineage": "Relativity",
+   "title": "Every state is a fold of the log under a frame",
+   "status": "agreed",
+   "parents": [
+    {
+     "external": "The Relativity of Data, claude.ai document, 2026-11-23, In two formulas"
+    },
+    {
+     "entry": "REL-1"
+    },
+    {
+     "entry": "PAC-8"
+    }
+   ],
+   "mutation": "S = f_θ(L) = fold(step_θ, S₀, L); indexed by time, S(T) = Σ_{t≤T} e. An entry's size is H(e | frame).",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**The master formula (REL-2).**"
+    }
+   ]
+  },
+  {
+   "id": "KER-1",
+   "lineage": "Kernel",
+   "title": "The kernel is a hashed descriptor named on the first line",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "stream/spec/kernel.descriptor",
+     "has": "The first line of a log is exactly: STREAM/1 kernel=sha256:",
+     "commit": "42830d8fda0aedce20cf288c89d249800e453121",
+     "line": 7
+    },
+    {
+     "entry": "ZAK-5"
+    },
+    {
+     "entry": "BUN-4"
+    }
+   ],
+   "mutation": "A fixed preamble line names a hashed descriptor of about one page that travels with the log. Genesis is the first entry: OPEN kind=genesis with log, root, clock and timezone.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Form (KER-1).**"
+    },
+    {
+     "path": "stream/spec/kernel.descriptor",
+     "has": "This file is the kernel."
+    }
+   ]
+  },
+  {
+   "id": "KER-2",
+   "lineage": "Kernel",
+   "title": "Eight bootstrap verbs",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "stream/spec/kernel.descriptor",
+     "has": "BOOTSTRAP VERBS (kernel meaning; required payload keys)",
+     "commit": "42830d8fda0aedce20cf288c89d249800e453121",
+     "line": 47
+    },
+    {
+     "entry": "ZAK-5"
+    }
+   ],
+   "mutation": "The kernel gives meaning to CREATE, BIND, GRANT, REVOKE, AMEND, OPEN, COMMIT and ACK. The other 56 verbs are named by the kernel and given their meaning by packs.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Bootstrap verbs (KER-2).**"
+    }
+   ]
+  },
+  {
+   "id": "KER-3",
+   "lineage": "Kernel",
+   "title": "Kernel changes take effect by AMEND at a segment boundary",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "KER-1"
+    },
+    {
+     "entry": "PAC-3"
+    },
+    {
+     "entry": "ZAK-5"
+    }
+   ],
+   "mutation": "A new kernel is adopted by AMEND, effective from the next segment, whose preamble names the new kernel's hash.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Change (KER-3).**"
+    }
+   ],
+   "note": "Not yet built."
+  },
+  {
+   "id": "KER-4",
+   "lineage": "Kernel",
+   "title": "Everything is an entry except the kernel, content by hash, and caches",
+   "status": "agreed",
+   "parents": [
+    {
+     "external": "STREAM inquiry, agreed in conversation, 2026-11-23"
+    },
+    {
+     "entry": "REL-1"
+    },
+    {
+     "entry": "HOL-1"
+    },
+    {
+     "entry": "BAL-2"
+    }
+   ],
+   "mutation": "The Register, prices, grants, Codebook extensions and view definitions are entries. Only the kernel, content stored by hash, and caches are not.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Everything is an entry"
+    }
+   ]
+  },
+  {
+   "id": "KER-5",
+   "lineage": "Kernel",
+   "title": "A pack is adopted with one BIND",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "stream/crates/stream-log/src/lib.rs",
+     "has": "/// Store a pack's bytes and adopt it with one BIND entry.",
+     "commit": "42830d8fda0aedce20cf288c89d249800e453121",
+     "line": 310
+    },
+    {
+     "entry": "KER-4"
+    }
+   ],
+   "mutation": "A pack is a hashed bundle of declarations, stored by hash and adopted with one BIND entry. Packs set up a log and install applications.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Adoption (KER-5).**"
+    }
+   ]
+  },
+  {
+   "id": "KER-6",
+   "lineage": "Kernel",
+   "title": "Packs layer standard, domain, organisation; conflicts are refused",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "KER-5"
+    },
+    {
+     "entry": "ZAK-7"
+    }
+   ],
+   "mutation": "Packs layer standard → domain → organisation. A definition that conflicts with one already in force is refused.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Layers (KER-6).**"
+    }
+   ]
+  },
+  {
+   "id": "KER-7",
+   "lineage": "Kernel",
+   "title": "Software is composed from declarations",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "KER-5"
+    },
+    {
+     "entry": "LOV-4"
+    },
+    {
+     "external": "STREAM inquiry, agreed in conversation, 2026-11-23"
+    }
+   ],
+   "mutation": "Forms come from the Codebook, menus from the Register and screens from views.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Software from declarations (KER-7).**"
+    }
+   ]
+  },
+  {
+   "id": "LOV-4",
+   "lineage": "Lovelace",
+   "title": "Views are pure and declared",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "LOV-1"
+    },
+    {
+     "entry": "GRA-1"
+    },
+    {
+     "repo": "ww-standard",
+     "path": "times-research/babbage-lovelace-framework.md",
+     "has": "no power of originating anything",
+     "line": 450
+    }
+   ],
+   "mutation": "A view has no clock, randomness or network. It is declared with its inputs, method hash and runtime hash.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Views are pure (LOV-4).**"
+    }
+   ],
+   "note": "The runtime chosen is WebAssembly; the view host is not yet built."
+  },
+  {
+   "id": "LOV-5",
+   "lineage": "Lovelace",
+   "title": "A view result is identified by view, frame and address",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "LOV-1"
+    },
+    {
+     "entry": "LOV-4"
+    },
+    {
+     "entry": "REL-2"
+    }
+   ],
+   "mutation": "A result is identified by (view, θ, address). Only published results enter the log, as estimates, and decisions cite them with `basis`.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Results (LOV-5).**"
+    }
+   ]
+  },
+  {
+   "id": "LOV-6",
+   "lineage": "Lovelace",
+   "title": "A cache is a saved view result, checked against seals",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "BAL-2"
+    },
+    {
+     "entry": "LOV-5"
+    },
+    {
+     "entry": "PAC-3"
+    }
+   ],
+   "mutation": "A cache is disposable and checked against seals. It generalises BAL-2's snapshots to every view.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Caches (LOV-6).**"
+    }
+   ]
+  },
+  {
+   "id": "PAC-12",
+   "lineage": "Pacioli",
+   "title": "Postings are implied by use and pool",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "stream/crates/stream-books/src/lib.rs",
+     "has": "Implied movements: an entry in the End phase with `use` and `pool` moves",
+     "commit": "42830d8fda0aedce20cf288c89d249800e453121",
+     "line": 42
+    },
+    {
+     "entry": "PAC-10"
+    },
+    {
+     "entry": "NOT-4"
+    }
+   ],
+   "mutation": "An end-phase entry with `use` and `pool` moves each quantity from the pool to the activity. Nothing extra is written.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Implied postings (PAC-12).**"
+    }
+   ],
+   "cost": "0 per record"
+  },
+  {
+   "id": "PAC-13",
+   "lineage": "Pacioli",
+   "title": "Conversion is never pricing",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "JNL-5"
+    },
+    {
+     "entry": "REL-1"
+    }
+   ],
+   "mutation": "A unit conversion relates quantities of one kind. A price relates a conserved quantity to money and belongs to a frame.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Conversion is never pricing (PAC-13).**"
+    }
+   ]
+  },
+  {
+   "id": "PAC-14",
+   "lineage": "Pacioli",
+   "title": "Capacity is conserved per actor",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "PAC-10"
+    },
+    {
+     "entry": "PAC-11"
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/punch-posting-v1.md",
+     "has": "time flows FROM their capacity INTO",
+     "line": 14
+    }
+   ],
+   "mutation": "An actor's hours are a pool like any other, and balance per actor.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Capacity is conserved per actor (PAC-14).**"
+    }
+   ],
+   "note": "Does not settle PAC-11: how overlapping punches draw on the pool is still open."
+  },
+  {
+   "id": "PAC-15",
+   "lineage": "Pacioli",
+   "title": "Allotment is a posting into an allotment account",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "PAC-10"
+    },
+    {
+     "entry": "PAC-4"
+    }
+   ],
+   "mutation": "Allotting a resource moves it into an allotment account. It is not a separate kind of record.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Allotment is a posting (PAC-15).**"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-13",
+   "lineage": "ZAKO",
+   "title": "Printable characters are the log's alphabet; control characters are wire grammar only",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "ZAK-11"
+    },
+    {
+     "entry": "ZAK-5"
+    },
+    {
+     "repo": "mobileos",
+     "path": "zako-os-v1/system/components/libzako-c0/zako_c0.h",
+     "has": "ZC0_FS    0x1Cu",
+     "line": 66
+    }
+   ],
+   "mutation": "The 95 printable characters are the log's alphabet. The 33 control characters (C0 and DEL) appear only on the wire, with their ASCII meanings. Journal acts are verbs, not control characters; FS, GS, RS and US may still frame runs, rows and fields.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**The 95 printable characters are the log's alphabet (ZAK-13).**"
+    }
+   ],
+   "supersedes": [
+    "ZAK-11"
+   ],
+   "why": "Journal acts became verbs (ZAK-5), so mapping them to control characters would give each act two spellings."
+  },
+  {
+   "id": "INT-1",
+   "lineage": "Interface",
+   "title": "Every interface element is a primitive made visible",
+   "status": "agreed",
+   "parents": [
+    {
+     "external": "STREAM interface mock-up, claude.ai design canvas, 2026-11-23, title"
+    },
+    {
+     "entry": "KER-7"
+    }
+   ],
+   "mutation": "Each element shows a verb, a phase, an object or a view.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Primitives made visible (INT-1).**"
+    }
+   ]
+  },
+  {
+   "id": "INT-2",
+   "lineage": "Interface",
+   "title": "The phase decides the control",
+   "status": "agreed",
+   "parents": [
+    {
+     "external": "STREAM interface mock-up, claude.ai design canvas, 2026-11-23, Act panel"
+    },
+    {
+     "entry": "ZAK-1"
+    }
+   ],
+   "mutation": "An instant is a button, begin and end are a toggle, and a sample is a reading.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Phase decides the control (INT-2).**"
+    }
+   ]
+  },
+  {
+   "id": "INT-3",
+   "lineage": "Interface",
+   "title": "The 8×8 verb grid is the shared palette",
+   "status": "agreed",
+   "parents": [
+    {
+     "external": "STREAM interface mock-up, claude.ai design canvas, 2026-11-23, The 64 acts"
+    },
+    {
+     "entry": "ZAK-8"
+    }
+   ],
+   "mutation": "Labels are local and codes are universal.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**One palette (INT-3).**"
+    }
+   ]
   }
  ],
  "terms": [
@@ -2232,7 +2743,8 @@
    "now": "Unchanged, with one addition: a lens result enters the journal only as an attributed act, with method, version and basis.",
    "by": [
     "LOV-1",
-    "GRA-1"
+    "GRA-1",
+    "LOV-4"
    ],
    "was": "The log is the record; a lens is a projection of it.",
    "was_src": [
@@ -2377,6 +2889,81 @@
    "by": [
     "PAC-1",
     "BUR-1"
+   ]
+  },
+  {
+   "id": "TRM-38",
+   "term": "kernel",
+   "layer": "new term",
+   "now": "One fixed page of rules for reading a log, named by hash on the log's first line.",
+   "by": [
+    "KER-1",
+    "KER-2",
+    "KER-3"
+   ]
+  },
+  {
+   "id": "TRM-39",
+   "term": "pack",
+   "layer": "new term",
+   "now": "A hashed bundle of declarations, adopted with one BIND entry.",
+   "by": [
+    "KER-5",
+    "KER-6"
+   ]
+  },
+  {
+   "id": "TRM-40",
+   "term": "register",
+   "layer": "new term",
+   "now": "Things declared once (objects, actors, units, accounts, pools, prices, grants, views), folded from entries.",
+   "by": [
+    "KER-4",
+    "HOL-1"
+   ]
+  },
+  {
+   "id": "TRM-41",
+   "term": "view",
+   "layer": "derived term",
+   "now": "A pure function of the log, declared with inputs, method hash and runtime hash. It replaces the lens.",
+   "by": [
+    "LOV-4",
+    "LOV-5",
+    "KER-7"
+   ]
+  },
+  {
+   "id": "TRM-42",
+   "term": "cache",
+   "layer": "storage term",
+   "now": "A saved view result: disposable, checked against seals.",
+   "by": [
+    "LOV-6",
+    "BAL-2"
+   ]
+  },
+  {
+   "id": "TRM-43",
+   "term": "books",
+   "layer": "derived term",
+   "now": "Balances of every conserved quantity, derived and never written. A Close commits to them by hash.",
+   "by": [
+    "PAC-12",
+    "PAC-13",
+    "PAC-14",
+    "PAC-15",
+    "PAC-7"
+   ]
+  },
+  {
+   "id": "TRM-44",
+   "term": "frame",
+   "layer": "new term",
+   "now": "The declarations in force at an entry's position, together with the view's rules θ, under which the entry is read.",
+   "by": [
+    "REL-1",
+    "REL-2"
    ]
   }
  ],

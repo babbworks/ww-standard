@@ -24,7 +24,7 @@ Every change this proposal makes to what exists today is a **mutation** with a s
 | `declined` | Considered and not adopted, and kept so the reasoning survives. |
 | `divergence` | A discrepancy in a source, to settle with its owner. |
 
-**Totals:** 17 trialled, 29 agreed, 6 proposed, 4 open, 6 superseded, 1 declined, 2 divergence
+**Totals:** 21 trialled, 45 agreed, 5 proposed, 4 open, 7 superseded, 1 declined, 2 divergence
 
 ## Terms
 
@@ -55,7 +55,7 @@ How each term is defined today, at a pinned line, and how this proposal redefine
 | [quantity value](#trm-21) | record coding | [NOT-1](#not-1), [DEY-2](#dey-2), [PAC-4](#pac-4) |
 | [density](#trm-22) | derived term | [FEL-1](#fel-1) |
 | [log](#trm-23) | storage term | [PAC-1](#pac-1), [PAC-2](#pac-2), [PAC-3](#pac-3) |
-| [lens](#trm-24) | derived term | [LOV-1](#lov-1), [GRA-1](#gra-1) |
+| [lens](#trm-24) | derived term | [LOV-1](#lov-1), [GRA-1](#gra-1), [LOV-4](#lov-4) |
 | [time of day](#trm-25) | derived term | [COO-1](#coo-1), [BUN-4](#bun-4) |
 | [type](#trm-26) | new term | [ZAK-1](#zak-1), [ZAK-2](#zak-2) |
 | [phase](#trm-27) | new term | [ZAK-2](#zak-2), [BUN-2](#bun-2), [DEY-1](#dey-1) |
@@ -69,6 +69,13 @@ How each term is defined today, at a pinned line, and how this proposal redefine
 | [supersession](#trm-35) | new term | [LOV-3](#lov-3), [PAC-7](#pac-7) |
 | [period close](#trm-36) | new term | [PAC-7](#pac-7) |
 | [address](#trm-37) | new term | [PAC-1](#pac-1), [BUR-1](#bur-1) |
+| [kernel](#trm-38) | new term | [KER-1](#ker-1), [KER-2](#ker-2), [KER-3](#ker-3) |
+| [pack](#trm-39) | new term | [KER-5](#ker-5), [KER-6](#ker-6) |
+| [register](#trm-40) | new term | [KER-4](#ker-4), [HOL-1](#hol-1) |
+| [view](#trm-41) | derived term | [LOV-4](#lov-4), [LOV-5](#lov-5), [KER-7](#ker-7) |
+| [cache](#trm-42) | storage term | [LOV-6](#lov-6), [BAL-2](#bal-2) |
+| [books](#trm-43) | derived term | [PAC-12](#pac-12), [PAC-13](#pac-13), [PAC-14](#pac-14), [PAC-15](#pac-15), [PAC-7](#pac-7) |
+| [frame](#trm-44) | new term | [REL-1](#rel-1), [REL-2](#rel-2) |
 
 ### TRM-01
 
@@ -260,7 +267,7 @@ How each term is defined today, at a pinned line, and how this proposal redefine
 
 - **Was:** The log is the record; a lens is a projection of it. [`workwarrior:dev/schemas/stream-event-v1.md:220`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L220)
 - **Now:** Unchanged, with one addition: a lens result enters the journal only as an attributed act, with method, version and basis.
-- **Changed by:** [LOV-1](#lov-1) `agreed`, [GRA-1](#gra-1) `agreed`
+- **Changed by:** [LOV-1](#lov-1) `agreed`, [GRA-1](#gra-1) `agreed`, [LOV-4](#lov-4) `agreed`
 
 ### TRM-25
 
@@ -365,6 +372,62 @@ How each term is defined today, at a pinned line, and how this proposal redefine
 - **Was:** not defined
 - **Now:** A committed record's position, `segment:seq`. It is never stored on the line it names.
 - **Changed by:** [PAC-1](#pac-1) `trialled`, [BUR-1](#bur-1) `trialled`
+
+### TRM-38
+
+**kernel** · new term
+
+- **Was:** not defined
+- **Now:** One fixed page of rules for reading a log, named by hash on the log's first line.
+- **Changed by:** [KER-1](#ker-1) `trialled`, [KER-2](#ker-2) `trialled`, [KER-3](#ker-3) `agreed`
+
+### TRM-39
+
+**pack** · new term
+
+- **Was:** not defined
+- **Now:** A hashed bundle of declarations, adopted with one BIND entry.
+- **Changed by:** [KER-5](#ker-5) `trialled`, [KER-6](#ker-6) `agreed`
+
+### TRM-40
+
+**register** · new term
+
+- **Was:** not defined
+- **Now:** Things declared once (objects, actors, units, accounts, pools, prices, grants, views), folded from entries.
+- **Changed by:** [KER-4](#ker-4) `agreed`, [HOL-1](#hol-1) `agreed`
+
+### TRM-41
+
+**view** · derived term
+
+- **Was:** not defined
+- **Now:** A pure function of the log, declared with inputs, method hash and runtime hash. It replaces the lens.
+- **Changed by:** [LOV-4](#lov-4) `agreed`, [LOV-5](#lov-5) `agreed`, [KER-7](#ker-7) `agreed`
+
+### TRM-42
+
+**cache** · storage term
+
+- **Was:** not defined
+- **Now:** A saved view result: disposable, checked against seals.
+- **Changed by:** [LOV-6](#lov-6) `agreed`, [BAL-2](#bal-2) `agreed`
+
+### TRM-43
+
+**books** · derived term
+
+- **Was:** not defined
+- **Now:** Balances of every conserved quantity, derived and never written. A Close commits to them by hash.
+- **Changed by:** [PAC-12](#pac-12) `trialled`, [PAC-13](#pac-13) `agreed`, [PAC-14](#pac-14) `agreed`, [PAC-15](#pac-15) `agreed`, [PAC-7](#pac-7) `agreed`
+
+### TRM-44
+
+**frame** · new term
+
+- **Was:** not defined
+- **Now:** The declarations in force at an entry's position, together with the view's rules θ, under which the entry is read.
+- **Changed by:** [REL-1](#rel-1) `agreed`, [REL-2](#rel-2) `agreed`
 
 ## Record coding
 
@@ -638,6 +701,39 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Descends from:** [`workwarrior:dev/schemas/punch-posting-v1.md:22`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/punch-posting-v1.md#L22); [BUN-1](#bun-1)
 - **Mutation:** Should an actor's capacity be split across overlapping intervals, or should overlap be reported as over-attribution (NOT-4)?
 - **Why:** punch-posting-v1 posts one transaction per interval. Once BUN-1 keeps overlapping intervals apart, an operator on two machines at once would debit their hours twice.
+
+#### PAC-12
+
+**Postings are implied by use and pool** · `trialled` · cost: 0 per record
+
+- **Descends from:** [`ww-standard:stream/crates/stream-books/src/lib.rs:42`](https://github.com/babbworks/ww-standard/blob/42830d8fda0aedce20cf288c89d249800e453121/stream/crates/stream-books/src/lib.rs#L42); [PAC-10](#pac-10); [NOT-4](#not-4)
+- **Mutation:** An end-phase entry with `use` and `pool` moves each quantity from the pool to the activity. Nothing extra is written.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Implied postings (PAC-12).**)
+
+#### PAC-13
+
+**Conversion is never pricing** · `agreed`
+
+- **Descends from:** [JNL-5](#jnl-5); [REL-1](#rel-1)
+- **Mutation:** A unit conversion relates quantities of one kind. A price relates a conserved quantity to money and belongs to a frame.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Conversion is never pricing (PAC-13).**)
+
+#### PAC-14
+
+**Capacity is conserved per actor** · `agreed`
+
+- **Descends from:** [PAC-10](#pac-10); [PAC-11](#pac-11); [`workwarrior:dev/schemas/punch-posting-v1.md:14`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/punch-posting-v1.md#L14)
+- **Mutation:** An actor's hours are a pool like any other, and balance per actor.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Capacity is conserved per actor (PAC-14).**)
+- **Note:** Does not settle PAC-11: how overlapping punches draw on the pool is still open.
+
+#### PAC-15
+
+**Allotment is a posting into an allotment account** · `agreed`
+
+- **Descends from:** [PAC-10](#pac-10); [PAC-4](#pac-4)
+- **Mutation:** Allotting a resource moves it into an allotment account. It is not a separate kind of record.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Allotment is a posting (PAC-15).**)
 
 ### Hollerith
 
@@ -944,6 +1040,31 @@ Notes A–G: symbolic generality, no power of originating, successive approximat
 - **Mutation:** Any claim can be superseded by one with the same behaviour, and only the latest version can be corrected. A superseded measurement keeps its original reading. Supplying a missing record is still reconciliation.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N13.4 Supersession)
 
+#### LOV-4
+
+**Views are pure and declared** · `agreed`
+
+- **Descends from:** [LOV-1](#lov-1); [GRA-1](#gra-1); [`ww-standard:times-research/babbage-lovelace-framework.md:450`](https://github.com/babbworks/ww-standard/blob/96cb9f84e70ef9d98a86bad6f2d57d95892dc253/times-research/babbage-lovelace-framework.md#L450)
+- **Mutation:** A view has no clock, randomness or network. It is declared with its inputs, method hash and runtime hash.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Views are pure (LOV-4).**)
+- **Note:** The runtime chosen is WebAssembly; the view host is not yet built.
+
+#### LOV-5
+
+**A view result is identified by view, frame and address** · `agreed`
+
+- **Descends from:** [LOV-1](#lov-1); [LOV-4](#lov-4); [REL-2](#rel-2)
+- **Mutation:** A result is identified by (view, θ, address). Only published results enter the log, as estimates, and decisions cite them with `basis`.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Results (LOV-5).**)
+
+#### LOV-6
+
+**A cache is a saved view result, checked against seals** · `agreed`
+
+- **Descends from:** [BAL-2](#bal-2); [LOV-5](#lov-5); [PAC-3](#pac-3)
+- **Mutation:** A cache is disposable and checked against seals. It generalises BAL-2's snapshots to every view.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Caches (LOV-6).**)
+
 ### ZAKO
 
 The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
@@ -1035,10 +1156,11 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 
 #### ZAK-11
 
-**Binary framing uses C0 controls for journal acts and runs** · `proposed`
+**Binary framing uses C0 controls for journal acts and runs** · `superseded`
 
 - **Descends from:** [`mobileos:zako-os-v1/system/components/libzako-c0/zako_c0.h:66`](https://github.com/babbworks/mobileos/blob/8c33c650e8090e810324d35d0ecf1c5f12319082/zako-os-v1/system/components/libzako-c0/zako_c0.h#L66); [`ww-standard:proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md:166`](https://github.com/babbworks/ww-standard/blob/f42999f756c5de5c6e0b644ba1490b0e4097cfc0/proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md#L166)
 - **Mutation:** ACK, NAK, SOH, ETB, SYN, SUB, CAN, BEL and ENQ stand for journal acts. FS, GS, RS and US frame stream, run, row and field. The C0 Continuation flag means more rows follow.
+- **Superseded by:** [ZAK-13](#zak-13)
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### C0 controls for the journal's own acts)
 - **Note:** Proposed, not built.
 
@@ -1051,6 +1173,16 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Superseded by:** [ZAK-1](#zak-1)
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 4.3 Op codes)
 - **Note:** The trial code still uses M, L and R.
+
+#### ZAK-13
+
+**Printable characters are the log's alphabet; control characters are wire grammar only** · `agreed`
+
+- **Descends from:** [ZAK-11](#zak-11); [ZAK-5](#zak-5); [`mobileos:zako-os-v1/system/components/libzako-c0/zako_c0.h:66`](https://github.com/babbworks/mobileos/blob/8c33c650e8090e810324d35d0ecf1c5f12319082/zako-os-v1/system/components/libzako-c0/zako_c0.h#L66)
+- **Mutation:** The 95 printable characters are the log's alphabet. The 33 control characters (C0 and DEL) appear only on the wire, with their ASCII meanings. Journal acts are verbs, not control characters; FS, GS, RS and US may still frame runs, rows and fields.
+- **Why:** Journal acts became verbs (ZAK-5), so mapping them to control characters would give each act two spellings.
+- **Supersedes:** [ZAK-11](#zak-11)
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**The 95 printable characters are the log's alphabet (ZAK-13).**)
 
 ### Journal
 
@@ -1162,6 +1294,116 @@ Encoding and the cascade.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Partly superseded by N11.**)
 - **Note:** Glyphs survive as phase marks and display aliases.
 
+### Kernel
+
+The kernel, packs, and what is and is not an entry.
+
+#### KER-1
+
+**The kernel is a hashed descriptor named on the first line** · `trialled`
+
+- **Descends from:** [`ww-standard:stream/spec/kernel.descriptor:7`](https://github.com/babbworks/ww-standard/blob/42830d8fda0aedce20cf288c89d249800e453121/stream/spec/kernel.descriptor#L7); [ZAK-5](#zak-5); [BUN-4](#bun-4)
+- **Mutation:** A fixed preamble line names a hashed descriptor of about one page that travels with the log. Genesis is the first entry: OPEN kind=genesis with log, root, clock and timezone.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Form (KER-1).**); `kernel.descriptor` (This file is the kernel.)
+
+#### KER-2
+
+**Eight bootstrap verbs** · `trialled`
+
+- **Descends from:** [`ww-standard:stream/spec/kernel.descriptor:47`](https://github.com/babbworks/ww-standard/blob/42830d8fda0aedce20cf288c89d249800e453121/stream/spec/kernel.descriptor#L47); [ZAK-5](#zak-5)
+- **Mutation:** The kernel gives meaning to CREATE, BIND, GRANT, REVOKE, AMEND, OPEN, COMMIT and ACK. The other 56 verbs are named by the kernel and given their meaning by packs.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Bootstrap verbs (KER-2).**)
+
+#### KER-3
+
+**Kernel changes take effect by AMEND at a segment boundary** · `agreed`
+
+- **Descends from:** [KER-1](#ker-1); [PAC-3](#pac-3); [ZAK-5](#zak-5)
+- **Mutation:** A new kernel is adopted by AMEND, effective from the next segment, whose preamble names the new kernel's hash.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Change (KER-3).**)
+- **Note:** Not yet built.
+
+#### KER-4
+
+**Everything is an entry except the kernel, content by hash, and caches** · `agreed`
+
+- **Descends from:** *STREAM inquiry, agreed in conversation, 2026-11-23*; [REL-1](#rel-1); [HOL-1](#hol-1); [BAL-2](#bal-2)
+- **Mutation:** The Register, prices, grants, Codebook extensions and view definitions are entries. Only the kernel, content stored by hash, and caches are not.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Everything is an entry)
+
+#### KER-5
+
+**A pack is adopted with one BIND** · `trialled`
+
+- **Descends from:** [`ww-standard:stream/crates/stream-log/src/lib.rs:310`](https://github.com/babbworks/ww-standard/blob/42830d8fda0aedce20cf288c89d249800e453121/stream/crates/stream-log/src/lib.rs#L310); [KER-4](#ker-4)
+- **Mutation:** A pack is a hashed bundle of declarations, stored by hash and adopted with one BIND entry. Packs set up a log and install applications.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Adoption (KER-5).**)
+
+#### KER-6
+
+**Packs layer standard, domain, organisation; conflicts are refused** · `agreed`
+
+- **Descends from:** [KER-5](#ker-5); [ZAK-7](#zak-7)
+- **Mutation:** Packs layer standard → domain → organisation. A definition that conflicts with one already in force is refused.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Layers (KER-6).**)
+
+#### KER-7
+
+**Software is composed from declarations** · `agreed`
+
+- **Descends from:** [KER-5](#ker-5); [LOV-4](#lov-4); *STREAM inquiry, agreed in conversation, 2026-11-23*
+- **Mutation:** Forms come from the Codebook, menus from the Register and screens from views.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Software from declarations (KER-7).**)
+
+### Relativity
+
+The relativity of data: postulates and the master formula.
+
+#### REL-1
+
+**Six postulates: the relativity of data** · `agreed`
+
+- **Descends from:** *The Relativity of Data, claude.ai document, 2026-11-23, Postulates*; [PAC-1](#pac-1); [NOT-6](#not-6); [`ww-standard:stream/spec/kernel.descriptor:68`](https://github.com/babbworks/ww-standard/blob/42830d8fda0aedce20cf288c89d249800e453121/stream/spec/kernel.descriptor#L68)
+- **Mutation:** The record is invariant; encodings are equivalent; meaning is relative to the frame; order is relative; conserved quantities are invariant and value is not; the frame is recorded.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (Six postulates (REL-1).)
+- **Note:** The source document states five postulates. The sixth, the frame is recorded, was agreed afterwards and is not yet in that document.
+
+#### REL-2
+
+**Every state is a fold of the log under a frame** · `agreed`
+
+- **Descends from:** *The Relativity of Data, claude.ai document, 2026-11-23, In two formulas*; [REL-1](#rel-1); [PAC-8](#pac-8)
+- **Mutation:** S = f_θ(L) = fold(step_θ, S₀, L); indexed by time, S(T) = Σ_{t≤T} e. An entry's size is H(e | frame).
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**The master formula (REL-2).**)
+
+### Interface
+
+How the interface is composed from the log's primitives.
+
+#### INT-1
+
+**Every interface element is a primitive made visible** · `agreed`
+
+- **Descends from:** *STREAM interface mock-up, claude.ai design canvas, 2026-11-23, title*; [KER-7](#ker-7)
+- **Mutation:** Each element shows a verb, a phase, an object or a view.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Primitives made visible (INT-1).**)
+
+#### INT-2
+
+**The phase decides the control** · `agreed`
+
+- **Descends from:** *STREAM interface mock-up, claude.ai design canvas, 2026-11-23, Act panel*; [ZAK-1](#zak-1)
+- **Mutation:** An instant is a button, begin and end are a toggle, and a sample is a reading.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Phase decides the control (INT-2).**)
+
+#### INT-3
+
+**The 8×8 verb grid is the shared palette** · `agreed`
+
+- **Descends from:** *STREAM interface mock-up, claude.ai design canvas, 2026-11-23, The 64 acts*; [ZAK-8](#zak-8)
+- **Mutation:** Labels are local and codes are universal.
+- **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**One palette (INT-3).**)
+
 ## Supersession chains
 
 | Was | Became | Why |
@@ -1172,6 +1414,7 @@ Encoding and the cascade.
 | [ZAK-12](#zak-12) | [ZAK-1](#zak-1) | A universal verb in the type carries meaning that today rides in ctx on every record, and it makes acts comparable across people, machines and agents. |
 | [NOT-7](#not-7) | [ZAK-1](#zak-1) | A universal verb in the type carries meaning that today rides in ctx on every record, and it makes acts comparable across people, machines and agents. |
 | [NOT-2](#not-2) | [NOT-3](#not-3) | units-v1 is already the shared vocabulary of quantity, and it keeps conversion apart from price. A second codebook would split that vocabulary. |
+| [ZAK-11](#zak-11) | [ZAK-13](#zak-13) | Journal acts became verbs (ZAK-5), so mapping them to control characters would give each act two spellings. |
 
 ## Open
 

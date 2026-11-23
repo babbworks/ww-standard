@@ -181,6 +181,8 @@ The 32 C0 control codes come from teleprinter practice (Baudot–Murray, ITA2) a
 | Pause, resume | DC3 0x13, DC1 0x11 | XOFF, XON |
 | Stream, run, row, field | FS 0x1C, GS 0x1D, RS 0x1E, US 0x1F | The information separators, which were designed for exactly this hierarchy |
 
+**Superseded by N15 (ZAK-13).** Journal acts are verbs, and control characters are wire grammar only.
+
 A run in binary is a GS-framed group of RS-separated rows with US-separated fields. Continuation=1 on a separator means more rows follow in this run. Content can't collide with framing, because these bytes never appear in printable text. This document proposes that framing but doesn't implement it. PB1 (Journal §10.3) is the binary form the trial does implement.
 
 ### Quantity tokens
@@ -498,3 +500,71 @@ The journal therefore holds one balance-related record per period, and its size 
 | N13.5 Felt as rates | **Yes, as its primary meaning.** Event-count density stays as a secondary measure, labelled with its recording depth. Neither is stored. | FEL-1 |
 
 N11's three decisions remain open: ZAK-1, ZAK-2 and ZAK-3 in the register.
+
+## N15. Kernel, packs, views and the relativity of data
+
+**Status:** agreed on 2026-11-23. The kernel, packs and implied postings are built in `stream/`. The rest is agreed and not yet built.
+
+The architecture is **kernel → log → views → caches**, with packs adopted into the log. Only the log is authoritative.
+
+### The relativity of data
+
+Six postulates (REL-1). The first five are worded as in *The Relativity of Data*; the sixth was agreed after it was written.
+
+1. **The record is invariant.** Every observer reads the same Log of acts. Only their Views differ.
+2. **Encodings are equivalent.** Any spelling that decodes to the same entries is the same record: a readable line, a compact run, or binary.
+3. **Meaning is relative to the frame.** An entry's meaning, and its size, depend on the context it is read in: the Codebook, the Register, the session, the run. The more the frame says, the less the entry must say.
+4. **Order is relative.** There is no single "now" across recorders: occurrence time, arrival order and each clock differ. Time order is a View. Only an entry's position in a Log is absolute.
+5. **Conserved quantities are invariant; value is not.** Energy, compute, material, tokens and money balance in every frame. Prices, costs and efficiency depend on the rules a View applies.
+6. **The frame is recorded.** Declarations, prices, grants and view definitions are entries, so any reading can be reproduced from the Log.
+
+**The master formula (REL-2).** Every state is a fold of the Log under a frame θ, and an entry costs only what its frame does not already supply:
+
+```
+S = f_θ(L) = fold(step_θ, S₀, L)
+S(T) = Σ_{t≤T} e
+size(e) = H(e | frame)
+```
+
+### Everything is an entry
+
+The Register, prices, grants, Codebook extensions and view definitions are all entries (KER-4). Three things are not:
+
+- the kernel, which is named by hash on the first line;
+- content stored by hash, such as pack bytes, which an entry names;
+- caches, which are disposable.
+
+### The kernel
+
+- **Form (KER-1).** A fixed preamble line, `STREAM/1 kernel=sha256:…`, names a hashed descriptor of about one page that travels with the log. Genesis is the first entry: OPEN kind=genesis, with the log, its root, clock and timezone.
+- **Bootstrap verbs (KER-2).** The kernel gives meaning to eight verbs: CREATE, BIND, GRANT, REVOKE, AMEND, OPEN, COMMIT and ACK. The other 56 verbs are named by the kernel and given their meaning by packs.
+- **Change (KER-3).** A kernel change takes effect by AMEND at a segment boundary. The new segment's preamble names the new kernel.
+
+### Packs
+
+- **Adoption (KER-5).** A pack is a hashed bundle of declarations, adopted with one BIND entry. Packs set up a log and install applications.
+- **Layers (KER-6).** Packs layer standard → domain → organisation. A definition that conflicts with one already in force is refused.
+- **Software from declarations (KER-7).** Forms come from the Codebook, menus from the Register and screens from views.
+
+### Views and caches
+
+- **Views are pure (LOV-4).** A view has no clock, randomness or network. It is declared with its inputs, method hash and runtime hash.
+- **Results (LOV-5).** A result is identified by (view, θ, address). Only published results enter the log, as estimates, and decisions cite them with `basis`.
+- **Caches (LOV-6).** A cache is a saved view result. It is disposable and checked against seals.
+
+### Books
+
+- **Implied postings (PAC-12).** An end-phase entry with `use` and `pool` moves each quantity from the pool to the activity. Nothing extra is written.
+- **Conversion is never pricing (PAC-13).** Turning kWh into J is a unit conversion. Turning J into money is a price, which belongs to a frame (REL-1, postulate 5).
+- **Capacity is conserved per actor (PAC-14).** An actor's hours are a pool like any other. How overlapping punches draw on it is still open (PAC-11).
+- **Allotment is a posting (PAC-15).** Allotting a resource moves it into an allotment account. It is not a separate kind of record.
+
+### Text and wire
+
+**The 95 printable characters are the log's alphabet (ZAK-13).** The 33 control characters (C0 and DEL) are wire grammar only, and keep their ASCII meanings. The log never contains them. This replaces the C0 mapping for journal acts in N6 (ZAK-11): those acts are verbs (ZAK-5). The information separators FS, GS, RS and US can still frame runs, rows and fields on the wire.
+
+### Interface
+
+- **Primitives made visible (INT-1).** Every interface element is a primitive of the log made visible: a verb, a phase, an object, a view.
+- **Phase decides the control (INT-2).** An instant is a button, begin and end are a toggle, and a sample is a reading.
+- **One palette (INT-3).** The 8×8 grid of verbs is the shared palette. Labels are local and codes are universal.
