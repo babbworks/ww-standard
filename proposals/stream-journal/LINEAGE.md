@@ -26,11 +26,521 @@ Every change this proposal makes to what exists today is a **mutation** with a s
 
 **Totals:** 17 trialled, 29 agreed, 6 proposed, 4 open, 6 superseded, 1 declined, 2 divergence
 
-## Pacioli
+## Terms
+
+How each term is defined today, at a pinned line, and how this proposal redefines it. The decisions that change a term are listed with their status. Terms new to the standard have no current definition.
+
+| Term | Layer | Changed by |
+|---|---|---|
+| [timestamp (field 1)](#trm-01) | record field | [PAC-1](#pac-1), [HOL-5](#hol-5), [BUN-4](#bun-4), [BUN-5](#bun-5), [NOT-1](#not-1) |
+| [OP (field 2)](#trm-02) | record field | [ZAK-1](#zak-1), [ZAK-2](#zak-2), [ZAK-3](#zak-3), [ZAK-4](#zak-4), [ZAK-12](#zak-12), [NOT-7](#not-7) |
+| [action (field 3)](#trm-03) | record field | [ZAK-1](#zak-1), [BUN-2](#bun-2) |
+| [object (field 4)](#trm-04) | record field | [HOL-1](#hol-1), [HOL-2](#hol-2), [HOL-3](#hol-3) |
+| [ctx (field 5)](#trm-05) | record field | [NOT-1](#not-1), [HOL-4](#hol-4), [NOT-6](#not-6) |
+| [event identity](#trm-06) | record rule | [BUR-1](#bur-1), [BUR-2](#bur-2), [JNL-3](#jnl-3) |
+| [actor](#trm-07) | record field (ctx) | [JNL-1](#jnl-1), [BAB-1](#bab-1) |
+| [recorder (`rec`)](#trm-08) | new term | [JNL-1](#jnl-1) |
+| [reconciled](#trm-09) | record field (ctx) | [BUN-5](#bun-5), [LOV-3](#lov-3) |
+| [schema version](#trm-10) | record rule | [ZAK-5](#zak-5) |
+| [system and header events (S, H)](#trm-11) | op family | [ZAK-5](#zak-5), [BUR-2](#bur-2), [PAC-3](#pac-3), [PAC-7](#pac-7) |
+| [punch (B, Bundy)](#trm-12) | op family | [BUN-1](#bun-1), [BUN-3](#bun-3), [ZAK-6](#zak-6) |
+| [state transition (F, Frick)](#trm-13) | op family | [FRI-1](#fri-1), [FRI-2](#fri-2), [BAL-1](#bal-1) |
+| [behavioural signal (D, Dey)](#trm-14) | op family | [DEY-1](#dey-1), [DEY-2](#dey-2), [DEY-3](#dey-3), [DEY-4](#dey-4) |
+| [task event (T)](#trm-15) | op family | [ZAK-3](#zak-3), [BAL-1](#bal-1) |
+| [annotation (A)](#trm-16) | op family | [ZAK-3](#zak-3), [DEY-4](#dey-4) |
+| [ledger posting](#trm-17) | record coding | [PAC-4](#pac-4), [JNL-4](#jnl-4) |
+| [interval](#trm-18) | derived term | [BUN-1](#bun-1), [NOT-4](#not-4) |
+| [balance](#trm-19) | derived term | [PAC-5](#pac-5), [PAC-7](#pac-7), [PAC-8](#pac-8) |
+| [unit](#trm-20) | registry term | [NOT-3](#not-3) |
+| [quantity value](#trm-21) | record coding | [NOT-1](#not-1), [DEY-2](#dey-2), [PAC-4](#pac-4) |
+| [density](#trm-22) | derived term | [FEL-1](#fel-1) |
+| [log](#trm-23) | storage term | [PAC-1](#pac-1), [PAC-2](#pac-2), [PAC-3](#pac-3) |
+| [lens](#trm-24) | derived term | [LOV-1](#lov-1), [GRA-1](#gra-1) |
+| [time of day](#trm-25) | derived term | [COO-1](#coo-1), [BUN-4](#bun-4) |
+| [type](#trm-26) | new term | [ZAK-1](#zak-1), [ZAK-2](#zak-2) |
+| [phase](#trm-27) | new term | [ZAK-2](#zak-2), [BUN-2](#bun-2), [DEY-1](#dey-1) |
+| [replay behaviour](#trm-28) | new term | [LOV-2](#lov-2) |
+| [use](#trm-29) | new term | [NOT-4](#not-4), [PAC-9](#pac-9), [PAC-10](#pac-10) |
+| [pool](#trm-30) | new term | [PAC-10](#pac-10), [PAC-11](#pac-11) |
+| [recording depth](#trm-31) | new term | [NOT-5](#not-5) |
+| [base version](#trm-32) | new term | [BAL-1](#bal-1) |
+| [class of resource](#trm-33) | new term | [BAB-1](#bab-1) |
+| [run](#trm-34) | new term | [NOT-1](#not-1) |
+| [supersession](#trm-35) | new term | [LOV-3](#lov-3), [PAC-7](#pac-7) |
+| [period close](#trm-36) | new term | [PAC-7](#pac-7) |
+| [address](#trm-37) | new term | [PAC-1](#pac-1), [BUR-1](#bur-1) |
+
+### TRM-01
+
+**timestamp (field 1)** · record field
+
+- **Was:** Event time. Log is sorted by this, appended in order. [`workwarrior:dev/schemas/stream-event-v1.md:28`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L28)
+- **Now:** Occurrence time in whole Unix seconds, with optional `tf` microseconds. It is not a sort key: storage is append order, and time order is a view. The session declares which clock supplied it, and a time supplied by a person is a claim. In run form it is a delta from the previous row.
+- **Changed by:** [PAC-1](#pac-1) `trialled`, [HOL-5](#hol-5) `declined`, [BUN-4](#bun-4) `agreed`, [BUN-5](#bun-5) `agreed`, [NOT-1](#not-1) `trialled`
+
+### TRM-02
+
+**OP (field 2)** · record field
+
+- **Was:** Op code: a single character naming the domain (T, B, F, D, H, S, A). [`workwarrior:dev/schemas/stream-event-v1.md:29`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L29)
+- **Now:** No longer the record's type. The type is a ZAKO verb plus a phase, one byte in all, and the domain is declared per run. If ZAK-3 is accepted, the letters survive as profiles and lens names.
+- **Changed by:** [ZAK-1](#zak-1) `agreed`, [ZAK-2](#zak-2) `open`, [ZAK-3](#zak-3) `open`, [ZAK-4](#zak-4) `open`, [ZAK-12](#zak-12) `superseded`, [NOT-7](#not-7) `superseded`
+
+### TRM-03
+
+**action (field 3)** · record field
+
+- **Was:** Verb: start, stop, add, done, delete, modify, write, post, track, fail, reset, schema. [`workwarrior:dev/schemas/stream-event-v1.md:30`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L30)
+- **Now:** Absorbed into the type. The verb says what kind of act it is, and the phase says begin, end, instant or sample, so `start` and `stop` stop being verbs. The words remain as display aliases.
+- **Changed by:** [ZAK-1](#zak-1) `agreed`, [BUN-2](#bun-2) `agreed`
+
+### TRM-04
+
+**object (field 4)** · record field
+
+- **Was:** What was acted upon: task UUID, ledger account, machine ID, file. [`workwarrior:dev/schemas/stream-event-v1.md:31`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L31)
+- **Now:** A reference to a declared object. Its attributes (name, project, tags, kind, class) live in the declaration, not on each line. Canonical lines carry the full stable ID, and compact forms a short reference.
+- **Changed by:** [HOL-1](#hol-1) `agreed`, [HOL-2](#hol-2) `agreed`, [HOL-3](#hol-3) `agreed`
+
+### TRM-05
+
+**ctx (field 5)** · record field
+
+- **Was:** Metadata. The only extension point. [`workwarrior:dev/schemas/stream-event-v1.md:32`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L32)
+- **Now:** The exception channel, and a staging area for vocabulary. Shared context moves to the run header, values the type defines move to positional payload, and recurring keys are promoted into the vocabulary.
+- **Changed by:** [NOT-1](#not-1) `trialled`, [HOL-4](#hol-4) `trialled`, [NOT-6](#not-6) `agreed`
+
+### TRM-06
+
+**event identity** · record rule
+
+- **Was:** The (ts, op, action, object) tuple; ctx is not part of it. [`workwarrior:dev/schemas/stream-event-v1.md:61`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L61)
+- **Now:** Two notions replace it. A committed record's identity is its address, `segment:seq`. A submission's retry identity is (recorder, `ps` or `rk`). Two identical occurrences are two records.
+- **Changed by:** [BUR-1](#bur-1) `trialled`, [BUR-2](#bur-2) `trialled`, [JNL-3](#jnl-3) `trialled`
+
+### TRM-07
+
+**actor** · record field (ctx)
+
+- **Was:** Who or what performed the action, as `<kind>:<local-id>`, falling back to `profile:<prof>`. [`workwarrior:dev/schemas/stream-event-v1.md:150`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L150)
+- **Now:** Unchanged in meaning, but now distinct from the recorder. The fallback becomes `ctx.actor`, then `rec`, then the profile. The actor's declaration carries its class of resource, and a per-act class appears only when it differs.
+- **Changed by:** [JNL-1](#jnl-1) `trialled`, [BAB-1](#bab-1) `agreed`
+
+### TRM-08
+
+**recorder (`rec`)** · new term
+
+- **Was:** not defined
+- **Now:** The authenticated party that submitted the record, set by the journal and never by the line. Recording for another actor needs a grant.
+- **Changed by:** [JNL-1](#jnl-1) `trialled`
+
+### TRM-09
+
+**reconciled** · record field (ctx)
+
+- **Was:** Marks a correcting event that closes a punch-out that never happened: who reconciled, when, and why. [`workwarrior:dev/schemas/stream-event-v1.md:170`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L170)
+- **Now:** Reconciliation stays: supplying a missing record as an attributed claim. Correcting a wrong record is supersession, a separate term that applies to every claim. Any time a person supplies is marked as a claim.
+- **Changed by:** [BUN-5](#bun-5) `agreed`, [LOV-3](#lov-3) `agreed`
+
+### TRM-10
+
+**schema version** · record rule
+
+- **Was:** The version is an `S schema` event, and a log without one is v0. [`workwarrior:dev/schemas/stream-event-v1.md:200`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L200)
+- **Now:** The vocabulary version that governs a segment, declared once in the segment's opening record (OPEN). Nothing on each line.
+- **Changed by:** [ZAK-5](#zak-5) `agreed`
+
+### TRM-11
+
+**system and header events (S, H)** · op family
+
+- **Was:** S is Stream's own lifecycle (reset, schema). H is a positional or encoded record. [`workwarrior:dev/schemas/stream-event-v1.md:77`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L77); [`workwarrior:dev/schemas/stream-event-v1.md:76`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L76)
+- **Now:** The journal's own acts are verbs: OPEN a segment, COMMIT a seal or period close, AMEND a correction, ACK a receipt. Rejections are journaled. There is no separate namespace.
+- **Changed by:** [ZAK-5](#zak-5) `agreed`, [BUR-2](#bur-2) `trialled`, [PAC-3](#pac-3) `trialled`, [PAC-7](#pac-7) `agreed`
+
+### TRM-12
+
+**punch (B, Bundy)** · op family
+
+- **Was:** Punch: interval start and stop. The clock. [`workwarrior:dev/schemas/stream-event-v1.md:73`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L73)
+- **Now:** An actor's presence at an object: ATTEND, begin and end. The two halves pair on the interval's identity, not on the object. A punch does not claim that work finished.
+- **Changed by:** [BUN-1](#bun-1) `trialled`, [BUN-3](#bun-3) `agreed`, [ZAK-6](#zak-6) `superseded`
+
+### TRM-13
+
+**state transition (F, Frick)** · op family
+
+- **Was:** State transition. [`workwarrior:dev/schemas/stream-event-v1.md:74`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L74)
+- **Now:** A change in a declared object's state, checked against the object kind's state machine in the vocabulary. On a shared object it carries the version it was based on.
+- **Changed by:** [FRI-1](#fri-1) `superseded`, [FRI-2](#fri-2) `agreed`, [BAL-1](#bal-1) `agreed`
+
+### TRM-14
+
+**behavioural signal (D, Dey)** · op family
+
+- **Was:** Behavioural signal: samples of intensity, stability and fragmentation. [`workwarrior:dev/schemas/stream-event-v1.md:75`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L75); [`workwarrior:docs/dev-notes/stream-dey-approximation.md:14`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/docs/dev-notes/stream-dey-approximation.md#L14)
+- **Now:** A declared series of samples. A derived index is an estimate, with method, version and window. It is restricted when it describes a person.
+- **Changed by:** [DEY-1](#dey-1) `trialled`, [DEY-2](#dey-2) `agreed`, [DEY-3](#dey-3) `agreed`, [DEY-4](#dey-4) `agreed`
+
+### TRM-15
+
+**task event (T)** · op family
+
+- **Was:** TaskWarrior lifecycle. [`workwarrior:dev/schemas/stream-event-v1.md:72`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L72)
+- **Now:** Work verbs on a declared work item: assign, start, progress, finish. Modifications carry their base version.
+- **Changed by:** [ZAK-3](#zak-3) `open`, [BAL-1](#bal-1) `agreed`
+
+### TRM-16
+
+**annotation (A)** · op family
+
+- **Was:** Free-text attachment. [`workwarrior:dev/schemas/stream-event-v1.md:78`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L78)
+- **Now:** NOTE (0x29). A private entry is JOURNAL, with forwarding restricted.
+- **Changed by:** [ZAK-3](#zak-3) `open`, [DEY-4](#dey-4) `agreed`
+
+### TRM-17
+
+**ledger posting** · record coding
+
+- **Was:** Coded as `T post` under the Task op. The ctx carries source, profile, project, tags, name and ledger, but no amount. [`workwarrior:services/stream/lib/adapters.sh:295`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/services/stream/lib/adapters.sh#L295)
+- **Now:** A quantity movement: balanced legs per (book, unit), one record per transaction.
+- **Changed by:** [PAC-4](#pac-4) `trialled`, [JNL-4](#jnl-4) `trialled`
+
+### TRM-18
+
+**interval** · derived term
+
+- **Was:** Not stored. Derived from start and stop boundaries during replay. [`ww-standard:times-research/times-synthesis-one.md:35`](https://github.com/babbworks/ww-standard/blob/96cb9f84e70ef9d98a86bad6f2d57d95892dc253/times-research/times-synthesis-one.md#L35)
+- **Now:** Still derived, but from an act whose identity is fixed when it begins. Its close record may carry the act's use vector, and its wall time is the envelope.
+- **Changed by:** [BUN-1](#bun-1) `trialled`, [NOT-4](#not-4) `trialled`
+
+### TRM-19
+
+**balance** · derived term
+
+- **Was:** A running event count per object, with actions labelled credit or debit. [`workwarrior:services/stream/lenses/pacioli.sh:3`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/services/stream/lenses/pacioli.sh#L3)
+- **Now:** The sum of quantity movements per account and unit. It is never written on a record. A period close commits to all balances by hash.
+- **Changed by:** [PAC-5](#pac-5) `agreed`, [PAC-7](#pac-7) `agreed`, [PAC-8](#pac-8) `agreed`
+
+### TRM-20
+
+**unit** · registry term
+
+- **Was:** The system's shared vocabulary of quantity: dimension, base and equivalences. [`workwarrior:dev/schemas/units-v1.md:14`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/units-v1.md#L14)
+- **Now:** Unchanged, plus a conserved flag, a short code and its ZAKO quantity type.
+- **Changed by:** [NOT-3](#not-3) `proposed`
+
+### TRM-21
+
+**quantity value** · record coding
+
+- **Was:** A JSON number in ctx, such as a float for Dey samples. Ledger amounts are absent. [`workwarrior:docs/dev-notes/stream-dey-approximation.md:14`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/docs/dev-notes/stream-dey-approximation.md#L14)
+- **Now:** A decimal string in the unit's base, with `~` marking an estimate. In run form, value and code are one token, such as `38J`.
+- **Changed by:** [NOT-1](#not-1) `trialled`, [DEY-2](#dey-2) `agreed`, [PAC-4](#pac-4) `trialled`
+
+### TRM-22
+
+**density** · derived term
+
+- **Was:** An event-count heat map across time buckets. [`workwarrior:services/stream/lenses/felt.sh:3`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/services/stream/lenses/felt.sh#L3)
+- **Now:** The rate of a conserved quantity: power, utilisation, tokens per second. Event-count density is secondary and labelled with its recording depth.
+- **Changed by:** [FEL-1](#fel-1) `agreed`
+
+### TRM-23
+
+**log** · storage term
+
+- **Was:** A single append-only file, sorted by time on ingest and truncated on reset. [`workwarrior:dev/archive/plans/wwss-stream-service.md:85`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/archive/plans/wwss-stream-service.md#L85); [`workwarrior:services/stream/stream.sh:707`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/services/stream/stream.sh#L707)
+- **Now:** A journal of append-only segments, each opened and sealed in a hash chain. Records are addressed by position, and a reset starts an epoch.
+- **Changed by:** [PAC-1](#pac-1) `trialled`, [PAC-2](#pac-2) `proposed`, [PAC-3](#pac-3) `trialled`
+
+### TRM-24
+
+**lens** · derived term
+
+- **Was:** The log is the record; a lens is a projection of it. [`workwarrior:dev/schemas/stream-event-v1.md:220`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L220)
+- **Now:** Unchanged, with one addition: a lens result enters the journal only as an attributed act, with method, version and basis.
+- **Changed by:** [LOV-1](#lov-1) `agreed`, [GRA-1](#gra-1) `agreed`
+
+### TRM-25
+
+**time of day** · derived term
+
+- **Was:** Taken from UTC. [`workwarrior:services/stream/lenses/cooper.sh:81`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/services/stream/lenses/cooper.sh#L81)
+- **Now:** Local time in the session's declared timezone.
+- **Changed by:** [COO-1](#coo-1) `agreed`, [BUN-4](#bun-4) `agreed`
+
+### TRM-26
+
+**type** · new term
+
+- **Was:** not defined
+- **Now:** A ZAKO verb (6 bits) plus a phase (2 bits): one byte. It implies the claim, the payload layout, the unit, how the value is known, its routing and its privacy.
+- **Changed by:** [ZAK-1](#zak-1) `agreed`, [ZAK-2](#zak-2) `open`
+
+### TRM-27
+
+**phase** · new term
+
+- **Was:** not defined
+- **Now:** Instant, begin, end or sample. The bit values used below are provisional until ZAK-2 is decided.
+- **Changed by:** [ZAK-2](#zak-2) `open`, [BUN-2](#bun-2) `agreed`, [DEY-1](#dey-1) `trialled`
+
+### TRM-28
+
+**replay behaviour** · new term
+
+- **Was:** not defined
+- **Now:** How a verb composes in replay, from a closed set: instant observation, interval boundary, state transition, quantity movement, supersession, period close, declaration, annotation.
+- **Changed by:** [LOV-2](#lov-2) `agreed`
+
+### TRM-29
+
+**use** · new term
+
+- **Was:** not defined
+- **Now:** On a close record, the conserved resources the act consumed, as quantity code → decimal string. It is written only as independent evidence.
+- **Changed by:** [NOT-4](#not-4) `trialled`, [PAC-9](#pac-9) `agreed`, [PAC-10](#pac-10) `agreed`
+
+### TRM-30
+
+**pool** · new term
+
+- **Was:** not defined
+- **Now:** The account a `use` vector draws from, declared in the run header: host energy, token allowance, actor capacity.
+- **Changed by:** [PAC-10](#pac-10) `agreed`, [PAC-11](#pac-11) `open`
+
+### TRM-31
+
+**recording depth** · new term
+
+- **Was:** not defined
+- **Now:** The deepest level a stream records individually. Below it, acts appear only as counts and in their parent's totals.
+- **Changed by:** [NOT-5](#not-5) `trialled`
+
+### TRM-32
+
+**base version** · new term
+
+- **Was:** not defined
+- **Now:** The version of a shared object that a mutation was based on.
+- **Changed by:** [BAL-1](#bal-1) `agreed`
+
+### TRM-33
+
+**class of resource** · new term
+
+- **Was:** not defined
+- **Now:** What kind of resource performed the act: a model, a machine class, a labour grade.
+- **Changed by:** [BAB-1](#bab-1) `agreed`
+
+### TRM-34
+
+**run** · new term
+
+- **Was:** not defined
+- **Now:** A header line stating the shared context once, followed by rows carrying only what changes.
+- **Changed by:** [NOT-1](#not-1) `trialled`
+
+### TRM-35
+
+**supersession** · new term
+
+- **Was:** not defined
+- **Now:** Replacing a claim with a later one of the same behaviour, while keeping the original. Only the latest version can be corrected.
+- **Changed by:** [LOV-3](#lov-3) `agreed`, [PAC-7](#pac-7) `agreed`
+
+### TRM-36
+
+**period close** · new term
+
+- **Was:** not defined
+- **Now:** A COMMIT that commits to all balances for a period by hash, without restating them.
+- **Changed by:** [PAC-7](#pac-7) `agreed`
+
+### TRM-37
+
+**address** · new term
+
+- **Was:** not defined
+- **Now:** A committed record's position, `segment:seq`. It is never stored on the line it names.
+- **Changed by:** [PAC-1](#pac-1) `trialled`, [BUR-1](#bur-1) `trialled`
+
+## Record coding
+
+The same occurrence coded today, in the journal draft (canonical, as trialled), in run form, and as a type under N11. `lineage.py check` decodes every run form below and confirms it reproduces the canonical lines.
+
+Type bytes below are phase << 6 | task_code, with phase instant=00, begin=01, end=10, sample=11. The bit values are provisional until ZAK-2 is decided.
+
+### EX-1
+
+**A punch-in**
+
+Today (Stream v1), from [`workwarrior:dev/schemas/stream-event-v1.md:18`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L18):
+
+```
+1752300142 B start lathe-01 {"actor":"human:op-03","proj":"line-a"}
+```
+
+Journal draft, canonical:
+
+```
+1752300000 B start lathe-01 {"proj":"line-a","ps":1,"rec":"human:op-03"}
+```
+
+Run form:
+
+```
+@1752300000 %ps=1 proj=line-a rec=human:op-03
++0 B( lathe-01
+```
+
+- **Type (N11):** ATTEND, begin phase: byte `0x76`, printable `C6(`.
+- **What changed:** The actor is the recorder, so `actor` is implied by `rec`. Under HOL-1 the project moves to the object's declaration. `ps` gives retry identity and gap detection.
+- **By:** [BUN-1](#bun-1) `trialled`, [BUN-3](#bun-3) `agreed`, [JNL-1](#jnl-1) `trialled`, [HOL-1](#hol-1) `agreed`, [BUR-1](#bur-1) `trialled`
+
+### EX-2
+
+**A ledger posting**
+
+Today (Stream v1), from [`workwarrior:services/stream/lib/adapters.sh:295`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/services/stream/lib/adapters.sh#L295):
+
+```
+<ts> T post <obj> {"src":"ledger","prof":…,"proj":…,"tags":…,"name":…,"ledger":…}
+```
+
+Journal draft, canonical:
+
+```
+1752302100 L post run-r1 {"actor":"org:plant","legs":[{"a":"inv:raw","q":"-100","u":"kg"},{"a":"inv:product","q":"92","u":"kg"},{"a":"inv:scrap","q":"8","u":"kg"}],"ps":1,"rec":"human:acct-1"}
+```
+
+Run form:
+
+```
+@1752302100 %ps=1 actor=org:plant rec=human:acct-1
++0 L> run-r1 inv:raw=-100kg inv:product=92kg inv:scrap=8kg
+```
+
+- **Type (N11):** A quantity movement: a BitLedger component with an account pair. A business verb such as PAY (`0x1C`) is an optional extra claim.
+- **What changed:** v1 codes the posting under the Task op and drops the amount. The journal carries balanced legs, one record per transaction.
+- **By:** [PAC-4](#pac-4) `trialled`, [JNL-4](#jnl-4) `trialled`, [TRM-17](#trm-17)
+
+### EX-3
+
+**Completing a task**
+
+Today (Stream v1), from [`workwarrior:services/stream/lib/adapters.sh:79`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/services/stream/lib/adapters.sh#L79):
+
+```
+<ts> T done <uuid> {"src":"task","prof":…,"actor":"profile:…","proj":…,"tags":…,"name":…}
+```
+
+Journal draft, canonical:
+
+```
+1752306100 T done wo-8891 {"ps":5,"rec":"human:op-03"}
+```
+
+Run form:
+
+```
+@1752306100 %ps=5 rec=human:op-03
++0 T. wo-8891
+```
+
+- **Type (N11):** FINISH, instant: byte `0x23`, printable `W3`. A shared work item also carries its base version (BAL-1).
+- **What changed:** The task's name, project and tags leave the line and go to the work item's declaration.
+- **By:** [ZAK-3](#zak-3) `open`, [HOL-1](#hol-1) `agreed`, [BAL-1](#bal-1) `agreed`
+
+### EX-4
+
+**A Dey sample (illustrative)**
+
+Today (Stream v1), from [`workwarrior:docs/dev-notes/stream-dey-approximation.md:14`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/docs/dev-notes/stream-dey-approximation.md#L14):
+
+```
+<ts> D sample session-YYYY-MM-DD {"intensity":0.7,"stability":0.5,"fragmentation":0.3}
+```
+
+Journal draft, canonical:
+
+```
+1752300000 D sample session-2026-07-12 {"f":"0.3","i":"0.7","method":"dey@1","rec":"agent:browser","s":"0.5","window":300}
+```
+
+Run form:
+
+```
+@1752300000 f= "0.3" i= "0.7" method=dey@1 rec=agent:browser s= "0.5" window=300
++0 D= session-2026-07-12
+```
+
+- **Type (N11):** ESTIMATE in the sample phase: byte `0xED`, one row per sample under one series header.
+- **What changed:** Illustrative: the recorder name and the method label are placeholders. Values become decimal strings, and the method and window are stated. When the signal describes a person, it is restricted by its verb or domain (DEY-4).
+- **By:** [DEY-1](#dey-1) `trialled`, [DEY-2](#dey-2) `agreed`, [DEY-4](#dey-4) `agreed`, [TRM-21](#trm-21)
+
+### EX-5
+
+**A meter reading**
+
+Today (Stream v1): no coding exists for this occurrence.
+
+Journal draft, canonical:
+
+```
+1752300096 M measure pdu-4.out3 {"iv":8,"ps":1,"q":"38","rec":"meter:pdu-4","scope":"host:build-01","u":"J"}
+```
+
+Run form:
+
+```
+@1752300096 %ps=1 iv=8 rec=meter:pdu-4 scope=host:build-01
++0 M= pdu-4.out3 38J
+```
+
+- **Type (N11):** MEASURE in the sample phase: byte `0xEC`. The unit comes from the quantity type, so a reading in a template run is just its value.
+- **What changed:** v1 has no coding for a measurement. A reading would have gone into a D sample or into ctx.
+- **By:** [DEY-1](#dey-1) `trialled`, [NOT-1](#not-1) `trialled`, [NOT-3](#not-3) `proposed`
+
+### EX-6
+
+**An agent tool call**
+
+Today (Stream v1), from [`workwarrior:dev/schemas/stream-event-v1.md:124`](https://github.com/babbworks/workwarrior/blob/ce7379f488d01e5e3f9e351d3e014b4529e3892e/dev/schemas/stream-event-v1.md#L124):
+
+```
+1752300890 B start ledger-refactor {"actor":"agent:claude-07","proj":"ledger"}
+```
+
+Journal draft, canonical:
+
+```
+1752300004 R open task-42 {"actor":"agent:claude-07","parent":"k42","ps":4,"rec":"host:build-01","run":"k42.t1","span":"tool","tf":500000}
+1752300040 R close task-42 {"actor":"agent:claude-07","ps":7,"rec":"host:build-01","run":"k42.t1","status":"ok","use":{"#":"412","B":"52000000","J":"~480","xs":"33.1"}}
+```
+
+Run form:
+
+```
+@1752300004 %ps=4 actor=agent:claude-07 rec=host:build-01
++0.5 R( task-42 k42.t1 tool k42
++36 R) task-42 k42.t1 ok 412# 52000000B ~480J 33.1xs {"ps":7}
+```
+
+- **Type (N11):** ACT, begin then end: bytes `0x7A` and `0xBA`, printable `L2(` and `L2)`.
+- **What changed:** v1 can only express an agent's work as a punch. The journal records a span with identity, parent and sub-second time, and its close carries the use vector (412 unrecorded sub-acts, bytes, estimated energy, CPU-seconds). The host records for the agent under a grant.
+- **By:** [NOT-4](#not-4) `trialled`, [NOT-5](#not-5) `trialled`, [JNL-1](#jnl-1) `trialled`, [BAB-1](#bab-1) `agreed`
+
+## Decisions
+
+Each decision is a mutation of a pinned source line or of an earlier decision.
+
+### Pacioli
 
 Substrate in the archived plan: append-only, with state as a derivation. Also the conservation thesis in units-v1.
 
-### PAC-1
+#### PAC-1
 
 **Ingest appends; time order becomes a view** · `trialled`
 
@@ -39,7 +549,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Why:** The in-place sort rewrites every line, which contradicts the plan's own append-only rule and breaks append position as an address.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 6.1 Append only)
 
-### PAC-2
+#### PAC-2
 
 **Reset seals the segment and starts an epoch** · `proposed`
 
@@ -49,7 +559,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (**Reset becomes an epoch.**)
 - **Note:** Specified, but not exercised by the trial.
 
-### PAC-3
+#### PAC-3
 
 **Segments close with a seal in a hash chain** · `trialled`
 
@@ -58,7 +568,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Why:** Append-only was a rule with nothing enforcing it. A seal makes a rewrite detectable.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 6.3 Seals)
 
-### PAC-4
+#### PAC-4
 
 **Ledger records carry balanced legs** · `trialled`
 
@@ -67,7 +577,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Why:** The v1 ledger adapter records that a posting happened but omits its amount, so balances can't be rebuilt.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 8.2 Balance rule)
 
-### PAC-5
+#### PAC-5
 
 **The count-based Pacioli lens becomes a balance view** · `agreed`
 
@@ -76,7 +586,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Why:** A start followed by a stop gives a 'balance' of 2. A count of events is not a quantity.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N12.4 Retire)
 
-### PAC-6
+#### PAC-6
 
 **A period close records the balances** · `superseded`
 
@@ -85,7 +595,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Superseded by:** [PAC-7](#pac-7)
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Refinement 2.**)
 
-### PAC-7
+#### PAC-7
 
 **A period close commits to the balances by hash** · `agreed` · cost: one fixed-size record per period
 
@@ -95,7 +605,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Supersedes:** [PAC-6](#pac-6)
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Balance rules)
 
-### PAC-8
+#### PAC-8
 
 **Records carry movements, never balances** · `agreed` · cost: saves bytes
 
@@ -104,7 +614,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Why:** This rules out the bank-statement pattern of writing a balance on every line.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Records carry movements, never balances (PAC-8).**)
 
-### PAC-9
+#### PAC-9
 
 **A total is written only when it is independent evidence** · `agreed`
 
@@ -113,7 +623,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Why:** A recorded sum of recorded parts is a restated balance.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**A total is written only when it is independent evidence (PAC-9).**)
 
-### PAC-10
+#### PAC-10
 
 **Resource use is drawn from a declared pool** · `agreed` · cost: 0 per record
 
@@ -121,7 +631,7 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Mutation:** This generalises punch-posting-v1's capacity posting from actor-hours to every conserved quantity. The pool (host energy, token allowance, actor capacity) is declared in the run header, which makes consumption double-entry at no cost per record.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Refinement 1.**)
 
-### PAC-11
+#### PAC-11
 
 **Overlapping punches could consume an actor's hours twice** · `open`
 
@@ -129,11 +639,11 @@ Substrate in the archived plan: append-only, with state as a derivation. Also th
 - **Mutation:** Should an actor's capacity be split across overlapping intervals, or should overlap be reported as over-attribution (NOT-4)?
 - **Why:** punch-posting-v1 posts one transaction per interval. Once BUN-1 keeps overlapping intervals apart, an operator on two machines at once would debit their hours twice.
 
-## Hollerith
+### Hollerith
 
 Substrate in the archived plan: positional encoding and compact symbolic codes.
 
-### HOL-1
+#### HOL-1
 
 **Objects are declared once; acts carry only the ID** · `agreed` · cost: saves bytes
 
@@ -142,7 +652,7 @@ Substrate in the archived plan: positional encoding and compact symbolic codes.
 - **Why:** Adapters repeat object attributes in ctx on every line, and the Hollerith grid gets unreliable columns.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N12.1 Declare objects)
 
-### HOL-2
+#### HOL-2
 
 **Canonical lines keep the full ID; short references only in compact forms** · `agreed`
 
@@ -150,7 +660,7 @@ Substrate in the archived plan: positional encoding and compact symbolic codes.
 - **Mutation:** The canonical line stays self-contained, with the full stable ID. Dictionary indices appear only in the run form and binary.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N12.1 Declare objects)
 
-### HOL-3
+#### HOL-3
 
 **Undeclared objects are accepted and flagged** · `agreed`
 
@@ -158,7 +668,7 @@ Substrate in the archived plan: positional encoding and compact symbolic codes.
 - **Mutation:** A reference to an undeclared object is accepted and reported by views, not rejected.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N12.1 Declare objects)
 
-### HOL-4
+#### HOL-4
 
 **The record type fixes payload positions** · `trialled`
 
@@ -167,7 +677,7 @@ Substrate in the archived plan: positional encoding and compact symbolic codes.
 - **Why:** This restores Hollerith's positional principle, which v1 had moved into named JSON keys (26% of journal bytes).
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (## N7. Run form)
 
-### HOL-5
+#### HOL-5
 
 **Time-sorted storage** · `declined`
 
@@ -176,11 +686,11 @@ Substrate in the archived plan: positional encoding and compact symbolic codes.
 - **Why:** It conflicts with PAC-1: append position is the address.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 6.1 Append only)
 
-## Burroughs
+### Burroughs
 
 Tier A, event accumulation. The adding machine's listing tape, and its governor.
 
-### BUR-1
+#### BUR-1
 
 **Retry identity replaces 4-tuple dedup** · `trialled`
 
@@ -189,7 +699,7 @@ Tier A, event accumulation. The adding machine's listing tape, and its governor.
 - **Why:** Dedup on (ts, OP, action, object) silently drops a distinct actor's punch. The trial reproduces this against the shipped code. This is the Burroughs governor: the result doesn't depend on how the handle was pulled.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 6.5 Receipts and retries)
 
-### BUR-2
+#### BUR-2
 
 **Rejections are journaled** · `trialled`
 
@@ -198,7 +708,7 @@ Tier A, event accumulation. The adding machine's listing tape, and its governor.
 - **Why:** Without it, the capture-gap view couldn't tell 'rejected' from 'never received'. The trial found this.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 6.5 Receipts and retries)
 
-### BUR-3
+#### BUR-3
 
 **Every figure carries its provenance** · `trialled`
 
@@ -206,11 +716,11 @@ Tier A, event accumulation. The adding machine's listing tape, and its governor.
 - **Mutation:** Core views return the addresses each figure came from. A correction chain walks back to its original evidence. This is the listing tape.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 7.2 Provenance)
 
-## Baldwin
+### Baldwin
 
 Tier A, state mutation differencing.
 
-### BAL-1
+#### BAL-1
 
 **Mutations of shared objects carry the version they were based on** · `agreed` · cost: 1–2 bytes, shared objects only
 
@@ -220,7 +730,7 @@ Tier A, state mutation differencing.
 - **Supersedes:** [FRI-1](#fri-1)
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N13.1 Base version)
 
-### BAL-2
+#### BAL-2
 
 **Snapshots are caches, not records** · `agreed` · cost: 0 to the journal
 
@@ -228,11 +738,11 @@ Tier A, state mutation differencing.
 - **Mutation:** Object-state and balance snapshots live outside the journal. Each is keyed to a journal address and checked against the period-close hash, and each can be dropped and rebuilt.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Snapshots are caches, not records (BAL-2).**)
 
-## Bundy
+### Bundy
 
 Tier B, interval segmentation. The punch clock and trusted time.
 
-### BUN-1
+#### BUN-1
 
 **Intervals pair on run, otherwise on (object, actor)** · `trialled`
 
@@ -241,7 +751,7 @@ Tier B, interval segmentation. The punch clock and trusted time.
 - **Why:** The shipped Bundy lens reports one 10-minute interval where 20 and 40 minutes of overlapping work happened. The trial reproduces this.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 4.4 Pairing)
 
-### BUN-2
+#### BUN-2
 
 **Begin and end become the phase of a type** · `agreed`
 
@@ -249,7 +759,7 @@ Tier B, interval segmentation. The punch clock and trusted time.
 - **Mutation:** Start and stop move out of the action word and into the 2-bit phase (begin, end), which applies to any verb.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### The type)
 
-### BUN-3
+#### BUN-3
 
 **A punch is ATTEND, not START or FINISH** · `agreed`
 
@@ -259,7 +769,7 @@ Tier B, interval segmentation. The punch clock and trusted time.
 - **Supersedes:** [ZAK-6](#zak-6)
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (ATTEND 0x36, begin and end)
 
-### BUN-4
+#### BUN-4
 
 **Each session declares its clock provenance and timezone** · `agreed` · cost: 0 per record
 
@@ -268,7 +778,7 @@ Tier B, interval segmentation. The punch clock and trusted time.
 - **Why:** The worker supplies the act; the clock supplies the time. Today an offline phone, a server and a person typing a time all produce the same integer.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N12.3 Clock provenance)
 
-### BUN-5
+#### BUN-5
 
 **Times supplied by a person are claims** · `agreed`
 
@@ -276,11 +786,11 @@ Tier B, interval segmentation. The punch clock and trusted time.
 - **Mutation:** This generalises v1's `reconciled` marking from missing punch-outs to any time a person supplies.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N12.3 Clock provenance)
 
-## Frick
+### Frick
 
 Tier B, discrete transitions.
 
-### FRI-1
+#### FRI-1
 
 **A transition names the state it leaves** · `superseded`
 
@@ -289,7 +799,7 @@ Tier B, discrete transitions.
 - **Superseded by:** [BAL-1](#bal-1)
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Frick: a transition names the state it leaves)
 
-### FRI-2
+#### FRI-2
 
 **The vocabulary defines each object kind's state machine** · `agreed`
 
@@ -297,11 +807,11 @@ Tier B, discrete transitions.
 - **Mutation:** Allowed transitions are part of the vocabulary. Views check them using BAL-1 versions, and violations are reported, not rejected.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (The vocabulary defines the state machine)
 
-## Dey
+### Dey
 
 Tier C, continuous signal.
 
-### DEY-1
+#### DEY-1
 
 **A continuous signal is a declared series** · `trialled`
 
@@ -310,7 +820,7 @@ Tier C, continuous signal.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (## N7. Run form)
 - **Note:** Template runs are trialled. The sample phase in the type byte is agreed, not built.
 
-### DEY-2
+#### DEY-2
 
 **Derived values are recorded as estimates with their method** · `agreed`
 
@@ -319,7 +829,7 @@ Tier C, continuous signal.
 - **Why:** Dey samples come from 11 weighted signals with exponential smoothing, and the method isn't recorded, so the values can't be reproduced.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Dey: say how a value is known)
 
-### DEY-3
+#### DEY-3
 
 **Views label their approximations** · `agreed`
 
@@ -328,7 +838,7 @@ Tier C, continuous signal.
 - **Why:** The fallback output looks like the real signal.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Dey: say how a value is known)
 
-### DEY-4
+#### DEY-4
 
 **Behavioural signals about a person are restricted by verb or domain** · `agreed`
 
@@ -336,11 +846,11 @@ Tier C, continuous signal.
 - **Mutation:** The restriction follows from the type, as ZAKO's JOURNAL requires RESTRICT_FORWARD, rather than from a flag someone must remember.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Dey: say how a value is known)
 
-## Grant
+### Grant
 
 Tier C, derived metrics.
 
-### GRA-1
+#### GRA-1
 
 **A published metric enters the journal only as an attributed act** · `agreed`
 
@@ -348,11 +858,11 @@ Tier C, derived metrics.
 - **Mutation:** Metrics stay derived. One that is published for a period is recorded as an ESTIMATE or COMMIT with method and basis.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Grant**)
 
-## Felt
+### Felt
 
 Tier C, activity density.
 
-### FEL-1
+#### FEL-1
 
 **Density means rates of conserved quantities** · `agreed`
 
@@ -361,11 +871,11 @@ Tier C, activity density.
 - **Why:** Event counts depend on how deep recording goes, so they aren't comparable across systems.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N13.5 Felt as rates)
 
-## Cooper
+### Cooper
 
 Tier D, radial field.
 
-### COO-1
+#### COO-1
 
 **The angle comes from local time** · `agreed`
 
@@ -374,11 +884,11 @@ Tier D, radial field.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Cooper**)
 - **Note:** Separately, the CLI Cooper's clock labels are reversed relative to its projection. That is a lens defect, not a lineage change.
 
-## Babbage
+### Babbage
 
 The Engine mapping, the Difference Engine, and *On the Economy of Machinery and Manufactures*.
 
-### BAB-1
+#### BAB-1
 
 **Records say what class of resource performed the act** · `agreed` · cost: 0 normally
 
@@ -387,7 +897,7 @@ The Engine mapping, the Difference Engine, and *On the Economy of Machinery and 
 - **Why:** Allotment analysis asks whether a cheaper class would have done the work, which is impossible without the class. The scenario already carried `model` per token reading.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N13.2 Class of resource)
 
-### BAB-2
+#### BAB-2
 
 **A series is encoded as a start value plus differences** · `proposed`
 
@@ -395,7 +905,7 @@ The Engine mapping, the Difference Engine, and *On the Economy of Machinery and 
 - **Mutation:** Compact forms may delta-code a series (base plus differences, or difference of differences). The canonical meaning is unchanged.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (Difference Engine)
 
-### BAB-3
+#### BAB-3
 
 **Cumulative counters keep their reading and are delta-coded** · `agreed`
 
@@ -404,11 +914,11 @@ The Engine mapping, the Difference Engine, and *On the Economy of Machinery and 
 - **Why:** This is the one place where restating a running value is worth it, and the encoding removes its cost.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Exception: cumulative counters (BAB-3).**)
 
-## Lovelace
+### Lovelace
 
 Notes A–G: symbolic generality, no power of originating, successive approximation.
 
-### LOV-1
+#### LOV-1
 
 **A lens result enters the journal only as an attributed act** · `agreed`
 
@@ -416,7 +926,7 @@ Notes A–G: symbolic generality, no power of originating, successive approximat
 - **Mutation:** Estimates, allocations, published metrics and tallies are recorded by a named recorder as ESTIMATE or COMMIT, with method, version and basis.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (**Lovelace**: "no power of originating")
 
-### LOV-2
+#### LOV-2
 
 **Every verb declares its replay behaviour** · `agreed` · cost: 0 per record
 
@@ -426,7 +936,7 @@ Notes A–G: symbolic generality, no power of originating, successive approximat
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N13.3 Replay behaviour)
 - **Note:** This replaces the Journal's seven claim kinds. 'system' dissolves into verbs (ZAK-5), and period close and declaration are added.
 
-### LOV-3
+#### LOV-3
 
 **Supersession applies to every claim** · `agreed`
 
@@ -434,11 +944,11 @@ Notes A–G: symbolic generality, no power of originating, successive approximat
 - **Mutation:** Any claim can be superseded by one with the same behaviour, and only the latest version can be corrected. A superseded measurement keeps its original reading. Supplying a missing record is still reconciliation.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (N13.4 Supersession)
 
-## ZAKO
+### ZAKO
 
 The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 
-### ZAK-1
+#### ZAK-1
 
 **The type is built from a ZAKO verb and a phase** · `agreed`
 
@@ -449,7 +959,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (## N11. Type codes from ZAKO verbs)
 - **Note:** Direction agreed. The trial code still uses the predecessor types.
 
-### ZAK-2
+#### ZAK-2
 
 **Should phase be a separate 2-bit dimension?** · `open`
 
@@ -457,7 +967,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Mutation:** Should phase be its own dimension, with ZAKO's paired verbs (START/FINISH, OPEN/CLOSE, SUSPEND/RESUME) kept as instant lifecycle claims? This is N11 decision 1.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Decisions still open)
 
-### ZAK-3
+#### ZAK-3
 
 **Should Workwarrior op families become profiles mapped onto verbs?** · `open`
 
@@ -465,7 +975,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Mutation:** B would become ATTEND, D OBSERVE or ESTIMATE, and A NOTE, with the lineage names kept as lens names. This is N11 decision 2.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Decisions still open)
 
-### ZAK-4
+#### ZAK-4
 
 **Which printable form should types take?** · `open`
 
@@ -473,7 +983,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Mutation:** Block letter plus octal digit (exact), or mnemonic glyphs (readable, not a bijection). This is N11 decision 3.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Decisions still open)
 
-### ZAK-5
+#### ZAK-5
 
 **The journal's own acts are ZAKO verbs** · `agreed`
 
@@ -481,7 +991,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Mutation:** A segment open is OPEN, a seal is COMMIT, a correction is AMEND and a receipt is ACK. There is no separate system namespace.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (The journal's own acts are verbs too)
 
-### ZAK-6
+#### ZAK-6
 
 **A punch has no ZAKO verb and goes in a distribution domain** · `superseded`
 
@@ -490,7 +1000,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Superseded by:** [BUN-3](#bun-3)
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 11.2 Extension path)
 
-### ZAK-7
+#### ZAK-7
 
 **Domain extensions refine a claim locally** · `proposed`
 
@@ -498,7 +1008,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Mutation:** Refinements that ZAKO doesn't define go in a Workwarrior custom domain (0xF0–0xFF), keeping the universal verb for comparison.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 11.2 Extension path)
 
-### ZAK-8
+#### ZAK-8
 
 **Map to ZAKO by number, never by name** · `proposed`
 
@@ -507,7 +1017,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Why:** The Codebook uses the names ASSIGN and DELEGATE twice each.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (Mapping MUST be by number)
 
-### ZAK-9
+#### ZAK-9
 
 **Wire Conventions call COMMIT 0x14; the Codebook gives 0x15** · `divergence`
 
@@ -515,7 +1025,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Mutation:** To settle with the ZAKO owners before claiming compatibility. In the Codebook, 0x14 is REMOVE.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 11.4 Known divergences)
 
-### ZAK-10
+#### ZAK-10
 
 **The C0 header counts 33 of the 32 codes** · `divergence`
 
@@ -523,7 +1033,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Mutation:** The implementation treats SO, SI and ESC as conditional, plus DEL, which is outside C0.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (29 unconditional + 4 conditional)
 
-### ZAK-11
+#### ZAK-11
 
 **Binary framing uses C0 controls for journal acts and runs** · `proposed`
 
@@ -532,7 +1042,7 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### C0 controls for the journal's own acts)
 - **Note:** Proposed, not built.
 
-### ZAK-12
+#### ZAK-12
 
 **New op codes M, L and R** · `superseded`
 
@@ -542,11 +1052,11 @@ The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 4.3 Op codes)
 - **Note:** The trial code still uses M, L and R.
 
-## Journal
+### Journal
 
 Journal mechanics without a single lineage name.
 
-### JNL-1
+#### JNL-1
 
 **The recorder comes from authentication; recording for another actor needs a grant** · `trialled`
 
@@ -554,7 +1064,7 @@ Journal mechanics without a single lineage name.
 - **Mutation:** `rec` is set by the journal. `actor` defaults to `rec`, and any other actor requires a grant.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 5.1 Recorder, actor, signer)
 
-### JNL-2
+#### JNL-2
 
 **Late records are accepted; contradictions are reported** · `trialled`
 
@@ -562,7 +1072,7 @@ Journal mechanics without a single lineage name.
 - **Mutation:** Validation checks each record on its own terms. Historical contradictions are reported by views. Postings and corrections are the exception.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 5.3 Historical consistency is reported, not enforced)
 
-### JNL-3
+#### JNL-3
 
 **Producer sequence and a capture-gap view** · `trialled`
 
@@ -570,7 +1080,7 @@ Journal mechanics without a single lineage name.
 - **Mutation:** `ps` per recorder gives both retry identity and detection of records never received.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 6.7 Capture completeness)
 
-### JNL-4
+#### JNL-4
 
 **An atomic claim is one record; batches are transport** · `trialled`
 
@@ -578,7 +1088,7 @@ Journal mechanics without a single lineage name.
 - **Mutation:** A multi-leg transaction is a single record, so no pending compound-group state is needed.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 6.4 Batches are transport)
 
-### JNL-5
+#### JNL-5
 
 **A tariff is a price, not a conversion** · `trialled`
 
@@ -586,11 +1096,11 @@ Journal mechanics without a single lineage name.
 - **Mutation:** Costs are priced by a view under a versioned tariff, one of units-v1's 'modes', and posted only when billed.
 - **Recorded in:** `STREAM-JOURNAL-v0.1-DRAFT.md` (### 8.4 Charges and tariffs)
 
-## Notation
+### Notation
 
 Encoding and the cascade.
 
-### NOT-1
+#### NOT-1
 
 **Run form: state once, then values** · `trialled`
 
@@ -599,7 +1109,7 @@ Encoding and the cascade.
 - **Why:** Measured: 45% smaller on mixed records, 96.5% smaller on periodic ones.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (## N7. Run form)
 
-### NOT-2
+#### NOT-2
 
 **A separate quantity codebook** · `superseded`
 
@@ -607,7 +1117,7 @@ Encoding and the cascade.
 - **Mutation:** notation-0.1.json defines its own quantity codes.
 - **Superseded by:** [NOT-3](#not-3)
 
-### NOT-3
+#### NOT-3
 
 **Quantity codes extend units-v1** · `proposed`
 
@@ -616,7 +1126,7 @@ Encoding and the cascade.
 - **Why:** units-v1 is already the shared vocabulary of quantity, and it keeps conversion apart from price. A second codebook would split that vocabulary.
 - **Supersedes:** [NOT-2](#not-2)
 
-### NOT-4
+#### NOT-4
 
 **Close records carry a use vector; wall time is the envelope** · `trialled`
 
@@ -625,7 +1135,7 @@ Encoding and the cascade.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (## N3. The atom: an act)
 - **Note:** See PAC-11 for actor-hours under overlap.
 
-### NOT-5
+#### NOT-5
 
 **Declared recording depth; below it, counts and totals** · `trialled`
 
@@ -634,7 +1144,7 @@ Encoding and the cascade.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (## N4. The cascade and recording resolution)
 - **Note:** The framework's Level is a different axis (derivation tier). This is action depth.
 
-### NOT-6
+#### NOT-6
 
 **ctx is a staging area for vocabulary** · `agreed`
 
@@ -642,7 +1152,7 @@ Encoding and the cascade.
 - **Mutation:** Track context bytes per record, and promote recurring keys into codebooks, payloads or run declarations.
 - **Recorded in:** `STREAM-NOTATION-v0.1-DRAFT.md` (### Context as a staging area)
 
-### NOT-7
+#### NOT-7
 
 **OP letter plus glyph as the type** · `superseded`
 

@@ -41,9 +41,23 @@ def commit_of(doc, p) -> str:
     return p.get("commit") or doc["pins"][p["repo"]]["commit"]
 
 
-def resolve(doc, root):
+def _anchors(doc):
+    """Every pinned source anchor in the register, with the ID that owns it."""
     for e in doc["entries"]:
         for p in e["parents"]:
+            yield e["id"], p
+    for t in doc.get("terms", []):
+        for p in t.get("was_src") or []:
+            yield t["id"], p
+    for x in doc.get("examples", []):
+        for p in x.get("before_src") or []:
+            yield x["id"], p
+
+
+def resolve(doc, root):
+    for owner, p in _anchors(doc):
+        e = {"id": owner}
+        if True:
             if "repo" in p and "line" not in p:
                 lines = blob(root, p["repo"], commit_of(doc, p), p["path"])
                 hits = [i + 1 for i, l in enumerate(lines) if p["has"] in l]
@@ -100,6 +114,36 @@ def check(doc, root) -> list[str]:
             with open(path, encoding="utf-8") as f:
                 if r["has"] not in f.read():
                     errs.append(f"{e['id']}: {r['path']} does not contain {r['has']!r}")
+    known = set(by) | {t["id"] for t in doc.get("terms", [])}
+    for t in doc.get("terms", []):
+        if not t.get("by"):
+            errs.append(f"{t['id']}: no mutation changes this term")
+        for i in t.get("by", []):
+            if i not in known:
+                errs.append(f"{t['id']}: changed by unknown {i}")
+        if t.get("was") and not t.get("was_src"):
+            errs.append(f"{t['id']}: has a current definition but no source")
+    for owner, p in _anchors(doc):
+        if owner in by:
+            continue  # entries were checked above
+        try:
+            lines = blob(root, p["repo"], commit_of(doc, p), p["path"])
+        except FileNotFoundError as x:
+            errs.append(f"{owner}: {x}")
+            continue
+        n = p.get("line")
+        if not n or n > len(lines) or p["has"] not in lines[n - 1]:
+            errs.append(f"{owner}: {p['repo']}:{p['path']}:{n} does not contain {p['has']!r}")
+    if doc.get("examples"):
+        sys.path.insert(0, os.path.join(HERE, "..", "reference"))
+        from notation import Notation, decode
+        nt = Notation(os.path.join(HERE, "..", "reference", "vocab", "notation-0.1.json"))
+        for x in doc["examples"]:
+            for i in x.get("by", []):
+                if i not in known:
+                    errs.append(f"{x['id']}: refers to unknown {i}")
+            if decode(x["run"], nt) != x["canonical"]:
+                errs.append(f"{x['id']}: run form does not decode to its canonical lines")
     return errs
 
 
@@ -136,6 +180,40 @@ def render(doc) -> str:
         counts[e["status"]] = counts.get(e["status"], 0) + 1
     out += ["", "**Totals:** " + ", ".join(f"{counts.get(k, 0)} {k}" for k in st if counts.get(k)), ""]
 
+    st_of = {e["id"]: e["status"] for e in doc["entries"]}
+    tid = {t["id"] for t in doc.get("terms", [])}
+
+    def ref(i):
+        return f"[{i}](#{i.lower()})" + (f" `{st_of[i]}`" if i in st_of else "")
+
+    if doc.get("terms"):
+        out += ["## Terms", "", "How each term is defined today, at a pinned line, and how this proposal redefines it. "
+                "The decisions that change a term are listed with their status. Terms new to the standard have no current definition.", "",
+                "| Term | Layer | Changed by |", "|---|---|---|"]
+        for t in doc["terms"]:
+            out.append(f"| [{t['term']}](#{t['id'].lower()}) | {t['layer']} | " + ", ".join(f"[{i}](#{i.lower()})" for i in t["by"]) + " |")
+        out.append("")
+        for t in doc["terms"]:
+            out += [f"### {t['id']}", "", f"**{t['term']}** · {t['layer']}", ""]
+            if t.get("was"):
+                out.append(f"- **Was:** {t['was']} " + "; ".join(_plink(doc, p) for p in t["was_src"]))
+            else:
+                out.append("- **Was:** not defined")
+            out.append(f"- **Now:** {t['now']}")
+            out.append("- **Changed by:** " + ", ".join(ref(i) for i in t["by"]))
+            out.append("")
+    if doc.get("examples"):
+        out += ["## Record coding", "", "The same occurrence coded today, in the journal draft (canonical, as trialled), in run form, and as a type under N11. "
+                "`lineage.py check` decodes every run form below and confirms it reproduces the canonical lines.", "", doc.get("phase_note", ""), ""]
+        for x in doc["examples"]:
+            out += [f"### {x['id']}", "", f"**{x['title']}**", ""]
+            if x.get("before"):
+                out += ["Today (Stream v1), from " + "; ".join(_plink(doc, p) for p in x["before_src"]) + ":", "", "```", *x["before"], "```", ""]
+            else:
+                out += ["Today (Stream v1): no coding exists for this occurrence.", ""]
+            out += ["Journal draft, canonical:", "", "```", *x["canonical"], "```", "", "Run form:", "", "```", *x["run"].rstrip("\n").split("\n"), "```", ""]
+            out += [f"- **Type (N11):** {x['type']}", f"- **What changed:** {x['notes']}", "- **By:** " + ", ".join(ref(i) for i in x["by"]), ""]
+    out += ["## Decisions", "", "Each decision is a mutation of a pinned source line or of an earlier decision.", ""]
     groups: dict[str, list] = {}
     for e in doc["entries"]:
         groups.setdefault(e["lineage"], []).append(e)
@@ -143,9 +221,9 @@ def render(doc) -> str:
         es = groups.get(lin, [])
         if not es:
             continue
-        out += [f"## {lin}", "", doc["lineage_notes"].get(lin, ""), ""]
+        out += [f"### {lin}", "", doc["lineage_notes"].get(lin, ""), ""]
         for e in es:
-            out += [f"### {e['id']}", "", f"**{e['title']}** · `{e['status']}`" + (f" · cost: {e['cost']}" if e.get("cost") else ""), ""]
+            out += [f"#### {e['id']}", "", f"**{e['title']}** · `{e['status']}`" + (f" · cost: {e['cost']}" if e.get("cost") else ""), ""]
             out += ["- **Descends from:** " + "; ".join(_plink(doc, p) for p in e["parents"])]
             out += [f"- **Mutation:** {e['mutation']}"]
             if e.get("why"):
@@ -189,7 +267,8 @@ def main():
     for x in errs:
         print("FAIL", x)
     n = sum(len(e["parents"]) for e in doc["entries"])
-    print(f"{len(doc['entries'])} entries, {n} parent links, {len(errs)} problems")
+    print(f"{len(doc['entries'])} decisions, {len(doc.get('terms', []))} terms, {len(doc.get('examples', []))} coding examples, "
+          f"{sum(1 for _ in _anchors(doc))} pinned links, {len(errs)} problems")
     if errs:
         sys.exit(1)
     if cmd == "render":

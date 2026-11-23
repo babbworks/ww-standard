@@ -10,7 +10,7 @@ This proposal follows on from the STREAM / Workwarrior / ZAKO inquiry. That inqu
 - [`STREAM-JOURNAL-v0.1-DRAFT.md`](STREAM-JOURNAL-v0.1-DRAFT.md): the draft normative text.
 - [`reference/`](reference/): a trial implementation and the conformance scenario, using only the Python standard library.
 - [`examples/scenario/`](examples/scenario/): the journal the scenario produces, with two segments, journaled rejections and seals.
-- [`LINEAGE.md`](LINEAGE.md): the lineage register. Every change to what exists today has an ID, the pinned source line it descends from, its status, and its supersession links. Generated from [`lineage/lineage.json`](lineage/lineage.json). Run `python3 lineage/lineage.py check` to verify every link against git.
+- [`LINEAGE.md`](LINEAGE.md): the lineage register, in three layers. **Terms** gives each term's definition today (at a pinned source line) and its proposed definition. **Record coding** shows six occurrences coded today, in the journal, in run form and as a type byte. **Decisions** lists every change, with its parents, status and supersession links. Generated from [`lineage/lineage.json`](lineage/lineage.json). Run `python3 lineage/lineage.py check` to verify every link against git.
 - [`STREAM-NOTATION-v0.1-DRAFT.md`](STREAM-NOTATION-v0.1-DRAFT.md): the companion design note. It covers the smallest recordable act, recording resolution in an action cascade, resource attribution, and a state-once text form (the run form) with an ASCII glyph alphabet.
 
 ## Decisions the draft takes
