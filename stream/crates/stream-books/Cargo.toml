@@ -1,0 +1,13 @@
+[package]
+name = "stream-books"
+description = "STREAM Books and built-in views: balances, close by hash, attribution."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+stream-kernel = { workspace = true, features = ["std"] }
+stream-log = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

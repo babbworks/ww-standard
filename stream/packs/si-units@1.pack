@@ -1,0 +1,12 @@
+PACK/1 name=si-units@1
+0 CREATE unit:s {"base":true,"conserved":false,"dimension":"time","kind":"unit","note":"wall time: the envelope","rec":"pack:si-units@1"}
+0 CREATE unit:h {"conserved":true,"dimension":"capacity-time","kind":"unit","note":"actor hours drawn from capacity","rec":"pack:si-units@1"}
+0 CREATE unit:xs {"base":true,"conserved":true,"dimension":"cpu-time","kind":"unit","rec":"pack:si-units@1"}
+0 CREATE unit:J {"base":true,"conserved":true,"dimension":"energy","kind":"unit","rec":"pack:si-units@1"}
+0 CREATE unit:kWh {"conserved":true,"dimension":"energy","equals":"3600000 J","kind":"unit","rec":"pack:si-units@1"}
+0 CREATE unit:B {"base":true,"conserved":true,"dimension":"data","kind":"unit","rec":"pack:si-units@1"}
+0 CREATE unit:kg {"base":true,"conserved":true,"dimension":"mass","kind":"unit","rec":"pack:si-units@1"}
+0 CREATE unit:L {"conserved":true,"dimension":"volume","equals":"0.001 m3","kind":"unit","rec":"pack:si-units@1"}
+0 CREATE unit:m3 {"base":true,"conserved":true,"dimension":"volume","kind":"unit","rec":"pack:si-units@1"}
+0 CREATE unit:# {"base":true,"conserved":true,"dimension":"count","kind":"unit","note":"sub-acts not recorded individually","rec":"pack:si-units@1"}
+0 CREATE unit:USD {"base":true,"conserved":true,"dimension":"money","kind":"unit","rec":"pack:si-units@1"}

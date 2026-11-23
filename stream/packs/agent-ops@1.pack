@@ -1,0 +1,8 @@
+PACK/1 name=agent-ops@1
+0 CREATE unit:ti {"base":true,"conserved":true,"dimension":"tokens-in","kind":"unit","rec":"pack:agent-ops@1"}
+0 CREATE unit:to {"base":true,"conserved":true,"dimension":"tokens-out","kind":"unit","rec":"pack:agent-ops@1"}
+0 CREATE unit:tr {"base":true,"conserved":true,"dimension":"tokens-cache-read","kind":"unit","rec":"pack:agent-ops@1"}
+0 CREATE unit:tw {"base":true,"conserved":true,"dimension":"tokens-cache-write","kind":"unit","rec":"pack:agent-ops@1"}
+0 CREATE profile:R {"kind":"profile","note":"agent and machine run spans","pairs_by":"run","rec":"pack:agent-ops@1","requires":["run"],"verbs":["QUERY","ACT"]}
+0 CREATE view:attribution@1 {"kind":"view","method":"builtin:stream-books/attribution","reads":["QUERY","ACT"],"rec":"pack:agent-ops@1","shows":"tree"}
+0 CREATE view:balances@1 {"kind":"view","method":"builtin:stream-books/balances","reads":["legs","use"],"rec":"pack:agent-ops@1","shows":"ledger"}

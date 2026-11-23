@@ -1,0 +1,13 @@
+[package]
+name = "stream-kernel"
+description = "STREAM kernel: entry grammar, canonical form, verbs, seals. no_std."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sha2 = { workspace = true }
+
+[features]
+default = []
+std = []

@@ -1,0 +1,12 @@
+[package]
+name = "stream-log"
+description = "STREAM log: append-only segments, receipts, authority, register, packs, seals."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+stream-kernel = { workspace = true, features = ["std"] }
+
+[dev-dependencies]
+tempfile = "3"

@@ -1,0 +1,2 @@
+STREAM/1 kernel=sha256:0000000000000000000000000000000000000000000000000000000000000000
+1752300000 OPEN log:c1 {"clock":"ntp","kind":"genesis","log":"c1","rec":"actor:root","root":["actor:root"],"tz":"UTC"}

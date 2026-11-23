@@ -1,0 +1,2 @@
+1752300030 OPEN seg-000002 {"kind":"segment","prev":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff","rec":"log:c2"}
+1752300016 MEASURE* m1 {"ps":2,"q":"41","rec":"meter:m1","u":"J"}
