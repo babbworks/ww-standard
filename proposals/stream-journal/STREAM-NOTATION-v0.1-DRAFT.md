@@ -429,7 +429,72 @@ Every act from every source carries the same verb axis. Energy, CPU time, tokens
 
 ### Decisions open
 
+> **Resolved in N14.** Each decision now has a lineage ID in [LINEAGE.md](LINEAGE.md). Decision 2 (the "from" state) was superseded by a base version, BAL-1.
+
 1. Should objects be declared, with acts referring to them by reference? This is the largest structural change.
 2. Should transitions on shared objects carry a "from" state? This is the only per-record cost.
 3. Should session-level clock provenance and timezone be required?
 4. Should the count-based Pacioli lens be retired in favour of a balance view?
+
+## N13. The remaining lineage concepts: Burroughs, Baldwin, Grant, Felt, Cooper, Babbage, Lovelace
+
+**Status:** analysis agreed on 2026-11-23. The test is the same as in N12. The IDs refer to [LINEAGE.md](LINEAGE.md).
+
+| Concept | What it is | Effect on record creation | IDs |
+|---|---|---|---|
+| **Burroughs**: accumulation | The adding machine printed every entry as it added, so the total came with its proof. Its governor made the result the same however hard the handle was pulled. | None. The printed tape is provenance, and the governor is retry identity. Both are already journal obligations. | BUR-1, BUR-2, BUR-3 |
+| **Baldwin**: deltas, reversibility | A modification carries new values. Checking or undoing it needs to know what it was applied to. | A mutation of a shared object carries the **version it was based on**. This replaces Frick's "from" state, since the state can be worked out from the version, and it exposes concurrent writes. Snapshots bound replay cost, but they are caches, not records (N14). | BAL-1, BAL-2 |
+| **Grant**: derived metrics | Aggregates and second differences | None. A *published* metric enters the journal only as an attributed act (LOV-1). | GRA-1 |
+| **Felt**: density | Event-count density depends on how deep you record. | None. Redefine Felt as rates of conserved quantities (power, utilisation, tokens per second). Event-count density is secondary and labelled with its recording depth. | FEL-1 |
+| **Cooper**: radial field | Time of day as angle, intensity as radius. The repository names no historical precedent. | None beyond the session timezone (BUN-4). The angle must come from local time. | COO-1 |
+| **Babbage**: Engine | Store, Mill, Barrel and cards are lens and scheduling architecture. | None. | — |
+| **Babbage**: Difference Engine | A smooth series is cheapest as a starting value plus differences. | Encoding only, in the run form and binary. A cumulative counter keeps its reading in canonical form and is delta-coded in compact form. | BAB-2, BAB-3 |
+| **Babbage**: *Economy of Machinery and Manufactures* (1832) | Divide work by the skill each part needs, and pay for each part only at that level. This is the allotment question itself. | **New obligation: by what class of resource.** It is declared per actor, and recorded per act only when what served the act differed from what was declared. | BAB-1 |
+| **Lovelace**: "no power of originating" | Lenses never write facts. | A lens result enters the journal only as an attributed ESTIMATE or COMMIT, with method, version and basis. | LOV-1 |
+| **Lovelace**: symbols with defined relations | Universal verbs need universal replay rules. | Every verb declares its replay behaviour from a closed set. | LOV-2 |
+| **Lovelace**: successive approximation | Estimates are refined. | Supersession applies to every claim, not only postings. | LOV-3 |
+
+### The obligations of a record, updated
+
+| A record must say… | From | Usually stated |
+|---|---|---|
+| when, by whose clock | Bundy | session |
+| which act, its layout, and its replay behaviour | Hollerith, ZAKO, Lovelace | standard and vocabulary |
+| on what: a declared object | Hollerith | once per object |
+| based on which version | Frick, Baldwin | per record, shared objects only |
+| how much, from where, balanced | Pacioli | values per record; pool per run |
+| how it is known: measured, estimated or claimed | Dey, Bundy | type and run |
+| by what class of resource | Babbage | actor declaration; per act on deviation |
+| if derived: who derived it, how, and from what | Lovelace | the deriving act |
+
+## N14. Balances without restating them, and resolved decisions
+
+**Status:** agreed on 2026-11-23.
+
+### Balance rules
+
+Writing a balance on every record, as a bank statement prints "balance after" on each line, is ruled out.
+
+1. **Records carry movements, never balances (PAC-8).** Running balances, remainders and rates are computed by views.
+2. **A period close commits to balances without restating them (PAC-7).** The close record carries a hash of the full balance table, the period and a record count. Its size is fixed, however many accounts exist. A reader replays the period and checks the hash. A hash tree is optional, for proving one account's balance without revealing the rest.
+3. **Snapshots are caches, not records (BAL-2).** Saved object states and balance tables live outside the journal. Each is keyed to a journal address and checked against the close hash, and each can be dropped and rebuilt.
+4. **A total is written only when it is independent evidence (PAC-9).** A parent's `use` is recorded only if something measured it separately. Otherwise the view adds up the children.
+5. **Exception: cumulative counters (BAB-3).** The canonical record keeps the counter's reading, so a lost sample loses nothing. The compact form stores only the change from the previous reading.
+
+The journal therefore holds one balance-related record per period, and its size doesn't grow with the number of accounts.
+
+### Resolved decisions
+
+| Decision | Resolution | ID |
+|---|---|---|
+| N12.1 Declare objects | **Yes.** Attributes move into one declaration (CREATE or BIND). Acts carry the full stable ID in canonical form, and short references only in compact forms. Renaming is one modification. Undeclared objects are accepted and flagged. | HOL-1, HOL-2, HOL-3 |
+| N12.2 "From" state on transitions | **Superseded** by a base version. | FRI-1 → BAL-1 |
+| N12.3 Clock provenance and timezone | **Yes, required per session.** The session declares the clock source (synced device, free-running device, GPS, server receipt or person), its precision, the last known offset at sync, and an IANA timezone. "Unknown" is allowed but flagged. Receipt time serves as a second clock for estimating skew. | BUN-4, BUN-5 |
+| N12.4 Retire the count-based Pacioli lens | **Yes.** It becomes a balance view under the Pacioli name. Activity per object moves to Burroughs and Hollerith counts. | PAC-5 |
+| N13.1 Base version | **Yes.** It applies to objects declared shared, and the implied new version is base + 1. Two accepted changes on the same base are reported as a conflict, not rejected. It costs 1–2 bytes in compact form. | BAL-1 |
+| N13.2 Class of resource | **Yes, by exception.** The declared class is part of the actor. A per-act class appears only when the class that served the act differs from the declared one. | BAB-1 |
+| N13.3 Replay behaviour per verb | **Yes, required.** It comes from a closed set: instant observation, interval boundary, state transition, quantity movement, supersession, period close, declaration, annotation. That is 3 bits in the vocabulary. | LOV-2 |
+| N13.4 Supersession for every claim | **Yes, within the same behaviour.** Only the latest version can be corrected. A superseded measurement keeps its original reading. Supplying a missing record is still reconciliation, not supersession. | LOV-3 |
+| N13.5 Felt as rates | **Yes, as its primary meaning.** Event-count density stays as a secondary measure, labelled with its recording depth. Neither is stored. | FEL-1 |
+
+N11's three decisions remain open: ZAK-1, ZAK-2 and ZAK-3 in the register.

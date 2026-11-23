@@ -1,0 +1,202 @@
+"""Lineage register: verify and render.
+
+Every mutation in lineage.json names its parents: lines in pinned commits of
+the source repositories, earlier register entries, or external sources. This
+tool checks that each pinned line still says what the register claims it says,
+that supersession links are consistent in both directions, and that every
+"recorded in" anchor exists in the working tree. Then it renders LINEAGE.md.
+
+    python3 lineage.py check  [--root DIR]      # exit 1 on any broken link
+    python3 lineage.py render [--root DIR]      # check, then write ../LINEAGE.md
+    python3 lineage.py resolve [--root DIR]     # fill in missing line numbers from `has`
+
+--root is the directory holding the repository checkouts (workwarrior,
+mobileos, ww-standard). It defaults to the parent of this repository.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+DATA = os.path.join(HERE, "lineage.json")
+OUT = os.path.join(HERE, "..", "LINEAGE.md")
+
+
+def repo_root() -> str:
+    return subprocess.run(["git", "-C", HERE, "rev-parse", "--show-toplevel"], capture_output=True, text=True, check=True).stdout.strip()
+
+
+def blob(root: str, repo: str, commit: str, path: str) -> list[str]:
+    r = subprocess.run(["git", "-C", os.path.join(root, repo), "show", f"{commit}:{path}"], capture_output=True, text=True)
+    if r.returncode:
+        raise FileNotFoundError(f"{repo}@{commit[:7]}:{path}: {r.stderr.strip()}")
+    return r.stdout.splitlines()
+
+
+def commit_of(doc, p) -> str:
+    return p.get("commit") or doc["pins"][p["repo"]]["commit"]
+
+
+def resolve(doc, root):
+    for e in doc["entries"]:
+        for p in e["parents"]:
+            if "repo" in p and "line" not in p:
+                lines = blob(root, p["repo"], commit_of(doc, p), p["path"])
+                hits = [i + 1 for i, l in enumerate(lines) if p["has"] in l]
+                if not hits:
+                    raise ValueError(f"{e['id']}: {p['has']!r} not in {p['repo']}:{p['path']}")
+                p["line"] = hits[0]
+    return doc
+
+
+def check(doc, root) -> list[str]:
+    errs = []
+    ids = [e["id"] for e in doc["entries"]]
+    by = {e["id"]: e for e in doc["entries"]}
+    if len(ids) != len(set(ids)):
+        errs.append("duplicate ids: " + ", ".join(sorted({i for i in ids if ids.count(i) > 1})))
+    statuses = set(doc["statuses"])
+    ws = repo_root()
+    for e in doc["entries"]:
+        if e["status"] not in statuses:
+            errs.append(f"{e['id']}: unknown status {e['status']!r}")
+        if not e["parents"]:
+            errs.append(f"{e['id']}: no parent; every mutation must descend from something")
+        for p in e["parents"]:
+            if "repo" in p:
+                try:
+                    lines = blob(root, p["repo"], commit_of(doc, p), p["path"])
+                except FileNotFoundError as x:
+                    errs.append(f"{e['id']}: {x}")
+                    continue
+                n = p.get("line")
+                if not n or n > len(lines) or p["has"] not in lines[n - 1]:
+                    errs.append(f"{e['id']}: {p['repo']}:{p['path']}:{n} does not contain {p['has']!r}")
+            elif "entry" in p:
+                if p["entry"] not in by:
+                    errs.append(f"{e['id']}: parent entry {p['entry']} does not exist")
+            elif "external" not in p:
+                errs.append(f"{e['id']}: parent has no repo, entry or external source")
+        sb = e.get("superseded_by")
+        if sb:
+            if sb not in by:
+                errs.append(f"{e['id']}: superseded_by {sb} does not exist")
+            elif e["id"] not in by[sb].get("supersedes", []):
+                errs.append(f"{e['id']}: {sb} does not list it in supersedes")
+            if e["status"] != "superseded":
+                errs.append(f"{e['id']}: has superseded_by but status is {e['status']}")
+        for s in e.get("supersedes", []):
+            if s not in by or by[s].get("superseded_by") != e["id"]:
+                errs.append(f"{e['id']}: supersedes {s}, but {s} does not point back")
+        for r in e.get("recorded", []):
+            path = os.path.join(ws, r["path"])
+            if not os.path.exists(path):
+                errs.append(f"{e['id']}: recorded path {r['path']} missing")
+                continue
+            with open(path, encoding="utf-8") as f:
+                if r["has"] not in f.read():
+                    errs.append(f"{e['id']}: {r['path']} does not contain {r['has']!r}")
+    return errs
+
+
+def _plink(doc, p) -> str:
+    if "entry" in p:
+        return f"[{p['entry']}](#{p['entry'].lower()})"
+    if "external" in p:
+        return f"*{p['external']}*"
+    c = commit_of(doc, p)
+    url = doc["pins"][p["repo"]]["url"]
+    return f"[`{p['repo']}:{p['path']}:{p['line']}`]({url}/blob/{c}/{p['path']}#L{p['line']})"
+
+
+def render(doc) -> str:
+    st = doc["statuses"]
+    out = [
+        "# Lineage register",
+        "",
+        "<!-- GENERATED by lineage/lineage.py from lineage/lineage.json. Edit the JSON, then run `python3 lineage/lineage.py render`. -->",
+        "",
+        doc["preamble"],
+        "",
+        "## Pinned sources",
+        "",
+        "| Repository | Commit |",
+        "|---|---|",
+    ]
+    for name, pin in doc["pins"].items():
+        out.append(f"| {name} | [`{pin['commit'][:7]}`]({pin['url']}/tree/{pin['commit']}) |")
+    out += ["", "## Status", "", "| Status | Meaning |", "|---|---|"]
+    out += [f"| `{k}` | {v} |" for k, v in st.items()]
+    counts = {}
+    for e in doc["entries"]:
+        counts[e["status"]] = counts.get(e["status"], 0) + 1
+    out += ["", "**Totals:** " + ", ".join(f"{counts.get(k, 0)} {k}" for k in st if counts.get(k)), ""]
+
+    groups: dict[str, list] = {}
+    for e in doc["entries"]:
+        groups.setdefault(e["lineage"], []).append(e)
+    for lin in doc["lineage_order"]:
+        es = groups.get(lin, [])
+        if not es:
+            continue
+        out += [f"## {lin}", "", doc["lineage_notes"].get(lin, ""), ""]
+        for e in es:
+            out += [f"### {e['id']}", "", f"**{e['title']}** · `{e['status']}`" + (f" · cost: {e['cost']}" if e.get("cost") else ""), ""]
+            out += ["- **Descends from:** " + "; ".join(_plink(doc, p) for p in e["parents"])]
+            out += [f"- **Mutation:** {e['mutation']}"]
+            if e.get("why"):
+                out += [f"- **Why:** {e['why']}"]
+            if e.get("supersedes"):
+                out += ["- **Supersedes:** " + ", ".join(f"[{s}](#{s.lower()})" for s in e["supersedes"])]
+            if e.get("superseded_by"):
+                out += [f"- **Superseded by:** [{e['superseded_by']}](#{e['superseded_by'].lower()})"]
+            if e.get("recorded"):
+                out += ["- **Recorded in:** " + "; ".join(f"`{r['path'].split('/')[-1]}` ({r['has']})" for r in e["recorded"])]
+            if e.get("note"):
+                out += [f"- **Note:** {e['note']}"]
+            out.append("")
+    chains = [e for e in doc["entries"] if e.get("supersedes")]
+    if chains:
+        out += ["## Supersession chains", "", "| Was | Became | Why |", "|---|---|---|"]
+        for e in chains:
+            for s in e["supersedes"]:
+                out.append(f"| [{s}](#{s.lower()}) | [{e['id']}](#{e['id'].lower()}) | {e.get('why', '')} |")
+        out.append("")
+    opens = [e for e in doc["entries"] if e["status"] == "open"]
+    if opens:
+        out += ["## Open", "", "| ID | Question |", "|---|---|"]
+        out += [f"| [{e['id']}](#{e['id'].lower()}) | {e['title']} |" for e in opens]
+        out.append("")
+    return "\n".join(out)
+
+
+def main():
+    args = sys.argv[1:]
+    cmd = args[0] if args else "check"
+    root = args[args.index("--root") + 1] if "--root" in args else os.path.dirname(repo_root())
+    with open(DATA, encoding="utf-8") as f:
+        doc = json.load(f)
+    if cmd == "resolve":
+        resolve(doc, root)
+        with open(DATA, "w", encoding="utf-8") as f:
+            json.dump(doc, f, indent=1, ensure_ascii=False)
+            f.write("\n")
+    errs = check(doc, root)
+    for x in errs:
+        print("FAIL", x)
+    n = sum(len(e["parents"]) for e in doc["entries"])
+    print(f"{len(doc['entries'])} entries, {n} parent links, {len(errs)} problems")
+    if errs:
+        sys.exit(1)
+    if cmd == "render":
+        with open(OUT, "w", encoding="utf-8") as f:
+            f.write(render(doc) + "\n")
+        print("wrote", os.path.relpath(OUT))
+
+
+if __name__ == "__main__":
+    main()

@@ -4,6 +4,8 @@
 **Extends:** [Stream Event Format v1](https://github.com/babbworks/workwarrior/blob/main/dev/schemas/stream-event-v1.md). Every journal line is a valid v1 line. The five positional fields stay frozen.
 **Borrows from:** ZAKO Codebook v1 (vocabulary), BitPads (framing), BitLedger (balance discipline), ZAKO Wire Conventions (corrections, sealed history).
 
+**Lineage:** every change this draft makes to what exists, and every later revision of its decisions, is registered in [LINEAGE.md](LINEAGE.md). Sections here are kept as written. Where a later decision supersedes one of them, the register records it.
+
 The keywords MUST, SHOULD and MAY are used in their RFC 2119 sense.
 
 ---

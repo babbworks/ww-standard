@@ -1,0 +1,1766 @@
+{
+ "preamble": "Every change this proposal makes to what exists today is a **mutation** with a stable ID. Each names its **parents**: a pinned line in Workwarrior, MobileOS/ZAKO or the research notes; an earlier entry; or an external source. The register is append-only. A superseded entry stays, with links in both directions, so the reasoning behind every change can be followed back to the line it changes. `python3 lineage/lineage.py check` verifies every pinned line at its commit, every supersession link, and every 'recorded in' anchor. Nothing here is ratified. Ratification happens through [issue #1](https://github.com/babbworks/ww-standard/issues/1).",
+ "pins": {
+  "workwarrior": {
+   "commit": "ce7379f488d01e5e3f9e351d3e014b4529e3892e",
+   "url": "https://github.com/babbworks/workwarrior"
+  },
+  "mobileos": {
+   "commit": "8c33c650e8090e810324d35d0ecf1c5f12319082",
+   "url": "https://github.com/babbworks/mobileos"
+  },
+  "ww-standard": {
+   "commit": "96cb9f84e70ef9d98a86bad6f2d57d95892dc253",
+   "url": "https://github.com/babbworks/ww-standard"
+  }
+ },
+ "statuses": {
+  "trialled": "In the reference code, with passing tests. Awaiting ratification.",
+  "agreed": "Agreed in the inquiry; not yet in code.",
+  "proposed": "In a draft; not yet discussed in detail.",
+  "open": "A question still to decide.",
+  "superseded": "Replaced by a later entry, and kept.",
+  "declined": "Considered and not adopted, and kept so the reasoning survives.",
+  "divergence": "A discrepancy in a source, to settle with its owner."
+ },
+ "lineage_order": [
+  "Pacioli",
+  "Hollerith",
+  "Burroughs",
+  "Baldwin",
+  "Bundy",
+  "Frick",
+  "Dey",
+  "Grant",
+  "Felt",
+  "Cooper",
+  "Babbage",
+  "Lovelace",
+  "ZAKO",
+  "Journal",
+  "Notation"
+ ],
+ "lineage_notes": {
+  "Pacioli": "Substrate in the archived plan: append-only, with state as a derivation. Also the conservation thesis in units-v1.",
+  "Hollerith": "Substrate in the archived plan: positional encoding and compact symbolic codes.",
+  "Burroughs": "Tier A, event accumulation. The adding machine's listing tape, and its governor.",
+  "Baldwin": "Tier A, state mutation differencing.",
+  "Bundy": "Tier B, interval segmentation. The punch clock and trusted time.",
+  "Frick": "Tier B, discrete transitions.",
+  "Dey": "Tier C, continuous signal.",
+  "Grant": "Tier C, derived metrics.",
+  "Felt": "Tier C, activity density.",
+  "Cooper": "Tier D, radial field.",
+  "Babbage": "The Engine mapping, the Difference Engine, and *On the Economy of Machinery and Manufactures*.",
+  "Lovelace": "Notes A–G: symbolic generality, no power of originating, successive approximation.",
+  "ZAKO": "The Codebook, Wire Conventions, Pictography and C0 grammar in MobileOS.",
+  "Journal": "Journal mechanics without a single lineage name.",
+  "Notation": "Encoding and the cascade."
+ },
+ "entries": [
+  {
+   "id": "PAC-1",
+   "lineage": "Pacioli",
+   "title": "Ingest appends; time order becomes a view",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/stream.sh",
+     "has": "sort -n -k1 -o \"$STREAM_LOG\" \"$STREAM_LOG\"",
+     "line": 707
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "append-only file; no line is ever modified",
+     "line": 85
+    }
+   ],
+   "mutation": "Ingest appends in arrival order and never re-sorts the file. Occurrence order is computed by views.",
+   "why": "The in-place sort rewrites every line, which contradicts the plan's own append-only rule and breaks append position as an address.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 6.1 Append only"
+    }
+   ]
+  },
+  {
+   "id": "PAC-2",
+   "lineage": "Pacioli",
+   "title": "Reset seals the segment and starts an epoch",
+   "status": "proposed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/stream.sh",
+     "has": "destructive: truncates stream.log",
+     "line": 579
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "emits a `S reset` event before truncating",
+     "line": 86
+    }
+   ],
+   "mutation": "Reset no longer truncates. It seals the current segment and opens the next one as an epoch, and views start from the latest epoch by default.",
+   "why": "Truncation erases the history that Pacioli's principle says is the only truth.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "**Reset becomes an epoch.**"
+    }
+   ],
+   "note": "Specified, but not exercised by the trial."
+  },
+  {
+   "id": "PAC-3",
+   "lineage": "Pacioli",
+   "title": "Segments close with a seal in a hash chain",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "MUST NOT rewrite or delete existing lines",
+     "line": 239
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "append-only file; no line is ever modified",
+     "line": 85
+    }
+   ],
+   "mutation": "Each segment ends with an `S seal` record carrying a sha256 of the segment body and a chain hash linked to the previous seal.",
+   "why": "Append-only was a rule with nothing enforcing it. A seal makes a rewrite detectable.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 6.3 Seals"
+    }
+   ]
+  },
+  {
+   "id": "PAC-4",
+   "lineage": "Pacioli",
+   "title": "Ledger records carry balanced legs",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lib/adapters.sh",
+     "has": "c = json.dumps({'src':'ledger'",
+     "line": 293
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/units-v1.md",
+     "has": "double-entry is a conservation law",
+     "line": 18
+    }
+   ],
+   "mutation": "`L.post` carries its legs. Every posting balances on its own, per (book, unit), never per batch.",
+   "why": "The v1 ledger adapter records that a posting happened but omits its amount, so balances can't be rebuilt.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 8.2 Balance rule"
+    }
+   ]
+  },
+  {
+   "id": "PAC-5",
+   "lineage": "Pacioli",
+   "title": "The count-based Pacioli lens becomes a balance view",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/pacioli.sh",
+     "has": "CREDIT = {'add'",
+     "line": 11
+    },
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/pacioli.sh",
+     "has": "counts[obj] = counts.get(obj, 0) + 1",
+     "line": 36
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "Pacioli lens (`pacioli.sh`)",
+     "line": 88
+    }
+   ],
+   "mutation": "The current lens is retired. The Pacioli name passes to a view of real quantity balances, and activity counts per object move to Burroughs and Hollerith.",
+   "why": "A start followed by a stop gives a 'balance' of 2. A count of events is not a quantity.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N12.4 Retire"
+    }
+   ]
+  },
+  {
+   "id": "PAC-6",
+   "lineage": "Pacioli",
+   "title": "A period close records the balances",
+   "status": "superseded",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "append-only file; no line is ever modified",
+     "line": 85
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Wire-Conventions-v1.md",
+     "has": "It locks the balance of the period",
+     "line": 160
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Refinement 2.**",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 404
+    }
+   ],
+   "mutation": "A period close (COMMIT or Tally) restates the balances in a record.",
+   "superseded_by": "PAC-7",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Refinement 2.**"
+    }
+   ]
+  },
+  {
+   "id": "PAC-7",
+   "lineage": "Pacioli",
+   "title": "A period close commits to the balances by hash",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "PAC-6"
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Wire-Conventions-v1.md",
+     "has": "It locks the balance of the period",
+     "line": 160
+    }
+   ],
+   "mutation": "The close record carries a hash of the full balance table, the period and a record count, not the balances themselves. Readers verify by replay. A hash tree is optional, for proving one account.",
+   "why": "Restating balances costs bytes that grow with the number of accounts. A hash is fixed size and verifiable.",
+   "cost": "one fixed-size record per period",
+   "supersedes": [
+    "PAC-6"
+   ],
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Balance rules"
+    }
+   ]
+  },
+  {
+   "id": "PAC-8",
+   "lineage": "Pacioli",
+   "title": "Records carry movements, never balances",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "All derived state (intervals, metrics, signals, fields) is reconstructed",
+     "line": 87
+    }
+   ],
+   "mutation": "No record states a running balance, remainder or rate. They are computed by views.",
+   "why": "This rules out the bank-statement pattern of writing a balance on every line.",
+   "cost": "saves bytes",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Records carry movements, never balances (PAC-8).**"
+    }
+   ]
+  },
+  {
+   "id": "PAC-9",
+   "lineage": "Pacioli",
+   "title": "A total is written only when it is independent evidence",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "PAC-8"
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N3. The atom: an act",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 62
+    }
+   ],
+   "mutation": "A parent's `use` appears only when something measured it separately, such as a host meter. Otherwise the view adds up the children.",
+   "why": "A recorded sum of recorded parts is a restated balance.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**A total is written only when it is independent evidence (PAC-9).**"
+    }
+   ]
+  },
+  {
+   "id": "PAC-10",
+   "lineage": "Pacioli",
+   "title": "Resource use is drawn from a declared pool",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/punch-posting-v1.md",
+     "has": "time flows FROM their capacity INTO",
+     "line": 14
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Refinement 1.**",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 403
+    }
+   ],
+   "mutation": "This generalises punch-posting-v1's capacity posting from actor-hours to every conserved quantity. The pool (host energy, token allowance, actor capacity) is declared in the run header, which makes consumption double-entry at no cost per record.",
+   "cost": "0 per record",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Refinement 1.**"
+    }
+   ]
+  },
+  {
+   "id": "PAC-11",
+   "lineage": "Pacioli",
+   "title": "Overlapping punches could consume an actor's hours twice",
+   "status": "open",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/punch-posting-v1.md",
+     "has": "produces exactly one journal transaction",
+     "line": 22
+    },
+    {
+     "entry": "BUN-1"
+    }
+   ],
+   "mutation": "Should an actor's capacity be split across overlapping intervals, or should overlap be reported as over-attribution (NOT-4)?",
+   "why": "punch-posting-v1 posts one transaction per interval. Once BUN-1 keeps overlapping intervals apart, an operator on two machines at once would debit their hours twice."
+  },
+  {
+   "id": "HOL-1",
+   "lineage": "Hollerith",
+   "title": "Objects are declared once; acts carry only the ID",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lib/adapters.sh",
+     "has": "'name':desc",
+     "line": 79
+    },
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lib/adapters.sh",
+     "has": "c    = json.dumps({'src':'timew'",
+     "line": 146
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x0C | CREATE |",
+     "line": 72
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x0D | BIND |",
+     "line": 73
+    }
+   ],
+   "mutation": "An object's attributes (name, project, tags, kind, class) move into one CREATE or BIND declaration. Acts carry only the object's ID. Renaming is one modification of the object.",
+   "why": "Adapters repeat object attributes in ctx on every line, and the Hollerith grid gets unreliable columns.",
+   "cost": "saves bytes",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N12.1 Declare objects"
+    }
+   ]
+  },
+  {
+   "id": "HOL-2",
+   "lineage": "Hollerith",
+   "title": "Canonical lines keep the full ID; short references only in compact forms",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "Each line is self-contained and decodable",
+     "line": 112
+    }
+   ],
+   "mutation": "The canonical line stays self-contained, with the full stable ID. Dictionary indices appear only in the run form and binary.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N12.1 Declare objects"
+    }
+   ]
+  },
+  {
+   "id": "HOL-3",
+   "lineage": "Hollerith",
+   "title": "Undeclared objects are accepted and flagged",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "HOL-1"
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 5.3 Historical consistency is reported, not enforced",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 132
+    }
+   ],
+   "mutation": "A reference to an undeclared object is accepted and reported by views, not rejected.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N12.1 Declare objects"
+    }
+   ]
+  },
+  {
+   "id": "HOL-4",
+   "lineage": "Hollerith",
+   "title": "The record type fixes payload positions",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "positions ARE the schema",
+     "line": 91
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "## 3. `ctx` — the extension point",
+     "line": 89
+    }
+   ],
+   "mutation": "Each type's vocabulary entry defines the order and types of its payload values, so key names disappear from rows.",
+   "why": "This restores Hollerith's positional principle, which v1 had moved into named JSON keys (26% of journal bytes).",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N7. Run form"
+    }
+   ]
+  },
+  {
+   "id": "HOL-5",
+   "lineage": "Hollerith",
+   "title": "Time-sorted storage",
+   "status": "declined",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "Lines are sortable by `sort -n` on col 1 alone",
+     "line": 110
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "Log is **sorted by this**",
+     "line": 28
+    }
+   ],
+   "mutation": "Kept as a view only. Storage order is append order.",
+   "why": "It conflicts with PAC-1: append position is the address.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 6.1 Append only"
+    }
+   ]
+  },
+  {
+   "id": "BUR-1",
+   "lineage": "Burroughs",
+   "title": "Retry identity replaces 4-tuple dedup",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lib/adapters.sh",
+     "has": "seen[$1\" \"$2\" \"$3\" \"$4]=1",
+     "line": 6
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "**The identity of an event is the",
+     "line": 61
+    }
+   ],
+   "mutation": "A submission is a retry when it has the same (recorder, producer sequence or retry key). Two identical occurrences are two records.",
+   "why": "Dedup on (ts, OP, action, object) silently drops a distinct actor's punch. The trial reproduces this against the shipped code. This is the Burroughs governor: the result doesn't depend on how the handle was pulled.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 6.5 Receipts and retries"
+    }
+   ]
+  },
+  {
+   "id": "BUR-2",
+   "lineage": "Burroughs",
+   "title": "Rejections are journaled",
+   "status": "trialled",
+   "parents": [
+    {
+     "entry": "BUR-1"
+    }
+   ],
+   "mutation": "A rejected submission with a retry identity writes an `S reject` receipt, so a retry gets the same answer.",
+   "why": "Without it, the capture-gap view couldn't tell 'rejected' from 'never received'. The trial found this.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 6.5 Receipts and retries"
+    }
+   ]
+  },
+  {
+   "id": "BUR-3",
+   "lineage": "Burroughs",
+   "title": "Every figure carries its provenance",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "Burroughs  raw event log accumulation",
+     "line": 62
+    }
+   ],
+   "mutation": "Core views return the addresses each figure came from. A correction chain walks back to its original evidence. This is the listing tape.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 7.2 Provenance"
+    }
+   ]
+  },
+  {
+   "id": "BAL-1",
+   "lineage": "Baldwin",
+   "title": "Mutations of shared objects carry the version they were based on",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "Baldwin    state mutation diff",
+     "line": 63
+    },
+    {
+     "entry": "FRI-1"
+    }
+   ],
+   "mutation": "A mutation states its base version. The new version is base + 1. Two accepted changes on the same base are reported as a conflict. Frick's 'from' state is worked out from the version.",
+   "why": "A version covers every mutation, not just state transitions, and it exposes concurrent writers.",
+   "cost": "1–2 bytes, shared objects only",
+   "supersedes": [
+    "FRI-1"
+   ],
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N13.1 Base version"
+    }
+   ]
+  },
+  {
+   "id": "BAL-2",
+   "lineage": "Baldwin",
+   "title": "Snapshots are caches, not records",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "All derived state (intervals, metrics, signals, fields) is reconstructed",
+     "line": 87
+    },
+    {
+     "entry": "PAC-7"
+    }
+   ],
+   "mutation": "Object-state and balance snapshots live outside the journal. Each is keyed to a journal address and checked against the period-close hash, and each can be dropped and rebuilt.",
+   "cost": "0 to the journal",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Snapshots are caches, not records (BAL-2).**"
+    }
+   ]
+  },
+  {
+   "id": "BUN-1",
+   "lineage": "Bundy",
+   "title": "Intervals pair on run, otherwise on (object, actor)",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/bundy.sh",
+     "has": "starts[obj] = (ts, proj, tags)",
+     "line": 36
+    },
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/board.sh",
+     "has": "starts[obj] = {\"ts\": ts, \"actor\": actor",
+     "line": 66
+    }
+   ],
+   "mutation": "An interval gets its identity when it begins, so overlapping intervals on one object stay separate.",
+   "why": "The shipped Bundy lens reports one 10-minute interval where 20 and 40 minutes of overlapping work happened. The trial reproduces this.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 4.4 Pairing"
+    }
+   ]
+  },
+  {
+   "id": "BUN-2",
+   "lineage": "Bundy",
+   "title": "Begin and end become the phase of a type",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "times-research/times-synthesis-one.md",
+     "has": "Willard Le Grand Bundy",
+     "line": 35
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N11. Type codes from ZAKO verbs",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 282
+    }
+   ],
+   "mutation": "Start and stop move out of the action word and into the 2-bit phase (begin, end), which applies to any verb.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### The type"
+    }
+   ]
+  },
+  {
+   "id": "BUN-3",
+   "lineage": "Bundy",
+   "title": "A punch is ATTEND, not START or FINISH",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x36 | ATTEND |",
+     "line": 151
+    },
+    {
+     "entry": "ZAK-6"
+    }
+   ],
+   "mutation": "Operator presence maps to ATTEND 0x36, begin and end. Completing a work item stays FINISH 0x23.",
+   "why": "With phase separated from the verb, ZAKO already has the verb for a punch clock.",
+   "supersedes": [
+    "ZAK-6"
+   ],
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "ATTEND 0x36, begin and end"
+    }
+   ]
+  },
+  {
+   "id": "BUN-4",
+   "lineage": "Bundy",
+   "title": "Each session declares its clock provenance and timezone",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "| 1 | `unix_ts` | integer, seconds |",
+     "line": 28
+    },
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/cooper.sh",
+     "has": "date = datetime.fromtimestamp(s['ts'], tz=timezone.utc)",
+     "line": 81
+    }
+   ],
+   "mutation": "The session declares its clock source (synced device, free-running device, GPS, server receipt or person), precision, last known offset at sync, and an IANA timezone. 'Unknown' is allowed and flagged. Receipt time serves as a second clock.",
+   "why": "The worker supplies the act; the clock supplies the time. Today an offline phone, a server and a person typing a time all produce the same integer.",
+   "cost": "0 per record",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N12.3 Clock provenance"
+    }
+   ]
+  },
+  {
+   "id": "BUN-5",
+   "lineage": "Bundy",
+   "title": "Times supplied by a person are claims",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "**Nothing may auto-close a punch silently.**",
+     "line": 180
+    }
+   ],
+   "mutation": "This generalises v1's `reconciled` marking from missing punch-outs to any time a person supplies.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N12.3 Clock provenance"
+    }
+   ]
+  },
+  {
+   "id": "FRI-1",
+   "lineage": "Frick",
+   "title": "A transition names the state it leaves",
+   "status": "superseded",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/frick.sh",
+     "has": "chain = ' → '.join",
+     "line": 71
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Frick: a transition names the state it leaves",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 391
+    }
+   ],
+   "mutation": "A transition on a shared object carries its from-state.",
+   "superseded_by": "BAL-1",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Frick: a transition names the state it leaves"
+    }
+   ]
+  },
+  {
+   "id": "FRI-2",
+   "lineage": "Frick",
+   "title": "The vocabulary defines each object kind's state machine",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/frick.sh",
+     "has": "chain = ' → '.join",
+     "line": 71
+    },
+    {
+     "repo": "ww-standard",
+     "path": "times-research/times-synthesis-one.md",
+     "has": "Frederick W. Frick",
+     "line": 31
+    }
+   ],
+   "mutation": "Allowed transitions are part of the vocabulary. Views check them using BAL-1 versions, and violations are reported, not rejected.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "The vocabulary defines the state machine"
+    }
+   ]
+  },
+  {
+   "id": "DEY-1",
+   "lineage": "Dey",
+   "title": "A continuous signal is a declared series",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "times-research/times-synthesis-one.md",
+     "has": "Alexander Dey's dial-based",
+     "line": 27
+    },
+    {
+     "repo": "workwarrior",
+     "path": "docs/dev-notes/stream-dey-approximation.md",
+     "has": "periodic Dey samples emitted by the browser",
+     "line": 11
+    }
+   ],
+   "mutation": "A series is declared with cadence and context once, then values follow. Missing samples are marked as gaps. The sample phase is the type-byte form of this.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N7. Run form"
+    }
+   ],
+   "note": "Template runs are trialled. The sample phase in the type byte is agreed, not built."
+  },
+  {
+   "id": "DEY-2",
+   "lineage": "Dey",
+   "title": "Derived values are recorded as estimates with their method",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "docs/dev-notes/stream-dey-approximation.md",
+     "has": "The real Dey signal uses 11 weighted",
+     "line": 30
+    }
+   ],
+   "mutation": "A derived index is recorded as an estimate, with method@version and the window it covers.",
+   "why": "Dey samples come from 11 weighted signals with exponential smoothing, and the method isn't recorded, so the values can't be reproduced.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Dey: say how a value is known"
+    }
+   ]
+  },
+  {
+   "id": "DEY-3",
+   "lineage": "Dey",
+   "title": "Views label their approximations",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/dey.sh",
+     "has": "# --- If no D samples",
+     "line": 47
+    },
+    {
+     "repo": "workwarrior",
+     "path": "docs/dev-notes/stream-dey-approximation.md",
+     "has": "The fallback is unconditional",
+     "line": 68
+    }
+   ],
+   "mutation": "A view that substitutes approximate values must say so in its output.",
+   "why": "The fallback output looks like the real signal.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Dey: say how a value is known"
+    }
+   ]
+  },
+  {
+   "id": "DEY-4",
+   "lineage": "Dey",
+   "title": "Behavioural signals about a person are restricted by verb or domain",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "**JOURNAL invariant:**",
+     "line": 137
+    }
+   ],
+   "mutation": "The restriction follows from the type, as ZAKO's JOURNAL requires RESTRICT_FORWARD, rather than from a flag someone must remember.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Dey: say how a value is known"
+    }
+   ]
+  },
+  {
+   "id": "GRA-1",
+   "lineage": "Grant",
+   "title": "A published metric enters the journal only as an attributed act",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/archive/plans/wwss-stream-service.md",
+     "has": "Grant      derived metrics",
+     "line": 70
+    },
+    {
+     "repo": "ww-standard",
+     "path": "times-research/babbage-lovelace-framework.md",
+     "has": "Grant(t) = Δ²f(t)",
+     "line": 328
+    },
+    {
+     "entry": "LOV-1"
+    }
+   ],
+   "mutation": "Metrics stay derived. One that is published for a period is recorded as an ESTIMATE or COMMIT with method and basis.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Grant**"
+    }
+   ]
+  },
+  {
+   "id": "FEL-1",
+   "lineage": "Felt",
+   "title": "Density means rates of conserved quantities",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/felt.sh",
+     "has": "activity density — event-count heat map",
+     "line": 3
+    },
+    {
+     "repo": "ww-standard",
+     "path": "times-research/babbage-lovelace-framework.md",
+     "has": "Felt(t)  = Δf(t)",
+     "line": 327
+    }
+   ],
+   "mutation": "The primary measures are power, utilisation and tokens per second. Event-count density is secondary and labelled with its recording depth. Neither is stored.",
+   "why": "Event counts depend on how deep recording goes, so they aren't comparable across systems.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N13.5 Felt as rates"
+    }
+   ]
+  },
+  {
+   "id": "COO-1",
+   "lineage": "Cooper",
+   "title": "The angle comes from local time",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "services/stream/lenses/cooper.sh",
+     "has": "date = datetime.fromtimestamp(s['ts'], tz=timezone.utc)",
+     "line": 81
+    },
+    {
+     "entry": "BUN-4"
+    }
+   ],
+   "mutation": "The radial angle uses the session timezone, not UTC.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Cooper**"
+    }
+   ],
+   "note": "Separately, the CLI Cooper's clock labels are reversed relative to its projection. That is a lens defect, not a lineage change."
+  },
+  {
+   "id": "BAB-1",
+   "lineage": "Babbage",
+   "title": "Records say what class of resource performed the act",
+   "status": "agreed",
+   "parents": [
+    {
+     "external": "Babbage, On the Economy of Machinery and Manufactures (1832): divide work by the skill each part needs"
+    },
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/actors-v1.md",
+     "has": "kind: agent",
+     "line": 71
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/reference/test_conformance.py",
+     "has": "model=\"resolved-model-id\"",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 70
+    }
+   ],
+   "mutation": "The class (model, machine class, labour grade) is declared per actor. It is recorded per act only when the class that served the act differed from the declared one, such as a model fallback or work moved to another machine.",
+   "why": "Allotment analysis asks whether a cheaper class would have done the work, which is impossible without the class. The scenario already carried `model` per token reading.",
+   "cost": "0 normally",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N13.2 Class of resource"
+    }
+   ]
+  },
+  {
+   "id": "BAB-2",
+   "lineage": "Babbage",
+   "title": "A series is encoded as a start value plus differences",
+   "status": "proposed",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "times-research/babbage-lovelace-framework.md",
+     "has": "### 5.1 Babbage's method",
+     "line": 301
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/reference/compact.py",
+     "has": "q = (base + raw) * 10^exp",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 20
+    }
+   ],
+   "mutation": "Compact forms may delta-code a series (base plus differences, or difference of differences). The canonical meaning is unchanged.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "Difference Engine"
+    }
+   ]
+  },
+  {
+   "id": "BAB-3",
+   "lineage": "Babbage",
+   "title": "Cumulative counters keep their reading and are delta-coded",
+   "status": "agreed",
+   "parents": [
+    {
+     "entry": "BAB-2"
+    },
+    {
+     "entry": "PAC-8"
+    }
+   ],
+   "mutation": "A cumulative counter (for example RAPL `energy_uj`) keeps its reading in canonical form, so a lost sample loses nothing. Compact forms store the change.",
+   "why": "This is the one place where restating a running value is worth it, and the encoding removes its cost.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Exception: cumulative counters (BAB-3).**"
+    }
+   ]
+  },
+  {
+   "id": "LOV-1",
+   "lineage": "Lovelace",
+   "title": "A lens result enters the journal only as an attributed act",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "times-research/babbage-lovelace-framework.md",
+     "has": "no power of originating anything",
+     "line": 450
+    },
+    {
+     "entry": "DEY-2"
+    }
+   ],
+   "mutation": "Estimates, allocations, published metrics and tallies are recorded by a named recorder as ESTIMATE or COMMIT, with method, version and basis.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Lovelace**: \"no power of originating\""
+    }
+   ]
+  },
+  {
+   "id": "LOV-2",
+   "lineage": "Lovelace",
+   "title": "Every verb declares its replay behaviour",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 4.2 Claim kinds",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 82
+    },
+    {
+     "repo": "ww-standard",
+     "path": "times-research/babbage-lovelace-framework.md",
+     "has": "### 6.1 The engine operates on any symbolic system",
+     "line": 375
+    }
+   ],
+   "mutation": "Each verb has a replay behaviour from a closed set: instant observation, interval boundary, state transition, quantity movement, supersession, period close, declaration, annotation. That is 3 bits in the vocabulary.",
+   "why": "It lets a new verb work in existing lenses unchanged.",
+   "cost": "0 per record",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N13.3 Replay behaviour"
+    }
+   ],
+   "note": "This replaces the Journal's seven claim kinds. 'system' dissolves into verbs (ZAK-5), and period close and declaration are added."
+  },
+  {
+   "id": "LOV-3",
+   "lineage": "Lovelace",
+   "title": "Supersession applies to every claim",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 8.3 Corrections",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 245
+    },
+    {
+     "repo": "ww-standard",
+     "path": "times-research/babbage-lovelace-framework.md",
+     "has": "successive approximation",
+     "line": 435
+    }
+   ],
+   "mutation": "Any claim can be superseded by one with the same behaviour, and only the latest version can be corrected. A superseded measurement keeps its original reading. Supplying a missing record is still reconciliation.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "N13.4 Supersession"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-1",
+   "lineage": "ZAKO",
+   "title": "The type is built from a ZAKO verb and a phase",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "| 2 | `OP` | single char |",
+     "line": 29
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "The task_code field is 6 bits",
+     "line": 45
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N11. Type codes from ZAKO verbs",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 282
+    }
+   ],
+   "mutation": "The type is the 6-bit task code plus a 2-bit phase, one byte in all. The domain is declared per run. The type implies the claim, payload, unit, epistemics and routing.",
+   "supersedes": [
+    "ZAK-12",
+    "NOT-7"
+   ],
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N11. Type codes from ZAKO verbs"
+    }
+   ],
+   "note": "Direction agreed. The trial code still uses the predecessor types.",
+   "why": "A universal verb in the type carries meaning that today rides in ctx on every record, and it makes acts comparable across people, machines and agents."
+  },
+  {
+   "id": "ZAK-2",
+   "lineage": "ZAKO",
+   "title": "Should phase be a separate 2-bit dimension?",
+   "status": "open",
+   "parents": [
+    {
+     "entry": "ZAK-1"
+    }
+   ],
+   "mutation": "Should phase be its own dimension, with ZAKO's paired verbs (START/FINISH, OPEN/CLOSE, SUSPEND/RESUME) kept as instant lifecycle claims? This is N11 decision 1.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Decisions still open"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-3",
+   "lineage": "ZAKO",
+   "title": "Should Workwarrior op families become profiles mapped onto verbs?",
+   "status": "open",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "## 2. Op codes",
+     "line": 68
+    },
+    {
+     "entry": "ZAK-1"
+    }
+   ],
+   "mutation": "B would become ATTEND, D OBSERVE or ESTIMATE, and A NOTE, with the lineage names kept as lens names. This is N11 decision 2.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Decisions still open"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-4",
+   "lineage": "ZAKO",
+   "title": "Which printable form should types take?",
+   "status": "open",
+   "parents": [
+    {
+     "entry": "ZAK-1"
+    }
+   ],
+   "mutation": "Block letter plus octal digit (exact), or mnemonic glyphs (readable, not a bijection). This is N11 decision 3.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Decisions still open"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-5",
+   "lineage": "ZAKO",
+   "title": "The journal's own acts are ZAKO verbs",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "## 6. Schema version — the version is an event",
+     "line": 187
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "| `system` | Journal bookkeeping |",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 94
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x15 | COMMIT |",
+     "line": 88
+    }
+   ],
+   "mutation": "A segment open is OPEN, a seal is COMMIT, a correction is AMEND and a receipt is ACK. There is no separate system namespace.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "The journal's own acts are verbs too"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-6",
+   "lineage": "ZAKO",
+   "title": "A punch has no ZAKO verb and goes in a distribution domain",
+   "status": "superseded",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "| `B.start`, `B.stop` | none |",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 311
+    }
+   ],
+   "mutation": "Presence intervals would be carried in a Workwarrior distribution domain.",
+   "superseded_by": "BUN-3",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 11.2 Extension path"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-7",
+   "lineage": "ZAKO",
+   "title": "Domain extensions refine a claim locally",
+   "status": "proposed",
+   "parents": [
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "### 8.1 Distribution-Defined Task Codes",
+     "line": 573
+    }
+   ],
+   "mutation": "Refinements that ZAKO doesn't define go in a Workwarrior custom domain (0xF0–0xFF), keeping the universal verb for comparison.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 11.2 Extension path"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-8",
+   "lineage": "ZAKO",
+   "title": "Map to ZAKO by number, never by name",
+   "status": "proposed",
+   "parents": [
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x05 | ASSIGN |",
+     "line": 58
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x20 | ASSIGN |",
+     "line": 113
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x0A | DELEGATE |",
+     "line": 70
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x37 | DELEGATE |",
+     "line": 152
+    }
+   ],
+   "mutation": "Vocabulary entries map by task-code number.",
+   "why": "The Codebook uses the names ASSIGN and DELEGATE twice each.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "Mapping MUST be by number"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-9",
+   "lineage": "ZAKO",
+   "title": "Wire Conventions call COMMIT 0x14; the Codebook gives 0x15",
+   "status": "divergence",
+   "parents": [
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Wire-Conventions-v1.md",
+     "has": "carries `task_code=COMMIT` (0x14)",
+     "line": 160
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Codebook-Standard-v1.md",
+     "has": "| 0x15 | COMMIT |",
+     "line": 88
+    }
+   ],
+   "mutation": "To settle with the ZAKO owners before claiming compatibility. In the Codebook, 0x14 is REMOVE.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 11.4 Known divergences"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-10",
+   "lineage": "ZAKO",
+   "title": "The C0 header counts 33 of the 32 codes",
+   "status": "divergence",
+   "parents": [
+    {
+     "repo": "mobileos",
+     "path": "zako-os-v1/system/components/libzako-c0/zako_c0.h",
+     "has": "29 unconditional + 4 conditional",
+     "line": 6
+    }
+   ],
+   "mutation": "The implementation treats SO, SI and ESC as conditional, plus DEL, which is outside C0.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "29 unconditional + 4 conditional"
+    }
+   ]
+  },
+  {
+   "id": "ZAK-11",
+   "lineage": "ZAKO",
+   "title": "Binary framing uses C0 controls for journal acts and runs",
+   "status": "proposed",
+   "parents": [
+    {
+     "repo": "mobileos",
+     "path": "zako-os-v1/system/components/libzako-c0/zako_c0.h",
+     "has": "ZC0_FS    0x1Cu",
+     "line": 66
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### C0 controls for the journal's own acts",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 166
+    }
+   ],
+   "mutation": "ACK, NAK, SOH, ETB, SYN, SUB, CAN, BEL and ENQ stand for journal acts. FS, GS, RS and US frame stream, run, row and field. The C0 Continuation flag means more rows follow.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### C0 controls for the journal's own acts"
+    }
+   ],
+   "note": "Proposed, not built."
+  },
+  {
+   "id": "ZAK-12",
+   "lineage": "ZAKO",
+   "title": "New op codes M, L and R",
+   "status": "superseded",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "## 2. Op codes",
+     "line": 68
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "| `M` | Measure |",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 102
+    }
+   ],
+   "mutation": "Measure, Ledger and Run would join the v1 op letters.",
+   "superseded_by": "ZAK-1",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 4.3 Op codes"
+    }
+   ],
+   "note": "The trial code still uses M, L and R."
+  },
+  {
+   "id": "JNL-1",
+   "lineage": "Journal",
+   "title": "The recorder comes from authentication; recording for another actor needs a grant",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "## 4. `actor` — the identity axis",
+     "line": 112
+    }
+   ],
+   "mutation": "`rec` is set by the journal. `actor` defaults to `rec`, and any other actor requires a grant.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 5.1 Recorder, actor, signer"
+    }
+   ]
+  },
+  {
+   "id": "JNL-2",
+   "lineage": "Journal",
+   "title": "Late records are accepted; contradictions are reported",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "**Nothing may auto-close a punch silently.**",
+     "line": 180
+    }
+   ],
+   "mutation": "Validation checks each record on its own terms. Historical contradictions are reported by views. Postings and corrections are the exception.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 5.3 Historical consistency is reported, not enforced"
+    }
+   ]
+  },
+  {
+   "id": "JNL-3",
+   "lineage": "Journal",
+   "title": "Producer sequence and a capture-gap view",
+   "status": "trialled",
+   "parents": [
+    {
+     "entry": "BUR-1"
+    }
+   ],
+   "mutation": "`ps` per recorder gives both retry identity and detection of records never received.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 6.7 Capture completeness"
+    }
+   ]
+  },
+  {
+   "id": "JNL-4",
+   "lineage": "Journal",
+   "title": "An atomic claim is one record; batches are transport",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Wire-Conventions-v1.md",
+     "has": "If a Bell would occur while a compound group is pending",
+     "line": 170
+    }
+   ],
+   "mutation": "A multi-leg transaction is a single record, so no pending compound-group state is needed.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 6.4 Batches are transport"
+    }
+   ]
+  },
+  {
+   "id": "JNL-5",
+   "lineage": "Journal",
+   "title": "A tariff is a price, not a conversion",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/units-v1.md",
+     "has": "A cross-dimension relation is a PRICE",
+     "line": 73
+    }
+   ],
+   "mutation": "Costs are priced by a view under a versioned tariff, one of units-v1's 'modes', and posted only when billed.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-JOURNAL-v0.1-DRAFT.md",
+     "has": "### 8.4 Charges and tariffs"
+    }
+   ]
+  },
+  {
+   "id": "NOT-1",
+   "lineage": "Notation",
+   "title": "Run form: state once, then values",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "### Reserved keys",
+     "line": 95
+    },
+    {
+     "repo": "mobileos",
+     "path": "ZAKO/CORE/ZAKO-Pictography-Standard-v1.md",
+     "has": "Category Identity is established by a Context Declaration Wave",
+     "line": 39
+    }
+   ],
+   "mutation": "A header states the shared context and the rows carry only what changes. It decodes to canonical lines byte for byte.",
+   "why": "Measured: 45% smaller on mixed records, 96.5% smaller on periodic ones.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N7. Run form"
+    }
+   ]
+  },
+  {
+   "id": "NOT-2",
+   "lineage": "Notation",
+   "title": "A separate quantity codebook",
+   "status": "superseded",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/reference/vocab/notation-0.1.json",
+     "has": "\"quantities\"",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 58
+    }
+   ],
+   "mutation": "notation-0.1.json defines its own quantity codes.",
+   "superseded_by": "NOT-3"
+  },
+  {
+   "id": "NOT-3",
+   "lineage": "Notation",
+   "title": "Quantity codes extend units-v1",
+   "status": "proposed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/units-v1.md",
+     "has": "| `dimension` | string | **yes**",
+     "line": 60
+    },
+    {
+     "entry": "NOT-2"
+    }
+   ],
+   "mutation": "The existing unit registry gains a `conserved` flag, a short code and its ZAKO quantity type. notation-0.1.json keeps no codebook of its own.",
+   "why": "units-v1 is already the shared vocabulary of quantity, and it keeps conversion apart from price. A second codebook would split that vocabulary.",
+   "supersedes": [
+    "NOT-2"
+   ]
+  },
+  {
+   "id": "NOT-4",
+   "lineage": "Notation",
+   "title": "Close records carry a use vector; wall time is the envelope",
+   "status": "trialled",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/punch-posting-v1.md",
+     "has": "time flows FROM their capacity INTO",
+     "line": 14
+    },
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N3. The atom: an act",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 62
+    }
+   ],
+   "mutation": "Conserved quantities add up and leave a stated remainder. An act's own wall time is reported as an envelope, with utilisation and parallelism ratios.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N3. The atom: an act"
+    }
+   ],
+   "note": "See PAC-11 for actor-hours under overlap."
+  },
+  {
+   "id": "NOT-5",
+   "lineage": "Notation",
+   "title": "Declared recording depth; below it, counts and totals",
+   "status": "trialled",
+   "parents": [
+    {
+     "entry": "NOT-4"
+    },
+    {
+     "repo": "ww-standard",
+     "path": "times-research/babbage-lovelace-framework.md",
+     "has": "Store[row][level][bin]",
+     "line": 83
+    }
+   ],
+   "mutation": "A stream declares the deepest level it records. Acts below that level appear only as `#` counts and in the parent's totals, and the remainder is explicit.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "## N4. The cascade and recording resolution"
+    }
+   ],
+   "note": "The framework's Level is a different axis (derivation tier). This is action depth."
+  },
+  {
+   "id": "NOT-6",
+   "lineage": "Notation",
+   "title": "ctx is a staging area for vocabulary",
+   "status": "agreed",
+   "parents": [
+    {
+     "repo": "workwarrior",
+     "path": "dev/schemas/stream-event-v1.md",
+     "has": "**The only extension point.**",
+     "line": 32
+    }
+   ],
+   "mutation": "Track context bytes per record, and promote recurring keys into codebooks, payloads or run declarations.",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Context as a staging area"
+    }
+   ]
+  },
+  {
+   "id": "NOT-7",
+   "lineage": "Notation",
+   "title": "OP letter plus glyph as the type",
+   "status": "superseded",
+   "parents": [
+    {
+     "repo": "ww-standard",
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "### Glyphs",
+     "commit": "f42999f756c5de5c6e0b644ba1490b0e4097cfc0",
+     "line": 147
+    }
+   ],
+   "mutation": "Types like `B(` and `M=`.",
+   "superseded_by": "ZAK-1",
+   "recorded": [
+    {
+     "path": "proposals/stream-journal/STREAM-NOTATION-v0.1-DRAFT.md",
+     "has": "**Partly superseded by N11.**"
+    }
+   ],
+   "note": "Glyphs survive as phase marks and display aliases."
+  }
+ ]
+}
