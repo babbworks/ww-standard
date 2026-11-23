@@ -1,21 +1,24 @@
 //! The log: the only authoritative store.
 //!
-//! A directory of append-only segment files (`seg-000001.log`, …) plus
-//! content-addressed blobs (`blobs/<sha256>`) for packs. Everything else in
-//! this struct is derived state, rebuilt by [`Log::open`].
+//! Append-only segments (`seg-000001.log`, …) plus content stored by hash
+//! (`blobs/<sha256>`) for packs, held in a [`Store`]: a directory for the
+//! CLI, memory for the browser. Everything else in this struct is derived
+//! state, rebuilt by [`Log::open_store`].
 //!
-//! Single writer per directory: one process appends at a time.
+//! Single writer per store: one process appends at a time.
 
 mod pack;
 mod register;
+mod store;
 
 pub use pack::{Pack, PackError};
 pub use register::{Decl, Register};
+pub use store::{DirStore, MemStore, Store};
 
 use std::collections::{BTreeMap, HashMap};
-use std::fs::{self, File, OpenOptions};
-use std::io::{self, Write};
-use std::path::{Path, PathBuf};
+use std::fs;
+use std::io;
+use std::path::Path;
 
 use stream_kernel::json::Object;
 use stream_kernel::{
@@ -97,7 +100,7 @@ pub struct Genesis<'a> {
 }
 
 pub struct Log {
-    dir: PathBuf,
+    store: Box<dyn Store>,
     log_id: String,
     roots: Vec<String>,
     entries: Vec<(Address, Entry)>,
@@ -110,10 +113,6 @@ pub struct Log {
     seq: u32,
     sealed: bool,
     prev_chain: String,
-}
-
-fn seg_path(dir: &Path, n: u32) -> PathBuf {
-    dir.join(format!("seg-{n:06}.log"))
 }
 
 fn retry_id(e: &Entry) -> Option<String> {
@@ -133,10 +132,20 @@ fn glob(pattern: &str, s: &str) -> bool {
 impl Log {
     // ------------------------------------------------------------ lifecycle
 
-    /// Create a log: preamble, then genesis.
+    /// Create a log in a directory: preamble, then genesis.
     pub fn init(dir: &Path, g: Genesis) -> Result<Log, LogError> {
         fs::create_dir_all(dir.join("blobs"))?;
-        if seg_path(dir, 1).exists() {
+        Log::init_store(Box::new(DirStore::new(dir)), g)
+    }
+
+    /// Open a log in a directory.
+    pub fn open(dir: &Path) -> Result<Log, LogError> {
+        Log::open_store(Box::new(DirStore::new(dir)))
+    }
+
+    /// Create a log in any store: preamble, then genesis.
+    pub fn init_store(mut store: Box<dyn Store>, g: Genesis) -> Result<Log, LogError> {
+        if store.segment(1)?.is_some() {
             return Err(LogError::Exists);
         }
         let mut p = Object::new();
@@ -148,17 +157,14 @@ impl Log {
         p.insert("tz".into(), Value::str(g.tz));
         let genesis = Entry::new(g.time, Type::new(Phase::Instant, Verb::OPEN), &format!("log:{}", g.log), p);
         genesis.check().map_err(|err| LogError::Kernel { at: "genesis".into(), err })?;
-        let mut f = File::create(seg_path(dir, 1))?;
-        writeln!(f, "{}", preamble())?;
-        writeln!(f, "{}", genesis.to_line())?;
-        f.sync_all()?;
-        Log::open(dir)
+        store.append(1, format!("{}\n{}\n", preamble(), genesis.to_line()).as_bytes())?;
+        Log::open_store(store)
     }
 
-    /// Open a log and rebuild all derived state from its segments.
-    pub fn open(dir: &Path) -> Result<Log, LogError> {
+    /// Open a log in any store and rebuild all derived state from its segments.
+    pub fn open_store(store: Box<dyn Store>) -> Result<Log, LogError> {
         let mut log = Log {
-            dir: dir.to_path_buf(),
+            store,
             log_id: String::new(),
             roots: vec![],
             entries: vec![],
@@ -173,8 +179,8 @@ impl Log {
             prev_chain: GENESIS_CHAIN.to_string(),
         };
         let mut n = 1;
-        while seg_path(dir, n).exists() {
-            let text = fs::read_to_string(seg_path(dir, n))?;
+        while let Some(bytes) = log.store.segment(n)? {
+            let text = String::from_utf8(bytes).map_err(|_| LogError::Corrupt(format!("seg {n} is not UTF-8")))?;
             log.seg = n;
             log.seq = 0;
             log.sealed = false;
@@ -201,8 +207,13 @@ impl Log {
 
     // ------------------------------------------------------------- reading
 
-    pub fn dir(&self) -> &Path {
-        &self.dir
+    /// Where the log is stored, for messages.
+    pub fn location(&self) -> String {
+        self.store.location()
+    }
+    /// The store holding the log's bytes.
+    pub fn store(&self) -> &dyn Store {
+        self.store.as_ref()
     }
     pub fn id(&self) -> &str {
         &self.log_id
@@ -313,10 +324,7 @@ impl Log {
             Ok(p) => p,
             Err(e) => return Ok(Receipt::Rejected { at: None, reason: e.to_string() }),
         };
-        let blob = self.dir.join("blobs").join(&pack.hash);
-        if !blob.exists() {
-            fs::write(&blob, pack_bytes)?;
-        }
+        self.store.put_blob(&pack.hash, pack_bytes)?;
         let mut p = extra;
         p.insert("name".into(), Value::str(&pack.name));
         p.insert("pack".into(), Value::Str(format!("sha256:{}", pack.hash)));
@@ -328,7 +336,7 @@ impl Log {
         if self.sealed {
             return Err(LogError::Corrupt("no open segment to seal".into()));
         }
-        let body = fs::read(seg_path(&self.dir, self.seg))?;
+        let body = self.store.segment(self.seg)?.unwrap_or_default();
         let body_hash = sha256_hex(&body);
         let ch = chain(&self.prev_chain, &body_hash);
         let mut p = Object::new();
@@ -346,9 +354,10 @@ impl Log {
         let mut problems = vec![];
         let mut prev = GENESIS_CHAIN.to_string();
         let mut n = 1;
-        while seg_path(&self.dir, n).exists() {
-            let bytes = match fs::read(seg_path(&self.dir, n)) {
-                Ok(b) => b,
+        loop {
+            let bytes = match self.store.segment(n) {
+                Ok(Some(b)) => b,
+                Ok(None) => break,
                 Err(e) => {
                     problems.push(format!("seg {n}: {e}"));
                     break;
@@ -410,10 +419,9 @@ impl Log {
 
     fn append_raw(&mut self, e: Entry) -> Result<Address, LogError> {
         e.check().map_err(|err| LogError::Kernel { at: "append".into(), err })?;
-        let mut f = OpenOptions::new().create(true).append(true).open(seg_path(&self.dir, self.seg))?;
-        f.write_all(e.to_line().as_bytes())?;
-        f.write_all(b"\n")?;
-        f.sync_data()?;
+        let mut line = e.to_line();
+        line.push('\n');
+        self.store.append(self.seg, line.as_bytes())?;
         self.seq += 1;
         let addr = Address { seg: self.seg, seq: self.seq };
         self.apply(addr, e)?;
@@ -446,8 +454,8 @@ impl Log {
             (Verb::CREATE, _) => self.register.declare(&e, addr, None),
             (Verb::BIND, _) => {
                 if let Some(h) = e.get_str("pack").and_then(|p| p.strip_prefix("sha256:")) {
-                    let bytes = fs::read(self.dir.join("blobs").join(h))
-                        .map_err(|_| LogError::Corrupt(format!("{addr}: pack blob {h} is missing")))?;
+                    let bytes = self.store.blob(h)?
+                        .ok_or_else(|| LogError::Corrupt(format!("{addr}: pack blob {h} is missing")))?;
                     let pack = Pack::parse(&bytes).map_err(|e| LogError::Corrupt(format!("{addr}: {e}")))?;
                     for d in &pack.decls {
                         self.register.declare(d, addr, Some(&pack.name));
@@ -490,6 +498,19 @@ impl Log {
 
     fn admin(&self, who: &str) -> bool {
         self.is_root(who) || self.has_grant(who, "admin", None)
+    }
+
+    /// Would `rec` be allowed to submit `e` now? A dry run of the checks
+    /// [`Log::submit`] makes, without writing anything.
+    pub fn check_entry(&self, rec: &str, e: &Entry) -> Result<(), String> {
+        if let Some(r) = e.rec() {
+            if r != rec {
+                return Err(format!("rec {r:?} is not the submitter {rec:?}"));
+            }
+        }
+        let mut e = e.clone();
+        e.payload.insert("rec".into(), Value::str(rec));
+        self.validate(rec, &e)
     }
 
     /// Everything a submitted entry must satisfy beyond the kernel grammar.
@@ -564,7 +585,7 @@ impl Log {
             }
             Verb::BIND => {
                 if let Some(h) = e.get_str("pack").and_then(|p| p.strip_prefix("sha256:")) {
-                    let bytes = fs::read(self.dir.join("blobs").join(h)).map_err(|_| format!("pack {h} is not stored"))?;
+                    let bytes = self.store.blob(h).ok().flatten().ok_or_else(|| format!("pack {h} is not stored"))?;
                     let pack = Pack::parse(&bytes).map_err(|e| e.to_string())?;
                     for d in &pack.decls {
                         let kind = d.get_str("kind").unwrap_or("");

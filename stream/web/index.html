@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STREAM · Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="app.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<div class="shell">
+  <nav class="side" aria-label="Views">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 5h16M3 11h16M3 17h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg>
+      <span>STREAM</span>
+    </div>
+    <a href="#top" class="nav current" aria-current="page">Now</a>
+    <a href="#act-h" class="nav">Act</a>
+    <span class="nav later" title="Not built yet">Timeline</span>
+    <span class="nav later" title="Not built yet">Books</span>
+    <span class="nav later" title="Not built yet">Things</span>
+    <span class="nav later" title="Not built yet">Attention</span>
+    <span class="nav later" title="Not built yet">This app</span>
+    <div class="who">
+      <label for="as">Recording as</label>
+      <select id="as"></select>
+      <p id="as-id" class="meta mono"></p>
+      <p id="as-note" class="meta"></p>
+      <p class="meta">Profile R · agent operations</p>
+    </div>
+    <div class="foot meta">
+      <div>Kernel <span id="kernel" class="mono"></span></div>
+      <div id="saved">Not saved yet</div>
+      <button class="link" id="reset">New log</button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <p id="fatal" class="fatal" hidden role="alert"></p>
+    <header class="top">
+      <div>
+        <div class="eyebrow" id="log-id">log</div>
+        <h1>Now</h1>
+      </div>
+      <div class="pills">
+        <span class="pill">As of <strong id="asof"></strong></span>
+        <span class="pill">Clock: browser</span>
+        <span class="pill" id="count"></span>
+      </div>
+    </header>
+
+    <section class="card seal-bar" aria-label="Segment">
+      <span id="seg" class="meta"></span>
+      <div class="seal-actions">
+        <button class="btn" id="seal">Seal segment</button>
+        <button class="btn" id="verify">Verify</button>
+      </div>
+      <p id="verify-out" role="status"></p>
+    </section>
+
+    <section class="card" aria-labelledby="running-h">
+      <div class="card-head">
+        <h2 id="running-h">Running</h2>
+        <div class="sim" role="group" aria-label="Simulated agent">
+          <span class="meta">Simulated agent</span>
+          <button class="btn" id="play" aria-pressed="false">Play</button>
+          <button class="btn" id="step">Step</button>
+          <button class="btn" id="sample">Sample</button>
+          <label class="meta" for="speed">Speed</label>
+          <select id="speed"><option value="1">1×</option><option value="4">4×</option><option value="10">10×</option></select>
+        </div>
+      </div>
+      <p class="meta"><span id="sim-status"></span> · Every begun act without an end. Pairs by run, never by object alone.</p>
+      <div id="running"></div>
+    </section>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="act-h">
+        <h2 id="act-h">Act</h2>
+        <p class="meta">8 of 64 verbs. The phase decides the control: a begin opens an interval, an instant is one entry. Each form shows the entry and whether the log will accept it.</p>
+        <div id="acts" class="acts"></div>
+      </section>
+
+      <section class="card" aria-labelledby="live-h">
+        <h2 id="live-h">Live · MEASURE samples</h2>
+        <p class="meta">meter:pdu-4 · every 8 s · scope host:build-01</p>
+        <svg id="spark" viewBox="0 0 320 120" width="100%" role="img" aria-label="Energy per sample"></svg>
+        <div id="live-stats" class="stats"></div>
+      </section>
+
+      <section class="card" aria-labelledby="att-h">
+        <h2 id="att-h">Attention</h2>
+        <p class="meta">What history contradicts, or what never arrived. Nothing is fixed silently.</p>
+        <div id="attention"></div>
+      </section>
+
+      <section class="card" aria-labelledby="closed-h">
+        <h2 id="closed-h">Recently closed</h2>
+        <p class="meta">Ends with their use, each quantity moved from the pool.</p>
+        <div id="closed"></div>
+      </section>
+
+      <section class="card" aria-labelledby="rc-h">
+        <h2 id="rc-h">Receipts</h2>
+        <p class="meta">Answers to this page's submissions. Retry sends exactly the same entry.</p>
+        <div id="receipts"></div>
+      </section>
+
+      <section class="card wide" aria-labelledby="log-h">
+        <h2 id="log-h">The log</h2>
+        <p class="meta">The newest entries, exactly as stored. Everything above is computed from these lines.</p>
+        <ol id="recent" class="lines"></ol>
+      </section>
+    </div>
+  </main>
+</div>
+<dialog id="form" aria-label="Record an act"></dialog>
+</body>
+</html>

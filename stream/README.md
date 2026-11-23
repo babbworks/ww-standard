@@ -24,10 +24,11 @@ implementation must judge the same way.
 | Crate | What it does |
 | --- | --- |
 | `stream-kernel` | Entry grammar, canonical JSON, exact decimals, the 64 verbs and the phase (one type byte), addresses, hashing, seals. `no_std`: builds for servers, `wasm32-unknown-unknown` and `thumbv7em-none-eabihf`. Depends only on `sha2`. |
-| `stream-log` | Append-only segments, receipts, retries by `(rec, ps)`, journaled rejections, authority from genesis roots and grants, the Register, pack adoption, seals, verification, capture gaps. |
+| `stream-log` | Append-only segments in any `Store` (a directory, or memory), receipts, retries by `(rec, ps)`, journaled rejections, authority from genesis roots and grants, the Register, pack adoption, seals, verification, capture gaps. |
 | `stream-books` | Built-in views as pure folds: balances from explicit legs and implied `use`, Close by hash, span pairing, attribution with remainders, utilisation and parallelism. |
 | `stream-codec` | Run form: shared context once, then deltas. Decodes byte for byte to canonical lines. |
 | `stream-cli` | The `stream` command. |
+| `stream-wasm` | The log's rules for the browser: the same `Log` over memory, behind one JSON entry point. Used by [`web/`](web/). |
 
 ## Quick start
 
@@ -77,8 +78,11 @@ from the authenticated submitter.
 
 ## Status
 
-- **Built and tested:** kernel, log, Register, packs, Books, run form and CLI.
-  There are 18 tests, including the conformance cases. Clippy is clean.
+- **Built and tested:** kernel, log, Register, packs, Books, run form, CLI,
+  and the browser engine. There are 21 tests, including the conformance
+  cases. Clippy is clean.
+- **In the browser:** [`web/`](web/) has the Now and Act screens working
+  locally, with the simulated agent. See its README.
 - **Next:**
   1. A WebAssembly view host (wasmtime, no imports), with `stream-books`
      moving onto it.

@@ -105,7 +105,7 @@ fn run(args: Args) -> Result<ExitCode, String> {
                 time: args.time()?,
             })
             .map_err(err)?;
-            println!("created log {} at {}", log.id(), log.dir().display());
+            println!("created log {} at {}", log.id(), log.location());
         }
         Some("append") => {
             let mut log = Log::open(&args.dir()?).map_err(err)?;
