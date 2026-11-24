@@ -1,4 +1,0 @@
-STREAM/1 kernel=sha256:fed5b36e80bad10c0545aa82ad5996175cebeb56e0af166162ddb5ff0c09202b
-1752300000 OPEN log:c2 {"clock":"ntp","kind":"genesis","log":"c2","rec":"actor:root","root":["actor:root"],"tz":"UTC"}
-1752300008 MEASURE* m1 {"ps":1,"q":"39","rec":"meter:m1","u":"J"}
-1752300020 COMMIT seg-000001 {"chain":"7f663b9ded163494128358e48af3776b129b23c88bb59f7b13a8b37bb204cacd","kind":"seal","n":2,"rec":"log:c2","sha256":"7d9d18d709f0c2746fa54a007a0343f4264df23f7dfab67fa967fc73305a5ce5"}

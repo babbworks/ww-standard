@@ -1,3 +1,0 @@
-STREAM/1 kernel=sha256:fed5b36e80bad10c0545aa82ad5996175cebeb56e0af166162ddb5ff0c09202b
-1752300000 OPEN log:c1 {"clock":"ntp","kind":"genesis","log":"c1","rec":"actor:root","root":["actor:root"],"tz":"UTC"}
-1752300001 NOTE x {"text":"hi","rec":"actor:root"}

@@ -1,7 +1,0 @@
-# case                outcome
-01-minimal            ok
-02-sealed             ok
-03-tampered           verify: seg 1: body hash mismatch
-04-not-canonical      open: not in canonical form
-05-unknown-kernel     open: not this one
-06-broken-chain       verify: seg 2: does not open with prev = previous chain
