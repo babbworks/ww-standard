@@ -71,3 +71,7 @@ Per-component documentation for every library, service, and subsystem.
 ---
 
 **Tip**: Use the **sidebar** on the left for the complete navigation. Start with **[Why Work Warrior](whyworkwarrior.md)** for the vision.
+
+## WorkWarrior and WebWarrior compatibility
+
+[Master comparison and evidence](reference/compatibility/README.md)

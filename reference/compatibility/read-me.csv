@@ -1,0 +1,24 @@
+Topic,Guidance or source,Source URL
+Purpose,"Use stable IDs for capability decisions and link issues, PRs and validation evidence in Comparison.",
+Baseline date,2026-11-24,
+Baseline scope,Committed WorkWarrior default branch and root WebWarrior app. WorkWarrior local dev edits and WebWarrior nested app copies are outside implementation comparison.,
+Programming contract,"WW Standard covers topology, service behavior, native dependencies, Stream and ledger accounting.",https://github.com/babbworks/ww-standard/blob/96cb9f84e70ef9d98a86bad6f2d57d95892dc253/WORKWARRIOR-STANDARD.md
+Verification,"Static documentation and targeted code review. No feature parity, migration round trip, browser integration, or deployment claim has been runtime-certified.",
+Comparable,The same core user workflow is represented. Use the alignment check to validate behavior and data.,
+Partial,"Shared capability with a material behavior, coverage or interchange difference.",
+No counterpart found,WorkWarrior capability with no matching WebWarrior implementation identified in the reviewed sources.,
+Different approach,Both products address the goal with different operational contracts.,
+WebWarrior-specific,Capability identified in WebWarrior with no matching entry in the pinned WorkWarrior baseline.,
+Needs review,"Shipped status, scope or evidence needs confirmation.",
+WorkWarrior,25f67edc2915e66e59c3dbf4462c9759ec901d42 · 861 visible documents indexed,https://github.com/babbworks/workwarrior/tree/25f67edc2915e66e59c3dbf4462c9759ec901d42
+WW Standard,96cb9f84e70ef9d98a86bad6f2d57d95892dc253 · 291 indexed documents,https://github.com/babbworks/ww-standard/tree/96cb9f84e70ef9d98a86bad6f2d57d95892dc253
+WebWarrior,8b66734369db906a886283c4af4805c0f7044976 · 9 indexed documents,https://github.com/babbworks/WebWarrior/tree/8b66734369db906a886283c4af4805c0f7044976
+Rust Stream,9477d5b702ee761309ebed73b185836602fdbdf9 · 3 indexed documents,https://github.com/babbworks/stream/tree/9477d5b702ee761309ebed73b185836602fdbdf9
+Rust Stream remote,GitHub default branch was fe2b564 on review date. The documentation index uses the local handover snapshot listed above.,https://github.com/babbworks/stream/commit/fe2b56459cf5f0688e85986a0e812e9b09431202
+Workwarrior-Dot-Org,Companion product site. Organization scan found site documentation and posts. WorkWarrior runtime and WW Standard are the implementation and documentation baselines.,https://github.com/babbworks/Workwarrior-Dot-Org
+Works-Standard,Companion protocol for the Works bridge. Bridge behavior is referenced to the WebWarrior listener.,https://github.com/babbworks/Works-Standard
+Other org candidates,"warrior-standard, warrior and picowarrior had README-only top-level listings. No additional runtime baseline adopted.",https://github.com/babbworks
+Evidence scope,Static review. The visible documentation index covers product and engineering sources. Immutable source URLs are included beside paths.,
+Refresh,"Edit the CSVs, keep existing capability IDs and append IDs for new rows. Run mach sheets build then mach sheets lint on this directory.",
+Alignment status,"Unreviewed, In scope, In progress, Ready to verify, Verified, Deferred, Out of scope",
+Baseline row count,66,

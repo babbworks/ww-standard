@@ -1,0 +1,667 @@
+Product,Kind,Method or filename,Pinned implementation path,Related comparison IDs,Implementation URL
+WorkWarrior,CLI dispatch,ww profile|p,bin/ww,"WW-001, WW-002, WW-010, WW-011",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww profiles,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww service|s,bin/ww,WW-056,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww services,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww group,bin/ww,WW-004,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww groups,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww model,bin/ww,WW-045,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww models,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww journal,bin/ww,WW-003,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww journals,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww ledger,bin/ww,"WW-022, WW-024, WW-025, WW-026",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww ledgers,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww ctrl,bin/ww,WW-045,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww config,bin/ww,WW-064,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww extensions,bin/ww,WW-057,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww timew,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww find,bin/ww,WW-041,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww tui,bin/ww,WW-057,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww gun,bin/ww,WW-013,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww sword,bin/ww,WW-014,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww remove,bin/ww,WW-060,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww compile-heuristics,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww next,bin/ww,WW-012,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww schedule,bin/ww,WW-015,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww routines,bin/ww,WW-016,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww mcp,bin/ww,WW-057,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww browser,bin/ww,WW-047,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww web,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww issues,bin/ww,"WW-053, WW-054",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww custom,bin/ww,WW-005,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww q|questions,bin/ww,WW-039,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww task|tasks,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww time|times,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww jrnl,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww hledger,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww list,bin/ww,WW-035,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww lists,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww community,bin/ww,WW-037,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww shortcut,bin/ww,WW-006,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww export|e,bin/ww,WW-051,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww x,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww warrior|w,bin/ww,WW-038,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww server|servers,bin/ww,WW-055,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww stream,bin/ww,"WW-028, WW-029, WW-030, WW-031",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww viz,bin/ww,WW-034,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww projects|project,bin/ww,WW-036,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww network,bin/ww,WW-059,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww saves,bin/ww,WW-042,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww resource|res,bin/ww,WW-061,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww deps|d,bin/ww,WW-058,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww unit|units,bin/ww,WW-027,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww instance,bin/ww,WW-058,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww use,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww unlock,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww security,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww enable-multi,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww disable-multi,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww pin,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww unpin,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww sync,bin/ww,WW-064,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww agent|agent-init,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww upgrade,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww downgrade,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,CLI dispatch,ww version|--version|-v,bin/ww,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,Script or module,ww-init.sh,bin/ww-init.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww-init.sh
+WorkWarrior,Script or module,actor-registry.sh,lib/actor-registry.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/actor-registry.sh
+WorkWarrior,Script or module,annotation-sync.sh,lib/annotation-sync.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/annotation-sync.sh
+WorkWarrior,Script or module,bugwarrior-integration.sh,lib/bugwarrior-integration.sh,WW-054,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/bugwarrior-integration.sh
+WorkWarrior,Script or module,community-db.sh,lib/community-db.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/community-db.sh
+WorkWarrior,Script or module,config-loader.sh,lib/config-loader.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/config-loader.sh
+WorkWarrior,Script or module,config-utils.sh,lib/config-utils.sh,WW-064,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/config-utils.sh
+WorkWarrior,Script or module,conflict-resolver.sh,lib/conflict-resolver.sh,WW-053,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/conflict-resolver.sh
+WorkWarrior,Script or module,core-utils.sh,lib/core-utils.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/core-utils.sh
+WorkWarrior,Script or module,delete-utils.sh,lib/delete-utils.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/delete-utils.sh
+WorkWarrior,Script or module,dependency-installer.sh,lib/dependency-installer.sh,WW-058,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/dependency-installer.sh
+WorkWarrior,Script or module,deps-manifest.sh,lib/deps-manifest.sh,WW-058,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/deps-manifest.sh
+WorkWarrior,Script or module,deps-state.sh,lib/deps-state.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/deps-state.sh
+WorkWarrior,Script or module,error-handler.sh,lib/error-handler.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/error-handler.sh
+WorkWarrior,Script or module,export-utils.sh,lib/export-utils.sh,WW-051,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/export-utils.sh
+WorkWarrior,Script or module,field-mapper.sh,lib/field-mapper.sh,WW-053,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/field-mapper.sh
+WorkWarrior,Script or module,github-api.sh,lib/github-api.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/github-api.sh
+WorkWarrior,Script or module,github-sync-state.sh,lib/github-sync-state.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/github-sync-state.sh
+WorkWarrior,Script or module,hledger-version.sh,lib/hledger-version.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/hledger-version.sh
+WorkWarrior,Script or module,installer-utils.sh,lib/installer-utils.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/installer-utils.sh
+WorkWarrior,Script or module,instance-registry.sh,lib/instance-registry.sh,WW-058,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/instance-registry.sh
+WorkWarrior,Script or module,journal-scanner.sh,lib/journal-scanner.sh,WW-020,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/journal-scanner.sh
+WorkWarrior,Script or module,journal_scanner.py,lib/journal_scanner.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/journal_scanner.py
+WorkWarrior,Script or module,ledger-config.sh,lib/ledger-config.sh,WW-022,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/ledger-config.sh
+WorkWarrior,Script or module,ledger-dispatch.sh,lib/ledger-dispatch.sh,"WW-003, WW-022, WW-023",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/ledger-dispatch.sh
+WorkWarrior,Script or module,logging.sh,lib/logging.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/logging.sh
+WorkWarrior,Script or module,profile-manager.sh,lib/profile-manager.sh,"WW-001, WW-050",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/profile-manager.sh
+WorkWarrior,Script or module,profile-stats.sh,lib/profile-stats.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/profile-stats.sh
+WorkWarrior,Script or module,security-backends.sh,lib/security-backends.sh,WW-059,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/security-backends.sh
+WorkWarrior,Script or module,shell-integration.sh,lib/shell-integration.sh,"WW-003, WW-006",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/shell-integration.sh
+WorkWarrior,Script or module,shortcode-registry.sh,lib/shortcode-registry.sh,WW-006,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/shortcode-registry.sh
+WorkWarrior,Script or module,sync-bidirectional.sh,lib/sync-bidirectional.sh,WW-053,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/sync-bidirectional.sh
+WorkWarrior,Script or module,sync-detector.sh,lib/sync-detector.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/sync-detector.sh
+WorkWarrior,Script or module,sync-permissions.sh,lib/sync-permissions.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/sync-permissions.sh
+WorkWarrior,Script or module,sync-pull.sh,lib/sync-pull.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/sync-pull.sh
+WorkWarrior,Script or module,sync-push.sh,lib/sync-push.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/sync-push.sh
+WorkWarrior,Script or module,taskwarrior-api.sh,lib/taskwarrior-api.sh,"WW-007, WW-008, WW-009",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/taskwarrior-api.sh
+WorkWarrior,Script or module,unit-registry.sh,lib/unit-registry.sh,WW-027,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/unit-registry.sh
+WorkWarrior,Script or module,warrior-profile-registry.sh,lib/warrior-profile-registry.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/lib/warrior-profile-registry.sh
+WorkWarrior,Script or module,build-ledger-inventory.sh,scripts/build-ledger-inventory.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/build-ledger-inventory.sh
+WorkWarrior,Script or module,build-uda-inventory.sh,scripts/build-uda-inventory.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/build-uda-inventory.sh
+WorkWarrior,Script or module,clean-bashrc.sh,scripts/clean-bashrc.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/clean-bashrc.sh
+WorkWarrior,Script or module,compile-heuristics.py,scripts/compile-heuristics.py,WW-044,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/compile-heuristics.py
+WorkWarrior,Script or module,create-ww-profile.sh,scripts/create-ww-profile.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/create-ww-profile.sh
+WorkWarrior,Script or module,manage-profiles.sh,scripts/manage-profiles.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/manage-profiles.sh
+WorkWarrior,Script or module,scan-taskwarrior-extensions.py,scripts/scan-taskwarrior-extensions.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/scan-taskwarrior-extensions.py
+WorkWarrior,Script or module,ww-floor-popup.sh,scripts/ww-floor-popup.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-floor-popup.sh
+WorkWarrior,Script or module,board.sh,scripts/ww-popup-screens/board.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/board.sh
+WorkWarrior,Script or module,clock.sh,scripts/ww-popup-screens/clock.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/clock.sh
+WorkWarrior,Script or module,community.sh,scripts/ww-popup-screens/community.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/community.sh
+WorkWarrior,Script or module,home.sh,scripts/ww-popup-screens/home.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/home.sh
+WorkWarrior,Script or module,journal.sh,scripts/ww-popup-screens/journal.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/journal.sh
+WorkWarrior,Script or module,ledger.sh,scripts/ww-popup-screens/ledger.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/ledger.sh
+WorkWarrior,Script or module,lists.sh,scripts/ww-popup-screens/lists.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/lists.sh
+WorkWarrior,Script or module,profile.sh,scripts/ww-popup-screens/profile.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/profile.sh
+WorkWarrior,Script or module,render-board.sh,scripts/ww-popup-screens/render-board.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-board.sh
+WorkWarrior,Script or module,render-clock.sh,scripts/ww-popup-screens/render-clock.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-clock.sh
+WorkWarrior,Script or module,render-community.sh,scripts/ww-popup-screens/render-community.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-community.sh
+WorkWarrior,Script or module,render-home.sh,scripts/ww-popup-screens/render-home.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-home.sh
+WorkWarrior,Script or module,render-journal.sh,scripts/ww-popup-screens/render-journal.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-journal.sh
+WorkWarrior,Script or module,render-ledger.sh,scripts/ww-popup-screens/render-ledger.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-ledger.sh
+WorkWarrior,Script or module,render-lists.sh,scripts/ww-popup-screens/render-lists.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-lists.sh
+WorkWarrior,Script or module,render-profile.sh,scripts/ww-popup-screens/render-profile.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-profile.sh
+WorkWarrior,Script or module,render-reports.sh,scripts/ww-popup-screens/render-reports.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-reports.sh
+WorkWarrior,Script or module,render-search.sh,scripts/ww-popup-screens/render-search.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-search.sh
+WorkWarrior,Script or module,render-sync.sh,scripts/ww-popup-screens/render-sync.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-sync.sh
+WorkWarrior,Script or module,render-system.sh,scripts/ww-popup-screens/render-system.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-system.sh
+WorkWarrior,Script or module,render-tasks.sh,scripts/ww-popup-screens/render-tasks.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/render-tasks.sh
+WorkWarrior,Script or module,reports.sh,scripts/ww-popup-screens/reports.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/reports.sh
+WorkWarrior,Script or module,search.sh,scripts/ww-popup-screens/search.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/search.sh
+WorkWarrior,Script or module,shared-v2.sh,scripts/ww-popup-screens/shared-v2.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/shared-v2.sh
+WorkWarrior,Script or module,shared.sh,scripts/ww-popup-screens/shared.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/shared.sh
+WorkWarrior,Script or module,sync.sh,scripts/ww-popup-screens/sync.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/sync.sh
+WorkWarrior,Script or module,system.sh,scripts/ww-popup-screens/system.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/system.sh
+WorkWarrior,Script or module,tasks.sh,scripts/ww-popup-screens/tasks.sh,WW-063,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-screens/tasks.sh
+WorkWarrior,Script or module,ww-popup-script.sh,scripts/ww-popup-script.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup-script.sh
+WorkWarrior,Script or module,ww-popup.sh,scripts/ww-popup.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/scripts/ww-popup.sh
+WorkWarrior,Script or module,browser.sh,services/browser/browser.sh,"WW-047, WW-048",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/browser.sh
+WorkWarrior,Script or module,server.py,services/browser/server.py,"WW-007, WW-008, WW-009, WW-017, WW-018, WW-020, WW-021, WW-022, WW-023, WW-032, WW-036, WW-043, WW-044, WW-045, WW-047, WW-048, WW-052",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Script or module,app.js,services/browser/static/app.js,"WW-012, WW-021, WW-042, WW-047",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/static/app.js
+WorkWarrior,Script or module,feynman.js,services/browser/static/themes/feynman.js,WW-049,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/static/themes/feynman.js
+WorkWarrior,Script or module,twain.js,services/browser/static/themes/twain.js,WW-049,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/static/themes/twain.js
+WorkWarrior,Script or module,test_heuristic_compound.py,services/browser/test_heuristic_compound.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/test_heuristic_compound.py
+WorkWarrior,Script or module,community.sh,services/community/community.sh,WW-037,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/community/community.sh
+WorkWarrior,Script or module,community_store.py,services/community/community_store.py,WW-037,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/community/community_store.py
+WorkWarrior,Script or module,ctrl.sh,services/ctrl/ctrl.sh,WW-045,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/ctrl/ctrl.sh
+WorkWarrior,Script or module,configure-issues.sh,services/custom/configure-issues.sh,"WW-005, WW-054",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/custom/configure-issues.sh
+WorkWarrior,Script or module,configure-journals.sh,services/custom/configure-journals.sh,WW-005,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/custom/configure-journals.sh
+WorkWarrior,Script or module,configure-ledgers.sh,services/custom/configure-ledgers.sh,WW-005,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/custom/configure-ledgers.sh
+WorkWarrior,Script or module,configure-tasks.sh,services/custom/configure-tasks.sh,WW-005,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/custom/configure-tasks.sh
+WorkWarrior,Script or module,configure-times.sh,services/custom/configure-times.sh,WW-005,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/custom/configure-times.sh
+WorkWarrior,Script or module,github-sync.sh,services/custom/github-sync.sh,"WW-005, WW-053",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/custom/github-sync.sh
+WorkWarrior,Script or module,export.sh,services/export/export.sh,"WW-050, WW-051",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/export/export.sh
+WorkWarrior,Script or module,extensions.sh,services/extensions/extensions.sh,WW-057,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/extensions/extensions.sh
+WorkWarrior,Script or module,taskwarrior.py,services/extensions/taskwarrior.py,WW-057,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/extensions/taskwarrior.py
+WorkWarrior,Script or module,find.py,services/find/find.py,WW-041,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/find/find.py
+WorkWarrior,Script or module,find.sh,services/find/find.sh,WW-041,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/find/find.sh
+WorkWarrior,Script or module,installed-pythons.sh,services/find/installed-pythons.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/find/installed-pythons.sh
+WorkWarrior,Script or module,groups.sh,services/groups/groups.sh,WW-004,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/groups/groups.sh
+WorkWarrior,Script or module,models.sh,services/models/models.sh,WW-045,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/models/models.sh
+WorkWarrior,Script or module,network.sh,services/network/network.sh,WW-059,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/network/network.sh
+WorkWarrior,Script or module,create-ww-profile.sh,services/profile/create-ww-profile.sh,"WW-001, WW-002",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/create-ww-profile.sh
+WorkWarrior,Script or module,manage-profiles.sh,services/profile/manage-profiles.sh,"WW-001, WW-002",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/manage-profiles.sh
+WorkWarrior,Script or module,profile-tool.sh,services/profile/profile-tool.sh,"WW-001, WW-002",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/profile-tool.sh
+WorkWarrior,Script or module,create-ww-profile.sh,services/profile/subservices/create-ww-profile.sh,"WW-001, WW-002",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/subservices/create-ww-profile.sh
+WorkWarrior,Script or module,manage-profiles.sh,services/profile/subservices/manage-profiles.sh,"WW-001, WW-002",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/subservices/manage-profiles.sh
+WorkWarrior,Script or module,profile-density.sh,services/profile/subservices/profile-density.sh,"WW-001, WW-002, WW-011",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/subservices/profile-density.sh
+WorkWarrior,Script or module,profile-uda.sh,services/profile/subservices/profile-uda.sh,"WW-001, WW-002, WW-010",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/subservices/profile-uda.sh
+WorkWarrior,Script or module,uda-manager.sh,services/profile/subservices/uda-manager.sh,"WW-001, WW-002, WW-010",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/subservices/uda-manager.sh
+WorkWarrior,Script or module,urgency.sh,services/profile/urgency.sh,"WW-001, WW-002, WW-011",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/profile/urgency.sh
+WorkWarrior,Script or module,projects.sh,services/projects/projects.sh,WW-036,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/projects/projects.sh
+WorkWarrior,Script or module,jrnl-inquiryoverview-1.sh,services/questions/bin/jrnl-inquiryoverview-1.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/bin/jrnl-inquiryoverview-1.sh
+WorkWarrior,Script or module,workpad-blocks.sh,services/questions/bin/workpad-blocks.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/bin/workpad-blocks.sh
+WorkWarrior,Script or module,wp-algorithm.sh,services/questions/bin/wp-algorithm.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/bin/wp-algorithm.sh
+WorkWarrior,Script or module,create-new-template-jrnl.sh,services/questions/create-new-template-jrnl.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/create-new-template-jrnl.sh
+WorkWarrior,Script or module,journal_handler.sh,services/questions/handlers/journal_handler.sh,WW-040,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/handlers/journal_handler.sh
+WorkWarrior,Script or module,ledger_handler.sh,services/questions/handlers/ledger_handler.sh,WW-040,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/handlers/ledger_handler.sh
+WorkWarrior,Script or module,list_handler.sh,services/questions/handlers/list_handler.sh,WW-040,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/handlers/list_handler.sh
+WorkWarrior,Script or module,task_handler.sh,services/questions/handlers/task_handler.sh,WW-040,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/handlers/task_handler.sh
+WorkWarrior,Script or module,time_handler.sh,services/questions/handlers/time_handler.sh,WW-040,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/handlers/time_handler.sh
+WorkWarrior,Script or module,jrnl-inquiryoverview-1.sh,services/questions/jrnl-inquiryoverview-1.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/jrnl-inquiryoverview-1.sh
+WorkWarrior,Script or module,q.sh,services/questions/q.sh,WW-039,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/q.sh
+WorkWarrior,Script or module,create-new-template-jrnl.sh,services/questions/templates/journal/create-new-template-jrnl.sh,WW-039,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/templates/journal/create-new-template-jrnl.sh
+WorkWarrior,Script or module,workpad-blocks.sh,services/questions/workpad-blocks.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/workpad-blocks.sh
+WorkWarrior,Script or module,wp-algorithm.sh,services/questions/wp-algorithm.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/questions/wp-algorithm.sh
+WorkWarrior,Script or module,remove.sh,services/remove/remove.sh,WW-060,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/remove/remove.sh
+WorkWarrior,Script or module,saves.sh,services/saves/saves.sh,WW-042,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/saves/saves.sh
+WorkWarrior,Script or module,create-new-template-jrnl.sh,services/scripts/journals/create-new-template-jrnl.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/scripts/journals/create-new-template-jrnl.sh
+WorkWarrior,Script or module,create-ww-profile.sh,services/scripts/tasks/create-ww-profile.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/scripts/tasks/create-ww-profile.sh
+WorkWarrior,Script or module,servers.sh,services/servers/servers.sh,WW-055,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/servers/servers.sh
+WorkWarrior,Script or module,attention.py,services/stream/attention.py,WW-025,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/attention.py
+WorkWarrior,Script or module,timew-stream-hook.sh,services/stream/hooks/timew-stream-hook.sh,"WW-019, WW-028",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/hooks/timew-stream-hook.sh
+WorkWarrior,Script or module,board.sh,services/stream/lenses/board.sh,"WW-029, WW-031",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/board.sh
+WorkWarrior,Script or module,bundy.sh,services/stream/lenses/bundy.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/bundy.sh
+WorkWarrior,Script or module,burroughs.sh,services/stream/lenses/burroughs.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/burroughs.sh
+WorkWarrior,Script or module,cooper.sh,services/stream/lenses/cooper.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/cooper.sh
+WorkWarrior,Script or module,dey.sh,services/stream/lenses/dey.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/dey.sh
+WorkWarrior,Script or module,felt.sh,services/stream/lenses/felt.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/felt.sh
+WorkWarrior,Script or module,frick.sh,services/stream/lenses/frick.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/frick.sh
+WorkWarrior,Script or module,hollerith.sh,services/stream/lenses/hollerith.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/hollerith.sh
+WorkWarrior,Script or module,pacioli.sh,services/stream/lenses/pacioli.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lenses/pacioli.sh
+WorkWarrior,Script or module,actor.sh,services/stream/lib/actor.sh,WW-029,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lib/actor.sh
+WorkWarrior,Script or module,adapters.sh,services/stream/lib/adapters.sh,WW-030,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lib/adapters.sh
+WorkWarrior,Script or module,codecs.sh,services/stream/lib/codecs.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lib/codecs.sh
+WorkWarrior,Script or module,lenses.sh,services/stream/lib/lenses.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lib/lenses.sh
+WorkWarrior,Script or module,replay.sh,services/stream/lib/replay.sh,WW-031,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lib/replay.sh
+WorkWarrior,Script or module,taoo.sh,services/stream/lib/taoo.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/lib/taoo.sh
+WorkWarrior,Script or module,stream.sh,services/stream/stream.sh,"WW-028, WW-029, WW-030, WW-032",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/stream.sh
+WorkWarrior,Script or module,sync-to-journal.py,services/stream/sync-to-journal.py,"WW-024, WW-026",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/stream/sync-to-journal.py
+WorkWarrior,Script or module,layouts.sh,services/viz/lib/layouts.sh,WW-034,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/viz/lib/layouts.sh
+WorkWarrior,Script or module,renderers.sh,services/viz/lib/renderers.sh,WW-034,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/viz/lib/renderers.sh
+WorkWarrior,Script or module,viz.sh,services/viz/viz.sh,WW-034,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/viz/viz.sh
+WorkWarrior,Script or module,warlock.sh,services/warlock/warlock.sh,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/warlock/warlock.sh
+WorkWarrior,Script or module,warrior.sh,services/warrior/warrior.sh,WW-038,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/warrior/warrior.sh
+WorkWarrior,Script or module,x.sh,services/x-delete/x.sh,WW-060,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/x-delete/x.sh
+WorkWarrior,Script or module,list.py,tools/list/list.py,WW-035,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/tools/list/list.py
+WorkWarrior,Script or module,setup.py,tools/list/setup.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/tools/list/setup.py
+WorkWarrior,Browser HTTP route,GET /health,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /events,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /app.js,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /style.css,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /assets/river.avif,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /themes/twain.js,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /themes/feynman.js,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/tasks,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/time,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/journal,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/lists,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/ledger,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/commands,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/all,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/next,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/schedule,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/profile-resources,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/accounts,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/profiles,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/cmd-log,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/groups,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/network,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/ctrl,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/timew-tags,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/nav-config,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/projects,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/tags,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/task-meta,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/udas,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/stream/status,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/stream,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/sync,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/servers,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/models,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/questions,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/warrior,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /data/warlock/status,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,GET /export/snapshot,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /data/stream/toggle,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /data/servers/sync,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /data/servers/configure,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /data/udas,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /cmd,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /profile,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /action,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /resource,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /cmd/ai,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /resource/create,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WorkWarrior,Browser HTTP route,POST /hledger,services/browser/server.py,,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/server.py
+WebWarrior,Entry point or worker,app.js,app.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/app.js
+WebWarrior,Entry point or worker,index.html,index.html,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/index.html
+WebWarrior,Entry point or worker,sw.js,sw.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/sw.js
+WebWarrior,Module,journal.js,core/journal.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/journal.js
+WebWarrior,Named export,addEntry,core/journal.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/journal.js
+WebWarrior,Named export,annotateEntry,core/journal.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/journal.js
+WebWarrior,Named export,deleteEntry,core/journal.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/journal.js
+WebWarrior,Named export,archiveEntry,core/journal.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/journal.js
+WebWarrior,Named export,getEntries,core/journal.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/journal.js
+WebWarrior,Named export,groupByDate,core/journal.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/journal.js
+WebWarrior,Module,tasks.js,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,addTask,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,getTask,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,updateTask,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,completeTask,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,deleteTask,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,startTask,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,stopTask,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,annotateTask,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,getTasks,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,getProjects,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,getTags,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,bulkComplete,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,bulkDelete,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,bulkSetProject,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,bulkAddTag,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,bulkRemoveTag,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Named export,bulkSetPriority,core/tasks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/tasks.js
+WebWarrior,Module,time.js,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,getActiveInterval,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,startTracking,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,stopTracking,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,trackInterval,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,deleteInterval,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,getIntervals,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,intervalDuration,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,formatDuration,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,getTodayTotal,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Named export,getWeekSummary,core/time.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/time.js
+WebWarrior,Module,urgency.js,core/urgency.js,WW-011,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/urgency.js
+WebWarrior,Named export,computeUrgency,core/urgency.js,WW-011,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/urgency.js
+WebWarrior,Named export,urgencyLevel,core/urgency.js,WW-011,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/core/urgency.js
+WebWarrior,Module,index.js,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,isValidDefault,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,parseAllowedValues,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,getAttributes,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,addAttribute,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,updateAttribute,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,removeAttribute,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,importAttribute,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,formatAttribute,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,computeUdaUrgency,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,TEMPLATE_PACKS,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,importTemplatePack,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,listTemplatePacks,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,getCustomPacks,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Named export,saveCustomPack,services/attributes/index.js,"WW-010, WW-061",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/attributes/index.js
+WebWarrior,Module,index.js,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,listCollections,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,createCollection,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,archiveCollection,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,describeCollection,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,getEntries,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,addEntry,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,refreshEntry,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,removeEntry,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,addComment,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,deleteComment,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,getPrivateNotes,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,addPrivateNote,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Named export,deletePrivateNote,services/community/index.js,"WW-037, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/community/index.js
+WebWarrior,Module,index.js,services/export/index.js,"WW-002, WW-051",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/export/index.js
+WebWarrior,Named export,exportJSON,services/export/index.js,"WW-002, WW-051",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/export/index.js
+WebWarrior,Named export,exportTasksCSV,services/export/index.js,"WW-002, WW-051",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/export/index.js
+WebWarrior,Named export,exportJournalMarkdown,services/export/index.js,"WW-002, WW-051",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/export/index.js
+WebWarrior,Named export,exportHledger,services/export/index.js,"WW-002, WW-051",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/export/index.js
+WebWarrior,Module,index.js,services/journal/index.js,"WW-020, WW-042",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
+WebWarrior,Named export,addEntry,services/journal/index.js,"WW-020, WW-042",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
+WebWarrior,Named export,annotateEntry,services/journal/index.js,"WW-020, WW-042",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
+WebWarrior,Named export,updateEntry,services/journal/index.js,"WW-020, WW-042",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
+WebWarrior,Named export,deleteEntry,services/journal/index.js,"WW-020, WW-042",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
+WebWarrior,Named export,archiveEntry,services/journal/index.js,"WW-020, WW-042",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
+WebWarrior,Named export,getEntries,services/journal/index.js,"WW-020, WW-042",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
+WebWarrior,Named export,groupByDate,services/journal/index.js,"WW-020, WW-042",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
+WebWarrior,Module,index.js,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,addTransaction,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,addFullTransaction,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,updateTransaction,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,deleteTransaction,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,getTransactions,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,addAccount,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,getAccounts,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,balanceReport,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,registerReport,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,incomeReport,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,formatAmount,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,accountType,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Named export,accountColor,services/ledger/index.js,"WW-022, WW-023, WW-024, WW-026, WW-027",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/ledger/index.js
+WebWarrior,Module,index.js,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,getLists,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,addList,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,getItems,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,addItem,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,finishItem,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,deleteItem,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,editItem,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,setNote,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Named export,deleteList,services/lists/index.js,WW-035,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/lists/index.js
+WebWarrior,Module,index.js,services/next/index.js,"WW-012, WW-015, WW-025",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/next/index.js
+WebWarrior,Named export,getNext,services/next/index.js,"WW-012, WW-015, WW-025",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/next/index.js
+WebWarrior,Named export,getUpcoming,services/next/index.js,"WW-012, WW-015, WW-025",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/next/index.js
+WebWarrior,Named export,getOverdue,services/next/index.js,"WW-012, WW-015, WW-025",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/next/index.js
+WebWarrior,Module,index.js,services/questions/index.js,"WW-016, WW-039, WW-040",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/questions/index.js
+WebWarrior,Named export,getTemplates,services/questions/index.js,"WW-016, WW-039, WW-040",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/questions/index.js
+WebWarrior,Named export,saveTemplate,services/questions/index.js,"WW-016, WW-039, WW-040",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/questions/index.js
+WebWarrior,Named export,deleteTemplate,services/questions/index.js,"WW-016, WW-039, WW-040",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/questions/index.js
+WebWarrior,Named export,buildAction,services/questions/index.js,"WW-016, WW-039, WW-040",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/questions/index.js
+WebWarrior,Module,bus.js,services/stream/bus.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/bus.js
+WebWarrior,Named export,StreamBus,services/stream/bus.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/bus.js
+WebWarrior,Named export,bus,services/stream/bus.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/bus.js
+WebWarrior,Module,config.js,services/stream/config.js,WW-032,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/config.js
+WebWarrior,Named export,DEFAULTS,services/stream/config.js,WW-032,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/config.js
+WebWarrior,Named export,getConfig,services/stream/config.js,WW-032,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/config.js
+WebWarrior,Named export,setConfig,services/stream/config.js,WW-032,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/config.js
+WebWarrior,Named export,isEnabled,services/stream/config.js,WW-032,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/config.js
+WebWarrior,Named export,setEnabled,services/stream/config.js,WW-032,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/config.js
+WebWarrior,Module,cooper.js,services/stream/cooper.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/cooper.js
+WebWarrior,Named export,polarProject,services/stream/cooper.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/cooper.js
+WebWarrior,Named export,cartesianProject,services/stream/cooper.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/cooper.js
+WebWarrior,Named export,renderAscii,services/stream/cooper.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/cooper.js
+WebWarrior,Module,dey.js,services/stream/dey.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/dey.js
+WebWarrior,Named export,ema,services/stream/dey.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/dey.js
+WebWarrior,Named export,computeDey,services/stream/dey.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/dey.js
+WebWarrior,Named export,computeLiveSample,services/stream/dey.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/dey.js
+WebWarrior,Module,export.js,services/stream/export.js,"WW-031, WW-051",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/export.js
+WebWarrior,Named export,exportLog,services/stream/export.js,"WW-031, WW-051",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/export.js
+WebWarrior,Named export,exportJSON,services/stream/export.js,"WW-031, WW-051",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/export.js
+WebWarrior,Module,format.js,services/stream/format.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/format.js
+WebWarrior,Named export,OP_CODES,services/stream/format.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/format.js
+WebWarrior,Named export,parse,services/stream/format.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/format.js
+WebWarrior,Named export,format,services/stream/format.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/format.js
+WebWarrior,Named export,validate,services/stream/format.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/format.js
+WebWarrior,Named export,createEvent,services/stream/format.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/format.js
+WebWarrior,Module,index.js,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,init,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,startSampling,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,stopSampling,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,shutdown,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,toggle,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,checkSessionStart,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,recordEventTime,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,snapshot,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,reset,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,getStatus,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,emitNavEvent,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,isReadOnly,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,replay,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,computeDey,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Named export,computeCooper,services/stream/index.js,"WW-028, WW-032, WW-033",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/index.js
+WebWarrior,Module,intercept.js,services/stream/intercept.js,"WW-019, WW-029",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/intercept.js
+WebWarrior,Named export,isActive,services/stream/intercept.js,"WW-019, WW-029",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/intercept.js
+WebWarrior,Named export,setActive,services/stream/intercept.js,"WW-019, WW-029",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/intercept.js
+WebWarrior,Named export,setProfile,services/stream/intercept.js,"WW-019, WW-029",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/intercept.js
+WebWarrior,Named export,wrapService,services/stream/intercept.js,"WW-019, WW-029",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/intercept.js
+WebWarrior,Named export,registerAll,services/stream/intercept.js,"WW-019, WW-029",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/intercept.js
+WebWarrior,Module,lenses.js,services/stream/lenses.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/lenses.js
+WebWarrior,Named export,LENSES,services/stream/lenses.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/lenses.js
+WebWarrior,Module,log.js,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,fileName,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,initLog,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,append,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,readAll,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,readRange,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,getSize,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,validateLog,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,truncate,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Named export,deleteLog,services/stream/log.js,WW-028,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/log.js
+WebWarrior,Module,regen.js,services/stream/regen.js,WW-024,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/regen.js
+WebWarrior,Named export,computeRegeneration,services/stream/regen.js,WW-024,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/regen.js
+WebWarrior,Module,render.js,services/stream/render.js,WW-029,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/render.js
+WebWarrior,Named export,setAsciiMode,services/stream/render.js,WW-029,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/render.js
+WebWarrior,Named export,getAsciiMode,services/stream/render.js,WW-029,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/render.js
+WebWarrior,Named export,renderLens,services/stream/render.js,WW-029,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/render.js
+WebWarrior,Named export,renderComparison,services/stream/render.js,WW-029,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/render.js
+WebWarrior,Module,replay.js,services/stream/replay.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/replay.js
+WebWarrior,Named export,init,services/stream/replay.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/replay.js
+WebWarrior,Named export,replay,services/stream/replay.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/replay.js
+WebWarrior,Named export,computeDey,services/stream/replay.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/replay.js
+WebWarrior,Named export,computeCooper,services/stream/replay.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/replay.js
+WebWarrior,Named export,createSnapshot,services/stream/replay.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/replay.js
+WebWarrior,Named export,terminate,services/stream/replay.js,WW-031,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/replay.js
+WebWarrior,Module,session.js,services/stream/session.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/session.js
+WebWarrior,Named export,detectSessions,services/stream/session.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/session.js
+WebWarrior,Named export,getCurrentSession,services/stream/session.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/session.js
+WebWarrior,Named export,shouldStartNewSession,services/stream/session.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/session.js
+WebWarrior,Module,worker.js,services/stream/worker.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/stream/worker.js
+WebWarrior,Module,index.js,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,addTask,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,getTask,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,updateTask,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,completeTask,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,deleteTask,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,startTask,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,stopTask,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,annotateTask,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,getTasks,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,getProjects,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,getTags,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,bulkComplete,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,bulkDelete,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,bulkSetProject,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,bulkAddTag,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,bulkRemoveTag,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Named export,bulkSetPriority,services/tasks/index.js,"WW-007, WW-008, WW-009, WW-013, WW-014, WW-036, WW-053",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/tasks/index.js
+WebWarrior,Module,index.js,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,getActiveInterval,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,startTracking,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,stopTracking,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,trackInterval,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,updateInterval,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,deleteInterval,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,getIntervals,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,intervalDuration,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,formatDuration,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,getTodayTotal,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,getTagSummary,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Named export,getWeekSummary,services/time/index.js,"WW-017, WW-018",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/time/index.js
+WebWarrior,Module,annotations.js,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Named export,detectDeepWork,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Named export,detectBreaks,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Named export,detectContextSwitch,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Named export,detectEnergyDecline,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Named export,detectPatterns,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Named export,placeLabels,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Named export,generateNarrative,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Named export,overlayAnnotations,services/viz/annotations.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/annotations.js
+WebWarrior,Module,gallery.js,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,init,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,getCards,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,expandCard,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,collapseCard,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,toggleDrawer,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,setPrimaryAxis,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,setModifier,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,setSecondaryBind,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,swapBinding,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,toggleCompare,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,setComparePeriod,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,renderCard,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,refreshCard,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,refreshAllExpanded,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,renderCardDOM,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Named export,renderGalleryPanel,services/viz/gallery.js,WW-034,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/gallery.js
+WebWarrior,Module,index.js,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,resolveTimeRange,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,buildReplayFilters,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,getState,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,setLens,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,setTimeRange,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,setCustomRange,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,addFilter,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,removeFilter,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,clearFilters,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,setMode,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,getContainer,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,formatMetaTimeRange,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,buildLensCard,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,init,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,computeActive,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,persistPreferences,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,getPresets,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,savePreset,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,loadPreset,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Named export,deletePreset,services/viz/index.js,"WW-025, WW-034",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/index.js
+WebWarrior,Module,field.js,services/viz/layouts/field.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/field.js
+WebWarrior,Named export,position,services/viz/layouts/field.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/field.js
+WebWarrior,Module,grid.js,services/viz/layouts/grid.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/grid.js
+WebWarrior,Named export,position,services/viz/layouts/grid.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/grid.js
+WebWarrior,Module,radial.js,services/viz/layouts/radial.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/radial.js
+WebWarrior,Named export,position,services/viz/layouts/radial.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/radial.js
+WebWarrior,Module,swim-lanes.js,services/viz/layouts/swim-lanes.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/swim-lanes.js
+WebWarrior,Named export,position,services/viz/layouts/swim-lanes.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/swim-lanes.js
+WebWarrior,Module,timeline.js,services/viz/layouts/timeline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/timeline.js
+WebWarrior,Named export,position,services/viz/layouts/timeline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/timeline.js
+WebWarrior,Module,waterfall.js,services/viz/layouts/waterfall.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/waterfall.js
+WebWarrior,Named export,position,services/viz/layouts/waterfall.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/layouts/waterfall.js
+WebWarrior,Module,pipeline.js,services/viz/pipeline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/pipeline.js
+WebWarrior,Named export,bucketEvents,services/viz/pipeline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/pipeline.js
+WebWarrior,Named export,aggregate,services/viz/pipeline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/pipeline.js
+WebWarrior,Named export,normalizeBindings,services/viz/pipeline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/pipeline.js
+WebWarrior,Named export,render,services/viz/pipeline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/pipeline.js
+WebWarrior,Module,registry.js,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,PRIMARY_AXES,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,MODIFIER_AXES,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,BINDING_DIMENSIONS,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,ORIENTABLE_LAYOUTS,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,INCOMPATIBLE_PAIRS,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,GRANULARITY_SECONDS,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,resolveAutoGranularity,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,validateCombination,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,listValidCombinations,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,applySmartDefaults,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,createComposition,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,serialize,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,deserialize,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,getCuratedCompositions,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Named export,getLensMapping,services/viz/registry.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/registry.js
+WebWarrior,Module,bars.js,services/viz/renderers/bars.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/bars.js
+WebWarrior,Named export,draw,services/viz/renderers/bars.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/bars.js
+WebWarrior,Module,blocks.js,services/viz/renderers/blocks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/blocks.js
+WebWarrior,Named export,draw,services/viz/renderers/blocks.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/blocks.js
+WebWarrior,Module,characters.js,services/viz/renderers/characters.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/characters.js
+WebWarrior,Named export,draw,services/viz/renderers/characters.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/characters.js
+WebWarrior,Module,glyphs.js,services/viz/renderers/glyphs.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/glyphs.js
+WebWarrior,Named export,draw,services/viz/renderers/glyphs.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/glyphs.js
+WebWarrior,Module,sparkline.js,services/viz/renderers/sparkline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/sparkline.js
+WebWarrior,Named export,draw,services/viz/renderers/sparkline.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/viz/renderers/sparkline.js
+WebWarrior,Module,index.js,services/warrior/index.js,"WW-004, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/warrior/index.js
+WebWarrior,Named export,getWarriorStats,services/warrior/index.js,"WW-004, WW-038",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/warrior/index.js
+WebWarrior,Module,listener.js,services/works-bridge/listener.js,"WW-052, WW-057",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/works-bridge/listener.js
+WebWarrior,Named export,initWorksListener,services/works-bridge/listener.js,"WW-052, WW-057",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/works-bridge/listener.js
+WebWarrior,Named export,notifyProfileChange,services/works-bridge/listener.js,"WW-052, WW-057",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/works-bridge/listener.js
+WebWarrior,Named export,closeWorksListener,services/works-bridge/listener.js,"WW-052, WW-057",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/works-bridge/listener.js
+WebWarrior,Module,db.js,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,dbName,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,openDb,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,closeDb,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,deleteDb,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,getAll,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,getAllByIndex,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,getOne,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,put,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,putMany,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,remove,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,getMeta,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Named export,setMeta,storage/db.js,WW-059,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/db.js
+WebWarrior,Module,import.js,storage/import.js,"WW-002, WW-030, WW-050, WW-054, WW-058",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/import.js
+WebWarrior,Named export,importFromFolder,storage/import.js,"WW-002, WW-030, WW-050, WW-054, WW-058",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/import.js
+WebWarrior,Named export,loadDemoData,storage/import.js,"WW-002, WW-030, WW-050, WW-054, WW-058",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/import.js
+WebWarrior,Module,profiles.js,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,listProfiles,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,getActive,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,setActive,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,createProfile,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,deleteProfile,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,getProfileStats,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,ensureDefaultProfile,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,getJournals,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,addJournal,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,getLedgers,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,addLedger,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,getTaskLists,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,addTaskList,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,removeTaskList,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,getTimeLogs,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,addTimeLog,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,removeTimeLog,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,getUdaKeys,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,addUdaKey,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,getQuestionLists,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,addQuestionList,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Named export,removeQuestionList,storage/profiles.js,"WW-001, WW-003, WW-005, WW-059, WW-060",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/storage/profiles.js
+WebWarrior,Module,modals.js,ui/modals.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/modals.js
+WebWarrior,Named export,showToast,ui/modals.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/modals.js
+WebWarrior,Named export,confirm,ui/modals.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/modals.js
+WebWarrior,Named export,promptText,ui/modals.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/modals.js
+WebWarrior,Module,render.js,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderTasks,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderDoneTasks,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderTimeToday,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderWeekChart,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderIntervals,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderTagSummary,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderJournal,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderBalance,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderRegister,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderIncomeReport,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderTransactions,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderLedgerSummary,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderTags,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderProjects,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderProfileList,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderProfileSwitcher,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,updateWarriorStats,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderAttributes,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Named export,renderUdaInput,ui/render.js,,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/render.js
+WebWarrior,Module,terminal.js,ui/terminal.js,"WW-006, WW-041, WW-043",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/terminal.js
+WebWarrior,Named export,Terminal,ui/terminal.js,"WW-006, WW-041, WW-043",https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/terminal.js
+WorkWarrior,CLI dispatch,ww operations,bin/ww,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/bin/ww
+WorkWarrior,Script or module,cli.py,services/operations/cli.py,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/cli.py
+WorkWarrior,Script or module,operations.sh,services/operations/operations.sh,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/operations.sh
+WorkWarrior,Script or module,service.py,services/operations/ww_ops/service.py,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/service.py
+WorkWarrior,Script or module,store.py,services/operations/ww_ops/store.py,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/store.py
+WorkWarrior,Script or module,lenses.py,services/operations/ww_ops/lenses.py,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/lenses.py
+WorkWarrior,Script or module,source_observations.py,services/operations/ww_ops/source_observations.py,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/source_observations.py

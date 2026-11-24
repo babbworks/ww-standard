@@ -250,3 +250,7 @@ Workwarrior wraps these projects. They do the work. We wire them together.
 ---
 
 **Workwarrior** · Made by [Babb](https://babb.tel) · [workwarrior.org](https://workwarrior.org) · ww@babb.tel
+
+## WorkWarrior and WebWarrior compatibility
+
+[Master comparison and evidence](reference/compatibility/README.md)
