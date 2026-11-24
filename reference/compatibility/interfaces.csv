@@ -665,3 +665,8 @@ WorkWarrior,Script or module,service.py,services/operations/ww_ops/service.py,"W
 WorkWarrior,Script or module,store.py,services/operations/ww_ops/store.py,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/store.py
 WorkWarrior,Script or module,lenses.py,services/operations/ww_ops/lenses.py,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/lenses.py
 WorkWarrior,Script or module,source_observations.py,services/operations/ww_ops/source_observations.py,"WW-065, WW-066",https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/source_observations.py
+WebWarrior,Module,index.js,services/search/index.js,WW-041,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/services/search/index.js
+WebWarrior,Named export,searchProfiles,services/search/index.js,WW-041,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/services/search/index.js
+WebWarrior,Named export,getSearchRecord,services/search/index.js,WW-041,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/services/search/index.js
+WebWarrior,Module,search.js,ui/search.js,WW-041,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/ui/search.js
+WebWarrior,Named export,wireSearch,ui/search.js,WW-041,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/ui/search.js

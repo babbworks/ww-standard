@@ -5,6 +5,16 @@
 baseline parity, implementation references, and an alignment check.
 The [baseline notes](read-me.csv) list the reviewed revisions and status definitions.
 
+## Tracking where the products differ
+
+**Product distinction** records which product leads or where each has different strengths.
+**Parity intent** records whether to align a capability, track it independently, or leave
+the decision open. A product lead does not imply a commitment to match it.
+
+Append an entry to [Changes](changes.csv) for each notable improvement or divergence.
+Record the capability ID, changed product, verification, and a pinned source link.
+The comparison row describes the current state. Changes preserves its history.
+
 ## Updating the comparison
 
 1. Edit the CSVs in this directory. Keep existing capability IDs and assign

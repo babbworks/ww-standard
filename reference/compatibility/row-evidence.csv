@@ -140,8 +140,6 @@ WW-040,WebWarrior,services/questions/index.js,https://github.com/babbworks/WebWa
 WW-040,WebWarrior,app.js,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/app.js
 WW-041,WorkWarrior,services/find/find.sh,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/find/find.sh
 WW-041,WorkWarrior,services/find/find.py,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/find/find.py
-WW-041,WebWarrior,app.js,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/app.js
-WW-041,WebWarrior,ui/terminal.js,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/ui/terminal.js
 WW-042,WorkWarrior,services/saves/saves.sh,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/saves/saves.sh
 WW-042,WorkWarrior,services/browser/static/app.js,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/browser/static/app.js
 WW-042,WebWarrior,services/journal/index.js,https://github.com/babbworks/WebWarrior/blob/8b66734369db906a886283c4af4805c0f7044976/services/journal/index.js
@@ -241,3 +239,8 @@ WW-065,WorkWarrior,services/operations/ww_ops/service.py,https://github.com/babb
 WW-065,WorkWarrior,services/operations/ww_ops/store.py,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/store.py
 WW-066,WorkWarrior,services/operations/ww_ops/source_observations.py,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/source_observations.py
 WW-066,WorkWarrior,services/operations/ww_ops/lenses.py,https://github.com/babbworks/workwarrior/blob/25f67edc2915e66e59c3dbf4462c9759ec901d42/services/operations/ww_ops/lenses.py
+WW-041,WebWarrior,services/search/index.js,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/services/search/index.js
+WW-041,WebWarrior,ui/search.js,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/ui/search.js
+WW-041,WebWarrior,app.js,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/app.js
+WW-041,WebWarrior,index.html,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/index.html
+WW-041,WebWarrior,ui/terminal.js,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/ui/terminal.js

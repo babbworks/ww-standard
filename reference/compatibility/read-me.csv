@@ -22,3 +22,7 @@ Evidence scope,Static review. The visible documentation index covers product and
 Refresh,"Edit the CSVs, keep existing capability IDs and append IDs for new rows. Run mach sheets build then mach sheets lint on this directory.",
 Alignment status,"Unreviewed, In scope, In progress, Ready to verify, Verified, Deferred, Out of scope",
 Baseline row count,66,
+Product distinction,"Independent of baseline parity. Use WorkWarrior leads, WebWarrior leads, Distinct strengths, or Equivalent where reviewed.",
+Parity intent,"Use Undecided, Track independently or Align. A lead in one product does not create a work item for the other.",
+Changes,"Append a dated row for notable improvements and divergences. Reference the stable capability ID, the changed product, verification, and a pinned source URL.",
+WebWarrior search evidence,ee35884a5ab6883718e7d3f2db59e68b587759eb,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/services/search/index.js

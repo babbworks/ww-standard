@@ -1,6 +1,7 @@
 id,file,sheet_name,title,description,owner,source,generated_by,updated,rows
 comparison,comparison.csv,Comparison,Comparison,Capability parity and editable alignment tracking,,Pinned GitHub sources,Compatibility review,2026-11-24,66
-interfaces,interfaces.csv,Interfaces,Interfaces,CLI routes and supporting modules,,Pinned GitHub sources,Compatibility review,2026-11-24,666
+interfaces,interfaces.csv,Interfaces,Interfaces,CLI routes and supporting modules,,Pinned GitHub sources,Compatibility review,2026-11-24,671
 documentation,documentation.csv,Documentation,Documentation,Visible source paths indexed by repository and subject,,Pinned GitHub sources,Compatibility review,2026-11-24,1164
-row-evidence,row-evidence.csv,Row evidence,Row evidence,Pinned implementation references by comparison ID,,Pinned GitHub sources,Compatibility review,2026-11-24,242
-read-me,read-me.csv,Read me,Read me,Baseline revisions and instructions,,Pinned GitHub sources,Compatibility review,2026-11-24,23
+row-evidence,row-evidence.csv,Row evidence,Row evidence,Pinned implementation references by comparison ID,,Pinned GitHub sources,Compatibility review,2026-11-24,245
+read-me,read-me.csv,Read me,Read me,Baseline revisions and instructions,,Pinned GitHub sources,Compatibility review,2026-11-24,27
+changes,changes.csv,Changes,Changes,Dated history of capabilities and product differences,,Pinned GitHub sources,Compatibility review,2026-11-24,1

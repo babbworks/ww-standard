@@ -1,0 +1,2 @@
+Date,Capability ID,Product,Change,Product distinction,Parity intent,Verification,Source URL
+2026-11-24,WW-041,WebWarrior,"Added local search across profiles, type filters, and direct record navigation.","WebWarrior adds direct browser navigation. WorkWarrior retains advanced query, output and saved search controls.",Track independently,Verified in Chromium with two profiles and five record types.,https://github.com/babbworks/WebWarrior/blob/ee35884a5ab6883718e7d3f2db59e68b587759eb/services/search/index.js
